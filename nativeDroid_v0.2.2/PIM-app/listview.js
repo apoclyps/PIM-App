@@ -16,9 +16,9 @@ console.log( "Document ready : listview.js");
 
 			for (var i in data.COMICVINE) {
 				var appendString = '<li><a href="index.php">'+
-					'<img src="http://www.placehold.it/150x150/efefef/000">'+
+					'<img src="'+data.COMICVINE[i].image.thumb_url+'">'+
 					'<h2>'+data.COMICVINE[i].name+'</h2>'+
-					'<p>'+data.COMICVINE[i].last_issue.name+'</p>'+
+					'<p style="padding-top:-20px">'+data.COMICVINE[i].last_issue.name+'</p>'+
 					'<p class="ui-li-aside"><strong>'+data.COMICVINE[i].count_of_issues+'</strong> Issues</p>'+
 				'</a></li>';
 				$("#comicview").append(appendString);

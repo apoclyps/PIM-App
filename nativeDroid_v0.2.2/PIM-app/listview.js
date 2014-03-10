@@ -13,9 +13,8 @@ console.log( "Document ready : listview.js");
 		dataType: 'jsonp',
 		success: function (data) {
 
-
 			for (var i in data.COMICVINE) {
-				var appendString = '<li><a href="index.php">'+
+				var appendString = '<li><a href="item.html">'+
 					'<img src="'+data.COMICVINE[i].image.thumb_url+'">'+
 					'<h2>'+data.COMICVINE[i].name+'</h2>'+
 					'<p style="padding-top:-20px">'+data.COMICVINE[i].last_issue.name+'</p>'+

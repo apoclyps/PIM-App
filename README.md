@@ -1,7 +1,6 @@
 PIM-App
 =======
 
-A HTML5 app to be used with Apache Cordova for Personal Invetory Management
-
-
 ![Mobile_Interface](https://raw.github.com/apoclyps/PIM-App/master/Samsung%20Galaxy%20SII.jpg)
+
+A mobile interface for my Personal Inventory Management project implemented in HTML5 and deployed using Apache Cordova on Android.

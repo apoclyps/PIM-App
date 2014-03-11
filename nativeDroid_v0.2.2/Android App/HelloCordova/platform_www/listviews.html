@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>nativeDroid - Theme for jQuery Mobile</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+		<!-- jQueryMobileCSS - original without styling -->
+        <link rel="stylesheet" href="css/jquerymobile.css" />
+
+		<!-- nativeDroid core CSS -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+
+		<!-- nativeDroid: Light/Dark -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
+
+		<!-- nativeDroid: Color Schemes -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+
+		<!-- jQuery / jQueryMobile Scripts -->
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+
+        <script src="listview.js"></script>
+
+    </head>
+    <body>
+        
+    <div data-role="page" data-theme='b'>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
+            <h1>Query Results</h1>
+        </div>
+        
+        <div data-role="content">   
+
+		<ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+            <li data-role="list-divider">Results for : Batman</li>
+            <li><a href="#"><i class='icon-chevron-left'></i> Back</a></li>
+            <li><a href="#"><i class='icon-remove'></i> Cancel</a></li>
+            <li style="float:right"><a href="#"><i class='icon-ok'></i> Accept</a></li>
+        </ul>
+        
+		<div class='message info'>
+			<i class='icon-info-sign'></i>
+			<p>Successfully updated : 9 minutes ago</code></p>
+		</div>
+
+        <div class="table" id ="table"></div>
+
+          <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id='comicview'>
+		  <li data-role="list-divider">Comics <span class="ui-li-count" >2</span></li>			
+			<!-- Auto generated data inserted here -->
+          </ul>
+               
+        </div>
+
+    </div>
+    
+    </body>
+</html>

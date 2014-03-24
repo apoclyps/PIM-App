@@ -4,7 +4,8 @@ $( document ).ready(function() {
 console.log( "Document ready : listview.js");
 $.mobile.loading('show')
 
-	var url = 'http://127.0.0.1:8080/PIM-Server/comicvine?callback=?';
+	//var url = 'http://127.0.0.1:8080/PIM-Server/comicvine?callback=?';
+	var url = 'http://137.117.146.199:8080/PIM-Server/comicvine?callback=?&query=batman';
 	$.ajax({
 		type: 'GET',
 		url: url,

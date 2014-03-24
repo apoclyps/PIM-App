@@ -1,9 +1,10 @@
 //var url = 'http://192.168.0.17:8080/PIM-Server/comicvine?callback=?';
-//var url = 'http://192.168.0.17:8080/PIM-Server/comicvine?callback=?';
+//var url = 'http://http://137.117.146.199:8080/PIM-Server/comicvine?callback=?';
 
 $( document ).ready(function() {
 console.log( "Document ready : Autocomplete.js");
-	var url = 'http://127.0.0.1:8080/PIM-Server/comicvine?callback=?&query=x-men';
+	//var url = 'http://127.0.0.1:8080/PIM-Server/comicvine?callback=?&query=x-men';
+	var url = 'http://137.117.146.199:8080/PIM-Server/comicvine?callback=?&query=x-men';
 	$.ajax({
 		type: 'GET',
 		url: url,

@@ -1087,7 +1087,7 @@ progress  {
 
 .nativeDroidSplashscreen {
 	display: block;
-	background-color: #000000;
+	background-color: #ffffff;
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -1243,7 +1243,7 @@ progress  {
 
 .nativeDroidLockscreen {
 	display: none;
-	background-color: #000000;
+	background-color: #ffffff;
 	position: fixed;
 	width: 100%;
 	height: 100%;

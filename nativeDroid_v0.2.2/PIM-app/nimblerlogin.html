@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/loadingScreen.css" />
+<link rel="stylesheet" href="themes/nimbler.min.css" />
+<link rel="stylesheet" href="jquery/jquery.mobile.structure-1.3.2.min.css" />
+<script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.mobile-1.3.2.min.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
+<script type="text/javascript" src="javascript/login.js"></script>
+<script type="text/javascript" src="javascript/cross-domain.js"></script>
+
+<title>Login</title>
+</head>
+<body>
+<div data-role="page" data-theme="a" style="height:100%;width:100%;margin:0">
+
+<div data-role="header" data-position="inline">
+<img alt="DWP Crest" src="img/dwpCrest.png" style="float:left">
+<h1>Login</h1>
+</div>
+
+<div data-role="content" data-theme="a">
+
+     <form id="myAjaxRequestForm" style="width:80%;top:10%;left:10%;position:absolute">
+              
+         <p>Email</p>
+<input id="email" name="email" class="input ui-input-text ui-body-a" type="text" data-form="ui-body-a" required/>
+            <p>Password</p>
+<input id="password" name="password" class="input ui-input-text ui-body-a" type="password" data-form="ui-body-a" required/>	
+
+<input id="checkbox-a" type="checkbox" checked="checked" name="checkbox-a">
+                <label class="ui-last-child ui-checkbox-on ui-btn ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-form="ui-btn-up-a" for="checkbox-a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-on" data-theme="a" data-mini="false">
+                    <span class="ui-btn-inner">
+                        <span class="ui-btn-text" style="position:absolute;top:0">Keep me logged in</span>
+                        <span class="ui-icon ui-icon-checkbox-on ui-icon-shadow"> </span>
+                    </span>
+                </label>
+
+<input id="myButton" type="button" value="Login"></button>
+       </form>
+
+<div id="signUpDiv" style="top:85%;width:80%;left:10%;position:absolute">
+
+<button id="signUpBtn" type="button" onclick="window.location.href='signUp.html'" value="Sign Up"></button>
+    </div>
+            
+        <div id="anotherSection" style="top:65%;width:80%;left:10%;position:absolute">
+<div id="ajaxResponse"></div>
+</div>
+            
+        <div class="modal" id="modal"><!--Loading Screen--></div>
+
+        </div>
+
+</div>
+</body>
+</html>

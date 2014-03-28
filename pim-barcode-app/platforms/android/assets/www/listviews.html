@@ -6,25 +6,19 @@
 		
 		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/font-awesome.min.css" />
-
 		<!-- jQueryMobileCSS - original without styling -->
         <link rel="stylesheet" href="css/jquerymobile.css" />
-
 		<!-- nativeDroid core CSS -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
-
 		<!-- nativeDroid: Light/Dark -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
-
 		<!-- nativeDroid: Color Schemes -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
 
       <!-- jQuery / jQueryMobile Scripts -->
       <script src="js/jquery-1.9.1.min.js"></script>
       <script src="js/jquery.mobile-1.3.1.min.js"></script>
-
-        <script src="listview.js"></script>
-
+	  
     </head>
     <body>
         
@@ -58,6 +52,20 @@
         </div>
 
     </div>
+	
+	<!-- Javascript Ajax and Cross Domain -->
+	<script src="javascript/cross-domain.js"></script>
+	<script src="javascript/login.js"></script>
+	<!-- Dynamically update view --> 
+	<script src="ajax/listview.js"></script>
+	
+	<!-- Fast Clib Libary -->
+	<script type='application/javascript' src='js/fastclick.js'></script>
+	<script type="application/javascript">
+		window.addEventListener('load', function () {
+			FastClick.attach(document.body);
+		}, false);
+	</script> 
     
     </body>
 </html>

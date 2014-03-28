@@ -6,16 +6,12 @@
 		
 		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/font-awesome.min.css" />
-
 		<!-- jQueryMobileCSS - original without styling -->
         <link rel="stylesheet" href="css/jquerymobile.css" />
-
 		<!-- nativeDroid core CSS -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
-
 		<!-- nativeDroid: Light/Dark -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
-
 		<!-- nativeDroid: Color Schemes -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
 
@@ -28,7 +24,7 @@
         
     <div data-role="page" data-theme='b'>
 
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <h1><center>Inventory Management</center></h1>
             <a href="index.html" data-ajax='false' target='_blank'><i class='icon-ellipsis-vertical'></i></a>
         </div>
@@ -81,6 +77,14 @@
         </div>
 	<!-- end of page -->
     </div>
+	
+		<!-- Fast Clib Libary -->
+	<script type='application/javascript' src='js/fastclick.js'></script>
+	<script type="application/javascript">
+		window.addEventListener('load', function () {
+			FastClick.attach(document.body);
+		}, false);
+	</script> 
     
     </body>
 </html>

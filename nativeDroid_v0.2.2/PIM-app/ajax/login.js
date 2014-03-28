@@ -5,6 +5,8 @@ function sendAjax() {
 	login.username = $('#username').val();
 	login.password = $('#password').val();
 
+	var url =  "http://137.117.146.199:8080/PIM-Server/register";
+	
 	jQuery.support.cors = true;
 	$.ajax({
 		url: "http://localhost:8080/PIM-Server/register",

@@ -28,7 +28,6 @@
     <body>
         
     <div data-role="page" data-theme='b'>
-
         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <h1><center>Inventory Management</center></h1>
             <a href="index.html" data-ajax='false' target='_blank'><i class='icon-ellipsis-vertical'></i></a>
@@ -39,7 +38,25 @@
 		<center><h1>All in one place</h1>	</center>
 		<br>
 		
-		        <script type="text/javascript">
+		<div class="ui-grid-b" style="padding-bottom:30%">
+		  <div class="ui-block-a"> 
+		  </div>
+		  <div class="ui-block-b">
+			  <div align="center" valign="center">
+	            <input type="button" id="button" value="scan" onclick="scan()" data-theme="b" style="background-color:#B6DB49" />
+	        	</div>
+        	</div>
+		</div>
+				<div id="result"></div> 
+				
+		        <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <h1><center>Version 1.0</center></h1>
+        </div>
+			
+        </div>
+    </div>
+	
+	<script type="text/javascript">
             function onBodyLoad()
             {
                 document.addEventListener("deviceready", onDeviceReady, false);
@@ -77,31 +94,17 @@
                               "1DScanning" : true,
                               "2DScanning" : true}]);
             }
-
             app.initialize();
             </script>
-
-		<div class="ui-grid-b" style="padding-bottom:30%">
-		  <div class="ui-block-a"> 
-		  </div>
-		  <div class="ui-block-b">
-			  <div align="center" valign="center">
-	            <input type="button" id="button" value="scan" onclick="scan()" data-theme="b" style="background-color:#B6DB49" />
-	        	</div>
-        	</div>
-		</div>
-		
-				<div id="result"></div> 
-
-
-		
-		        <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
-            <h1><center>Version 1.0</center></h1>
-        </div>
-			
-        </div>
-
-    </div>
+	
+		<!-- Fast Clib Libary -->
+	<script type='application/javascript' src='js/fastclick.js'></script>
+	  
+	<script type="application/javascript">
+		window.addEventListener('load', function () {
+			FastClick.attach(document.body);
+		}, false);
+	</script> 
     
     </body>
 </html>

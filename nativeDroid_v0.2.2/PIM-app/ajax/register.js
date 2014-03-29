@@ -1,4 +1,4 @@
-$('#login').submit(function () {
+$('#register').submit(function () {
 	sendAjax();
 	return false;
 });
@@ -9,13 +9,10 @@ function sendAjax() {
 	var login = new Object();
 	login.username = $('#username').val();
 	login.password = $('#password').val();
-	
-	var externalServer = "http://137.117.146.199:8080/PIM-Server/register";
-	var localServer = "http://127.0.0.1:8080/PIM-Server/login";
 
 	jQuery.support.cors = true;
 	$.ajax({
-		url: localServer,
+		url: "http://137.117.146.199:8080/PIM-Server/register",
 		type: 'POST',
 		dataType: 'jsonp',
 		data: JSON.stringify(login),
@@ -24,11 +21,9 @@ function sendAjax() {
 		mimeType: 'application/json',
 		
 		success: function (data) {
-		alert(data.success);
+		alert(data.username);
 		console.log(data.username);
-		if(data.success){
-			window.location.href = "index.html";
-		}
+		window.location.href = "index.html";
         },
 		error:function(data,status,er) {
 			console.log("error: "+data+" status: "+status+" er:"+er);

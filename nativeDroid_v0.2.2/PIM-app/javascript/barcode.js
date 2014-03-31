@@ -2,6 +2,11 @@
             {
                 document.addEventListener("deviceready", onDeviceReady, false);
             }
+			
+$('#scan').submit(function () {
+	scan();
+	return false;
+});
 
         function success(resultArray) {
 
@@ -20,6 +25,7 @@
 			$("#result").append("Barcode : "+resultArray[0]);
 			$('#result').listview('refresh');
 			console.log("Request Complete : Scan Successful "+resultArray[0]);
+			alert(resultArray[0]);
 
             }
 

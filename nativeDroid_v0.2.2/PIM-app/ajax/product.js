@@ -33,7 +33,8 @@ function sendProduct() {
 	product.name = $('#productName').val();
 	product.barcode = $('#productBarcode').val();
 	product.quantity = $('#productQuantity').val();
-	
+	product.mediatype = $('input[name=radio-choice-a]:checked', '#addManualProduct').val();
+		
 	var externalServer = "http://137.117.146.199:8080/PIM-Server/product/add/comic";
 	var localServer = "http://127.0.0.1:8080/PIM-Server/product/add/comic";
 
@@ -41,7 +42,7 @@ function sendProduct() {
 	
 	jQuery.support.cors = true;
 	$.ajax({
-		url: externalServer,
+		url: localServer,
 		type: 'POST',
 		dataType: 'jsonp',
 		data: sendData,
@@ -54,7 +55,7 @@ function sendProduct() {
 		
 		console.log(data.success);
 		if(data.success){
-			window.location.href = "result.html?name="+product.name+"&barcode="+product.barcode+"&quantity="+product.quantity;
+			window.location.href = "result.html?name="+product.name+"&barcode="+product.barcode+"&quantity="+product.quantity+"&mediatype="+product.mediatype;
 		}
         },
 		error:function(data,status,er) {

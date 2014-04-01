@@ -17,14 +17,17 @@ $.urlParam = function(name){
 var name = decodeURIComponent($.urlParam('name'));
 var barcode = decodeURIComponent($.urlParam('barcode'));
 var quantity = decodeURIComponent($.urlParam('quantity'))
+var mediatype = decodeURIComponent($.urlParam('mediatype'))
 
 console.log(name); 
 console.log(barcode);  
 console.log(quantity);  
+console.log(mediatype);  
 
 $('input#productName').val(name);
 $('input#productBarcode').val(barcode);
 $('input#productQuantity').val(quantity);
+$('input#productMediaType').val(mediatype);
 $('input#productName').listview('refresh');
 
 });

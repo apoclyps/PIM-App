@@ -43,41 +43,31 @@
          <div data-role="content">
             <br/><br/><br/>
             <div class="center-wrapper">
-               <h1>Universal Product Scanner</h1>
+               <h1>Product Successfully Added!</h1>
             </div>
             <br/>
             <div class="center-wrapper">
                <form id="addManualProduct" style="padding-bottom:5%">
                   <ul>
-				     <li data-role="fieldcontain"><p>Select Media Type</p></li>
+				     <li data-role="fieldcontain">Media Type</li>
                      <li data-role="fieldcontain">
-                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
-                           <input type="radio" name="radio-choice-a" id="radio-choice-ab" value="choice-a" checked="checked">
-                           <label for="radio-choice-ab">Comic</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-bb" value="choice-b">
-                           <label for="radio-choice-bb">CD</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-cb" value="choice-c">
-                           <label for="radio-choice-cb">DVD</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-db" value="choice-d">
-                           <label for="radio-choice-db">Game</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-eb" value="choice-e">
-                           <label for="radio-choice-eb">Other</label>
-                        </fieldset>
+                        <input type="text" name="productMediaType" id="productMediaType" value="" data-clear-btn="true" placeholder="Media Type" readonly>
+					<li data-role="fieldcontain">
+                        <input type="text" name="productBarcode" id="productBarcode" value="" data-clear-btn="true" placeholder="Media Barcode" readonly>
+                    </li>
                      </li>
 					<!-- Padding needed -->
-					 <li data-role="fieldcontain"><p>Enter Product Details</p></li>
+				     <li data-role="fieldcontain">Product Details</li>
 					 <li data-role="fieldcontain">
-                        <input type="text" name="productName" id="productName" value="" data-clear-btn="true" placeholder="Product Name" >
+                        <input type="text" name="productName" id="productName" value="" data-clear-btn="true" placeholder="Name" readonly>
                     </li>
 					<li data-role="fieldcontain">
-                        <input type="text" name="productBarcode" id="productBarcode" value="" data-clear-btn="true" placeholder="Product Barcode" >
+                        <input type="text" name="productQuantity" id="productQuantity" value="" data-clear-btn="true" placeholder="Quantity" readonly>
                     </li>
+					<br/><br/>
 					<li data-role="fieldcontain">
-                        <input type="text" name="productQuantity" id="productQuantity" value="" data-clear-btn="true" placeholder="Quantity" >
+                        <img src="http://static.comicvine.com/uploads/scale_avatar/10/103530/3421824-2.png" name="productImage" id="productImage" value="" data-clear-btn="true" >
                     </li>
-                     <li data-role="fieldcontain">
-                        <button id="submit" type="submit" data-theme="b" value="Add Product"></button>
-					</li>
 </ul>
 	</form>
 	

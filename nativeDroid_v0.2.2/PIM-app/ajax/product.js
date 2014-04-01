@@ -41,7 +41,7 @@ function sendProduct() {
 	
 	jQuery.support.cors = true;
 	$.ajax({
-		url: localServer,
+		url: externalServer,
 		type: 'POST',
 		dataType: 'jsonp',
 		data: sendData,
@@ -54,7 +54,7 @@ function sendProduct() {
 		
 		console.log(data.success);
 		if(data.success){
-			window.location.href = "result.html";
+			window.location.href = "result.html?name="+product.name+"&barcode="+product.barcode+"&quantity="+product.quantity;
 		}
         },
 		error:function(data,status,er) {

@@ -42,7 +42,7 @@ function sendProduct() {
 	
 	jQuery.support.cors = true;
 	$.ajax({
-		url: localServer,
+		url: externalServer,
 		type: 'POST',
 		dataType: 'jsonp',
 		data: sendData,

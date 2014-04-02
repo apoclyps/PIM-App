@@ -26,10 +26,10 @@ $("#usernameDuplicate").change(function(){
 // Validates inputs for the form and displays alert messages if not valid.
 function validateForm()
 {
-var username=document.forms["register"]["username"].value;
-var password=document.forms["register"]["password"].value;
-var passwordConfirmation =document.forms["register"]["passwordConfirmation"].value;
-var email =document.forms["register"]["email"].value;
+var username=document.getElementById("username").value;
+var password=document.getElementById("password").value;
+var passwordConfirmation =document.getElementById("passwordConfirmation").value;
+var email =document.getElementById("email").value;
 
 if (username==null || username=="")
   {
@@ -72,6 +72,15 @@ function validateEmail(email) {
     return re.test(email);
 } 
 
+function getServer(){
+    var x = 0;
+    var activity=jsonstr;
+	var server = activity[0].server;
+	console.log(server);
+   // alert(server);
+	return server;
+  }
+
 // Registers a user on the server
 function registerUser() {
  
@@ -85,13 +94,21 @@ function registerUser() {
 	var externalServer = "http://137.117.146.199:8080/PIM-Server/register";
 	var localServer = "http://127.0.0.1:8080/PIM-Server/register";
 	
+	var server = null;
+	if(getServer()=="localServer"){
+		server = localServer;
+	}else{
+		server = externalServer;
+	}
+	alert(server);
+	
 	// Building the JSON data to be sent
 	var sendData = "data="+JSON.stringify(register);
 	
 	// Enabling cross domain requests.
 	jQuery.support.cors = true;
 	$.ajax({
-		url: localServer,
+		url: server,
 		type: 'POST',
 		dataType: 'jsonp',
 		data: sendData,

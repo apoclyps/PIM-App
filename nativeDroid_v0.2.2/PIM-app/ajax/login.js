@@ -3,6 +3,15 @@ $('#login').submit(function () {
 	return false;
 });
 
+function getServer(){
+    var x = 0;
+    var activity=jsonstr;
+	var server = activity[0].server;
+	console.log(server);
+   // alert(server);
+	return server;
+  }
+
 function sendAjax() {
  
 	// get inputs
@@ -16,9 +25,18 @@ function sendAjax() {
 	// Building the JSON data to be sent
 	var sendData = "data="+JSON.stringify(login);
 	
+	
+	var server = null;
+	if(getServer()=="localServer"){
+		server = localServer;
+	}else{
+		server = externalServer;
+	}
+	alert(server);
+	
 	jQuery.support.cors = true;
 	$.ajax({
-		url: localServer,
+		url: server,
 		type: 'POST',
 		dataType: 'jsonp',
 		data: sendData,

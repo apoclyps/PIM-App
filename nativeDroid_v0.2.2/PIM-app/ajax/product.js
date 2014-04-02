@@ -38,7 +38,7 @@ function sendProduct() {
 	var externalServer = "http://137.117.146.199:8080/PIM-Server/product/add/comic";
 	var localServer = "http://127.0.0.1:8080/PIM-Server/product/add/comic";
 
-	sendData = "data="+JSON.stringify(product);
+	var sendData = "data="+JSON.stringify(product);
 	
 	jQuery.support.cors = true;
 	$.ajax({

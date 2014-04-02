@@ -10,12 +10,12 @@ function sendAjax() {
 	login.username = $('#username').val();
 	login.password = $('#password').val();
 	
-	var externalServer = "http://137.117.146.199:8080/PIM-Server/register";
+	var externalServer = "http://137.117.146.199:8080/PIM-Server/login";
 	var localServer = "http://127.0.0.1:8080/PIM-Server/login";
 
 	jQuery.support.cors = true;
 	$.ajax({
-		url: localServer,
+		url: externalServer,
 		type: 'POST',
 		dataType: 'jsonp',
 		data: JSON.stringify(login),

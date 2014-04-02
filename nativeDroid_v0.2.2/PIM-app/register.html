@@ -79,14 +79,17 @@
                     <li data-role="fieldcontain">
                         <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Password" ></input>
                     </li>
+					<li data-role="fieldcontain">
+                        <input type="password" name="passwordConfirmation" id="passwordConfirmation" value="" data-clear-btn="true" placeholder="Confirm Password" ></input>
+                    </li>
 
 						
 					<li data-role="fieldcontain">
                         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">	
-                            <span> Use Email as Username?</span><br>
-                            <input type="radio" name="radio-choice-a" id="radio-choice-ab" value="choice-a" checked="checked">
+                            <span> Use Email as Username?</span><br/>
+                            <input type="radio" name="radio-choice-a" id="radio-choice-ab" value="choice-a" checked="checked"></input>
                             <label for="radio-choice-ab">No</label>
-                            <input type="radio" name="radio-choice-a" id="radio-choice-bb" value="choice-b">
+                            <input type="radio" name="radio-choice-a" id="radio-choice-bb" value="choice-b"></input>
                             <label for="radio-choice-bb">Yes</label>
                         </fieldset>
                     </li>
@@ -121,9 +124,9 @@
 	  
       <!-- Javascript Ajax and Cross Domain -->
       <script src="javascript/cross-domain.js"></script>
-      <script src="ajax/login.js"></script>
+      <script src="ajax/register.js"></script>
       <!-- Fast Clib Libary -->
-      <script type='application/javascript' src='js/fastclick.js'></script>
+      <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">
          window.addEventListener('load', function () {
          	FastClick.attach(document.body);

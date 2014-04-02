@@ -13,12 +13,15 @@ function sendAjax() {
 	var externalServer = "http://137.117.146.199:8080/PIM-Server/login";
 	var localServer = "http://127.0.0.1:8080/PIM-Server/login";
 
+	// Building the JSON data to be sent
+	var sendData = "data="+JSON.stringify(login);
+	
 	jQuery.support.cors = true;
 	$.ajax({
-		url: externalServer,
+		url: localServer,
 		type: 'POST',
 		dataType: 'jsonp',
-		data: JSON.stringify(login),
+		data: sendData,
 		jsonpCallback: 'callback',
 		contentType: 'application/json',
 		mimeType: 'application/json',

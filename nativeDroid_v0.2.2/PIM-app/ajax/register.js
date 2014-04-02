@@ -49,7 +49,7 @@ if (username==null || username=="")
 	  return false;
   }
   
-  if(password<6){
+  if(password.length<=5){
 	alert("Password is shorter than 6 charachters");
 	return false;
   }
@@ -101,9 +101,13 @@ function registerUser() {
 		
 		// Success redirects to home screen
 		success: function (data) {
-			alert(data.username);
+			alert("Login Attempt : "+data.success);
 			console.log(data.username);
-			window.location.href = "index.html";
+			if(data.success){
+				window.location.href = "index.html";
+			}else{
+				alert(data.message);
+			}
         },
 		// Error returns to page with alert
 		error:function(data,status,er) {

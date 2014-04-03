@@ -1,1 +1,0 @@
-jsonstr = [ {"server":"localServer"} ];

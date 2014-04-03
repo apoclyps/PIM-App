@@ -30,11 +30,11 @@ $.ajax({
             var td4 = "<td><div class ='span1'>" + data.COMICVINE[i].last_issue.issue_number + "</div></td>";
             var td5 = "<td><div class ='span1'>" + data.COMICVINE[i].resource_type + "</div></td></div></a></tr>";
 
-            $("#sub-table").append(tr +td0 + td1 + td2 + td3 + td4 + td5);
+            $("#sub-table").append(tr + td0 + td1 + td2 + td3 + td4 + td5);
         }
         $("#table").append("</tbody></table></div>");
-		$('#table').listview('refresh');
-		console.log("Request Complete : Comic Vine Volume");
+        $('#table').listview('refresh');
+        console.log("Request Complete : Comic Vine Volume");
     },
     error: function (e) {
         console.log(e.message);

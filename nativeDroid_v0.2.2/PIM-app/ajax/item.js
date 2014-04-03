@@ -14,8 +14,8 @@ $(document).ready(function () {
 
     var id = decodeURIComponent($.urlParam('id'));
     console.log(id);
-
     var localData = JSON.parse(localStorage.getItem(id));
+
     // Displaying Data if it exists
     if (localData == null) {
         alert("Value is null");
@@ -23,32 +23,27 @@ $(document).ready(function () {
         //alert(localData.toString());
         alert("Accessed from LocalStorage : " + localData.id);
     }
-    	console.log("name :"+localData.name);
-    	var deck = localData.deck;
-    	var description = localData.description;
 
-    	if(description!=null){
-    		var description = description.substring(0,1000);
-    	}else{
-    		description = "No description available";
-    	}
+    console.log("name :" + localData.name);
+    var deck = localData.deck;
+    var description = localData.description;
 
-    	if(deck!=null){
-    		var deck = deck.substring(0,250);
-    	}else{
-    		deck = "No Synopsis available";
-    	}
+    if (description != null) {
+        var description = description.substring(0, 1000);
+    } else {
+        description = "No description available";
+    }
 
-        var dynamicView = '<img style="float:right" src="'+localData.image.thumb_url+'"></img>'+
-        '<h1 id="name">'+localData.name+'</h1> <br>'+'<h2>'+localData.last_issue.name+'</h2>'+'<h2>'+localData.count_of_issues+' Issues</h2><br>'+'<div style="text-align:justify" id="description">'
-        +'<h3><strong>Description</strong></h3>'
-        +'<p>'+deck+'</p><br>'+
-        '<h3><strong>Synopsis</strong></h3>'
-        +'<p>'+description+'....<a href="#">Read More </a></p> '
-        +'</div>';
+    if (deck != null) {
+        var deck = deck.substring(0, 250);
+    } else {
+        deck = "No Synopsis available";
+    }
 
-		$("#comicview").append(dynamicView);
-		$( "#comicview" ).load( dynamicView );
+    var dynamicView = '<img style="float:right" src="' + localData.image.thumb_url + '"></img>' +
+        '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+        '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
 
-
+    $("#comicview").append(dynamicView);
+    $("#comicview").load(dynamicView);
 });

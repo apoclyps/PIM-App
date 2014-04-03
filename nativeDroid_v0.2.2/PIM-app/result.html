@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>nativeDroid - Theme for jQuery Mobile</title>
+      <title>PIM - Personal Inventory Management</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
       <link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -30,10 +30,9 @@
          border-right: 1px solid rgba(255, 255, 255, 0.3);
          font-weight: 400;
          }
-		 
-		 .ui-btn {
-			display:none;
-		 }
+         .ui-btn {
+         display:none;
+         }
       </style>
    </head>
    <body>
@@ -53,47 +52,47 @@
             <div class="center-wrapper">
                <form id="addManualProduct" style="padding-bottom:5%">
                   <ul>
-				     <li data-role="fieldcontain">Media Type</li>
+                     <li data-role="fieldcontain">Media Type</li>
                      <li data-role="fieldcontain">
                         <input type="text" name="productMediaType" id="productMediaType" value="" data-clear-btn="true" placeholder="Media Type" readonly>
-					<li data-role="fieldcontain">
+                     <li data-role="fieldcontain">
                         <input type="text" name="productBarcode" id="productBarcode" value="" data-clear-btn="true" placeholder="Media Barcode" readonly>
-                    </li>
                      </li>
-					<!-- Padding needed -->
-				     <li data-role="fieldcontain">Product Details</li>
-					 <li data-role="fieldcontain">
+                     </li>
+                     <!-- Padding needed -->
+                     <li data-role="fieldcontain">Product Details</li>
+                     <li data-role="fieldcontain">
                         <input type="text" name="productName" id="productName" value="" data-clear-btn="true" placeholder="Name" readonly>
-                    </li>
-					<li data-role="fieldcontain">
+                     </li>
+                     <li data-role="fieldcontain">
                         <input type="text" name="productQuantity" id="productQuantity" value="" data-clear-btn="true" placeholder="Quantity" readonly>
-                    </li>
-					<br/><br/>
-					<li data-role="fieldcontain">
+                     </li>
+                     <br/><br/>
+                     <li data-role="fieldcontain">
                         <img src="http://static.comicvine.com/uploads/scale_avatar/10/103530/3421824-2.png" name="productImage" id="productImage" value="" data-clear-btn="true" >
-                    </li>
-</ul>
-	</form>
-	
-            <div id="result" data-role="listview"></div>
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
-               <div class="center-wrapper"><h1>
-                  Version 1.0
-               </h1></div>
+                     </li>
+                  </ul>
+               </form>
+               <div id="result" data-role="listview"></div>
+               <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+                  <div class="center-wrapper">
+                     <h1>
+                        Version 1.0
+                     </h1>
+                  </div>
+               </div>
             </div>
          </div>
+         <!-- Javascript Ajax and Cross Domain -->
+         <script src="javascript/cross-domain.js"></script>
+         <script src="ajax/result.js"></script>
+         <!-- Fast Clib Libary -->
+         <script type='application/javascript' src='javascript/fastclick.js'></script>
+         <script type="application/javascript">
+            window.addEventListener('load', function () {
+               FastClick.attach(document.body);
+            }, false);
+         </script> 
       </div>
-
-	  	<!-- Javascript Ajax and Cross Domain -->
-	<script src="javascript/cross-domain.js"></script>
-	<script src="ajax/result.js"></script>
-      <!-- Fast Clib Libary -->
-      <script type='application/javascript' src='javascript/fastclick.js'></script>
-      <script type="application/javascript">
-         window.addEventListener('load', function () {
-         	FastClick.attach(document.body);
-         }, false);
-      </script> 
-	</div>
    </body>
 </html>

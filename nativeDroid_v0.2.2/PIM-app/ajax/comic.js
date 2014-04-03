@@ -28,7 +28,7 @@ $.ajax({
 
         }
         $("#table").append("</ul>");
-        
+
     },
     error: function (e) {
         console.log(e.message);

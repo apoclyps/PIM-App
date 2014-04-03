@@ -23,14 +23,28 @@ $(document).ready(function () {
         //alert(localData.toString());
         alert("Accessed from LocalStorage : " + localData.id);
     }
-    console.log("name :"+localData.name);
+    	console.log("name :"+localData.name);
+    	var deck = localData.deck;
+    	var description = localData.description;
+
+    	if(description!=null){
+    		var description = description.substring(0,1000);
+    	}else{
+    		description = "No description available";
+    	}
+
+    	if(deck!=null){
+    		var deck = deck.substring(0,250);
+    	}else{
+    		deck = "No Synopsis available";
+    	}
 
         var dynamicView = '<img style="float:right" src="'+localData.image.thumb_url+'"></img>'+
         '<h1 id="name">'+localData.name+'</h1> <br>'+'<h2>'+localData.last_issue.name+'</h2>'+'<h2>'+localData.count_of_issues+' Issues</h2><br>'+'<div style="text-align:justify" id="description">'
         +'<h3><strong>Description</strong></h3>'
-        +'<p>The one that started it all. Batman focuses on the rise of the famous Batman and his influence on Gotham City as he fights the most devilish of villains and stops the most dastardly plans. It spanned from 1940-2011.</p><br>'+
+        +'<p>'+deck+'</p><br>'+
         '<h3><strong>Synopsis</strong></h3>'
-        +'<p>The entire run of Batman still stands upon large controversies over who actually came up with some of the characters. Bob Kane supposedly came up with the idea for the hero, but it has been suggested that he only came up with a "Bird-man" and Bill Finger suggested he be a "Bat-man". Both creators however, share credit for this character. As for the Joker, the first concept sketch was drawn by Jerry Robinson, but Kane disputed that his input was "minimal" suggesting he and Bill came up with the idea. Kane also finagled many legal aspects of Batman related print and media. Every movie and comic reads "Batman created by Bob Kane" when it should read "Batman created by Bob Kane and Bill Finger"....<a href="#">Read More </a></p> '
+        +'<p>'+description+'....<a href="#">Read More </a></p> '
         +'</div>';
 
 		$("#comicview").append(dynamicView);

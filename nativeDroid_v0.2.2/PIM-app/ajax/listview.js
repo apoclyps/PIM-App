@@ -16,19 +16,34 @@ $( document ).ready(function() {
 		success: function (data) {
 
 			for (var i in data.COMICVINE) {
-				var appendString = '<li id="'+data.COMICVINE[i].id+'"><a href="item.html?id='+data.COMICVINE[i].id+'">'+
+
+				var last_issue = null;
+
+				if(data.COMICVINE[i].last_issue.name==null){
+					last_issue = "";
+				}else{
+					last_issue = data.COMICVINE[i].last_issue.name;
+				}
+
+				var appendString = '<li id="'+data.COMICVINE[i].id+'"><a href="item.html?id='+data.COMICVINE[i].id+'" data-ajax="false">'+
 					'<img src="'+data.COMICVINE[i].image.thumb_url+'">'+
 					'<h2>'+data.COMICVINE[i].name+'</h2>'+
-					'<p style="padding-top:-20px">'+data.COMICVINE[i].last_issue.name+'</p>'+
+					'<p style="padding-top:-20px">'+last_issue+'</p>'+
 					'<p class="ui-li-aside"><strong>'+data.COMICVINE[i].count_of_issues+'</strong> Issues</p>'+
 				'</a></li>';
 				$("#comicview").append(appendString);
 				$('#comicview').listview('refresh');
+
+
+				//Creating a datastore for ComicvineData
+				var dataToStore = JSON.stringify(data.COMICVINE[i]);
+				// Storing data in localstorage 
+		        window.localStorage.setItem(data.COMICVINE[i].id, dataToStore);
+		  
+		        //var key = data.COMICVINE[i].id;
+		        //var localData = JSON.parse(localStorage.getItem(key));
 			}
 			
-
-// TEST
-
 
 				//Creating a datastore for ComicvineData
 				var dataToStore = JSON.stringify(data.COMICVINE[0]);

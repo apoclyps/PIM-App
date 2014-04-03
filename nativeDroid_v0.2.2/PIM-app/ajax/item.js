@@ -1,43 +1,20 @@
 //var url = 'http://192.168.0.17:8080/PIM-Server/comicvine?callback=?';
 
 $( document ).ready(function() {
-console.log( "Document ready : listview.js");
+console.log( "Document ready : item.js");
 //$.mobile.loading('show')
 
-	//var url = 'http://127.0.0.1:8080/PIM-Server/comicvine?callback=?';
-	var url = 'http://137.117.146.199:8080/PIM-Server/comicvine?callback=?&query=batman';
-	$.ajax({
-		type: 'GET',
-		url: url,
-		async: false,
-		jsonpCallback: 'comicvine',
-		contentType: "application/json",
-		dataType: 'jsonp',
-		success: function (data) {
 
-			for (var i in data.COMICVINE) {
-				var appendString = '<li id="'+data.COMICVINE[i].id+'"><a href="item.html?id='+data.COMICVINE[i].id+'">'+
-					'<img src="'+data.COMICVINE[i].image.thumb_url+'">'+
-					'<h2>'+data.COMICVINE[i].name+'</h2>'+
-					'<p style="padding-top:-20px">'+data.COMICVINE[i].last_issue.name+'</p>'+
-					'<p class="ui-li-aside"><strong>'+data.COMICVINE[i].count_of_issues+'</strong> Issues</p>'+
-				'</a></li>';
-				$("#comicview").append(appendString);
-				$('#comicview').listview('refresh');
-			}
-			
-				/*var recursiveEncoded = $.param( data.COMICVINE[0] );
-				var recursiveDecoded = decodeURIComponent( $.param( data.COMICVINE[0] ) );
-				alert( recursiveEncoded );
-				alert( recursiveDecoded );
-				*/
-			
-			$('#comicview').listview('refresh');
-			console.log("Request Complete : Comic Vine Volume");
-			//$.mobile.loading('hide')
-		},
-		error: function (e) {
-			console.log(e.message);
-		}
-	});
+
+
+				var localData = JSON.parse(localStorage.getItem("796"));
+		        
+		        // Displaying Data if it exists
+		        if(localData==null){
+		        	alert("Value is null");
+		        }else{
+		        	//alert(localData.toString());
+		        	alert("Accessed from LocalStorage : "+localData.id);
+		        }
+
 });

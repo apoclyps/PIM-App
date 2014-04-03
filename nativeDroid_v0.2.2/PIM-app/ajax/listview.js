@@ -1,6 +1,3 @@
-
-
-
 //var url = 'http://192.168.0.17:8080/PIM-Server/comicvine?callback=?';
 
 $( document ).ready(function() {
@@ -29,11 +26,29 @@ $( document ).ready(function() {
 				$('#comicview').listview('refresh');
 			}
 			
-				/*var recursiveEncoded = $.param( data.COMICVINE[0] );
-				var recursiveDecoded = decodeURIComponent( $.param( data.COMICVINE[0] ) );
-				alert( recursiveEncoded );
-				alert( recursiveDecoded );
-				*/
+
+// TEST
+
+
+				//Creating a datastore for ComicvineData
+				var dataToStore = JSON.stringify(data.COMICVINE[0]);
+				// Storing data in localstorage 
+		        window.localStorage.setItem(data.COMICVINE[0].id, dataToStore);
+		  
+		        var key = data.COMICVINE[0].id;
+		        var localData = JSON.parse(localStorage.getItem(key));
+		        
+		        // Displaying Data if it exists
+		        if(localData==null){
+		        	alert("Value is null");
+		        }else{
+		        	//alert(localData.toString());
+		        	alert("Accessed from LocalStorage : "+localData.id);
+		        }
+		  
+		        // localStorage is now empty
+		        //window.localStorage.clear();
+
 			
 			$('#comicview').listview('refresh');
 			//console.log("Request Complete : Comic Vine Volume");
@@ -53,10 +68,10 @@ $( document ).ready(function() {
     // device APIs are available
     //
     function onDeviceReady() {
-        var db = window.openDatabase("Database", "1.0", "PIM", 200000);
-		db.transaction(createDB, errorCB, successCB);
-        db.transaction(populateDB, errorCB, successCB);
-		db.transaction(queryDB, errorCB);
+        //var db = window.openDatabase("Database", "1.0", "PIM", 200000);
+		//db.transaction(createDB, errorCB, successCB);
+       // db.transaction(populateDB, errorCB, successCB);
+		//db.transaction(queryDB, errorCB);
     }
 
     // Populate the database

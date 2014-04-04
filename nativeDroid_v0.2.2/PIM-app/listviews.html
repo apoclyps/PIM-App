@@ -17,6 +17,9 @@
       <script src="js/jquery-1.9.1.min.js"></script>
       <script src="js/jquery.mobile-1.3.1.min.js"></script>
       <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
+
+      <link rel="stylesheet" href="css/center.css"/>
+
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -29,13 +32,13 @@
          <div data-role="content">
             <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
                <li data-role="list-divider">Results for : Batman</li>
-               <li><a href="#"><i class='icon-chevron-left'></i> Back</a></li>
+               <li><a href="index.html"><i class='icon-chevron-left'></i> Back</a></li>
                <li><a href="#"><i class='icon-remove'></i> Cancel</a></li>
                <li style="float:right"><a href="#"><i class='icon-ok'></i> Accept</a></li>
             </ul>
-            <div class='message info'>
+            <div id ="message-info" class='message info'>
                <i class='icon-info-sign'></i>
-               <p>Successfully updated : 9 minutes ago</p>
+               <p id="message-info">Successfully updated</p>
             </div>
             <div class="table" id ="table"></div>
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id='comicview'>
@@ -43,6 +46,12 @@
                <!-- Auto generated data inserted here -->
             </ul>
          </div>
+
+      <div class="center-wrapper" id="overlay">
+           <img src="images/pageloader.gif" alt="Loading" style="height:125px;width:125px;margin-top:100px;display:hidden" /><br/><br/>
+           Loading...
+      </div>
+
       </div>
       <!-- Javascript Ajax and Cross Domain -->
       <script src="javascript/cross-domain.js"></script>

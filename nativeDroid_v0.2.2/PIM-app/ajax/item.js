@@ -13,7 +13,7 @@ $(document).ready(function () {
     }
 
     var id = decodeURIComponent($.urlParam('id'));
-    console.log(id);
+    //console.log(id);
     var localData = JSON.parse(localStorage.getItem(id));
 
     // Displaying Data if it exists
@@ -21,7 +21,7 @@ $(document).ready(function () {
         alert("Value is null");
     } else {
         //alert(localData.toString());
-        alert("Accessed from LocalStorage : " + localData.id);
+       // alert("Accessed from LocalStorage : " + localData.id);
     }
 
     console.log("name :" + localData.name);

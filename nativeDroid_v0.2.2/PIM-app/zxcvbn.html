@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo</title>
+  
+  <script type='text/javascript' src='javascript/jquery-1.9.1.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  
+ 
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+    
+      <script type='text/javascript' src="javascript/zxcvbn/zxcvbn.js"></script>
+    
+  
+  <style type='text/css'>
+    
+
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){
+$('#password').keyup(function() {
+    $('#result').html('Laa laa laa');
+  var textValue = $(this).val();
+  var result = zxcvbn(textValue);
+traverse(result);
+    /*
+    result.entropy            # bits
+
+result.crack_time         # estimation of actual crack time, in seconds.
+
+result.crack_time_display # same crack time, as a friendlier string:
+                          # "instant", "6 minutes", "centuries", etc.
+
+result.score              # [0,1,2,3,4] if crack time is less than
+                          # [10**2, 10**4, 10**6, 10**8, Infinity].
+                          # (useful for implementing a strength bar.)
+
+result.match_sequence     # the list of patterns that zxcvbn based the
+                          # entropy calculation on.
+
+result.calculation_time   # how long it took to calculate an answer,
+                          # in milliseconds. usually only a few ms.
+    */
+});
+function traverse(o ) {
+    for (i in o) {
+        if (typeof(o[i])=="object") {
+            traverse(o[i] );
+        }
+        else{
+            $('#result').append("<br/>" + i + " : "+ o[i]);
+        }
+    }
+} 
+
+});//]]>  
+
+</script>
+
+
+</head>
+<body>
+  <input id="password" name="password" size="35" class="textInput required" type="password"/>
+<div id="result">
+Laaa laa laa...
+</div>
+
+  
+</body>
+
+
+</html>
+

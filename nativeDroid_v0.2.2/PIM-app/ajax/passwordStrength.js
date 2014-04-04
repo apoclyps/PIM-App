@@ -26,5 +26,6 @@ $(window).load(function () {
     }
     $('#result').html('Password Strengh : '+passwordStrength);
     var injectHTML = "<p><img src='images/"+imageFile+"'></img></p>";
-    document.getElementById("strength").innerHTML = injectHTML
+    document.getElementById("strength").innerHTML = injectHTML;
+    }); 
 }); 

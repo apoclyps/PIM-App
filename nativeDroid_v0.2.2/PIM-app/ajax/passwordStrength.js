@@ -24,7 +24,7 @@ $(window).load(function () {
         imageFile = "secure.png";
         passwordStrength ="Secure"
     }
-    $('#result').html('Password Strengh : '+passwordStrength);
+    $('#result').html('<br/>Password Strengh : <strong>'+passwordStrength+'</strong>');
     var injectHTML = "<p><img src='images/"+imageFile+"'></img></p>";
     document.getElementById("strength").innerHTML = injectHTML;
     }); 

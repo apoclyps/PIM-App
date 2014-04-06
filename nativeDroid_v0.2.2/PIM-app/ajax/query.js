@@ -1,7 +1,6 @@
+//Selects input from pop-up dialogue and returns as object.
 function getParameters(){
-	
 	var parameters = {};
-	
 	parameters.select = $('input[name=radio-choice-1]:checked').val();
 	console.log("Selected : " +parameters.select);
 	parameters.query = $('input[name=search]').val();
@@ -10,17 +9,19 @@ function getParameters(){
 	return parameters;
 };
 
+//Converts an object and encodes variables to URL Parameter String.
 function objectToURLParameters(obj){
 	var str = "";
 	for (var key in obj) {
 		if (str != "") {
 			str += "&";
 		}
-		str += key + "=" + obj[key];
+		str += key + "=" + encodeURIComponent(obj[key]);
 	}
 	return str;
 };
 
+//Builds a query to append to URL parameters.
 function query(){
 	var parameters = getParameters();
 	var urlParameters=objectToURLParameters(parameters);
@@ -28,7 +29,8 @@ function query(){
 
 	if(parameters.true == true){
 		console.log("Redirect to page here");
-		//window.location.href = "listviews.html?";
+		console.log("Parameters Encoded : " +urlParameters);
+		window.location.href = "listviews.html?"+urlParameters;
 	}else{
 		console.log("Returned false");
 	}

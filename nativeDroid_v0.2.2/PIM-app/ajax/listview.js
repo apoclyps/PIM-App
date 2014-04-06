@@ -8,9 +8,27 @@ $(document).ready(function () {
     // Animation complete
     });
 
+    $.urlParam = function (name) {
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+            return null;
+        } else {
+            return results[1] || 0;
+        }
+    }
+
+    var queryTitle = decodeURIComponent($.urlParam('query'));
+    console.log(queryTitle);
+
+    if(queryTitle==null){
+        queryTitle ="X-men%20AND%20Legacy";
+    }
+
+    queryTitle = encodeURIComponent(queryTitle);
+    console.log(queryTitle);
 
     //var url = 'http://127.0.0.1:8080/PIM-Server/comicvine?callback=?';
-    var url = 'http://137.117.146.199:8080/PIM-Server/comicvine?callback=?&query=batman';
+    var url = 'http://137.117.146.199:8080/PIM-Server/comicvine?callback=?&query='+queryTitle;
     $.ajax({
         type: 'GET',
         url: url,

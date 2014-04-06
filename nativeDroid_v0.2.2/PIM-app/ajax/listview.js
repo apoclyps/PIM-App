@@ -4,6 +4,7 @@ $(document).ready(function () {
     //$.mobile.loading('show');
      $('#message-info').hide();
 
+
      $( "#overlay" ).fadeIn( "slow", function() {
     // Animation complete
     });
@@ -19,6 +20,7 @@ $(document).ready(function () {
 
     var queryTitle = decodeURIComponent($.urlParam('query'));
     console.log(queryTitle);
+    $('#searchQuery').html("Results for : "+queryTitle);
 
     if(queryTitle==null){
         queryTitle ="X-men%20AND%20Legacy";
@@ -81,6 +83,7 @@ $(document).ready(function () {
 
             // localStorage is now empty
             //window.localStorage.clear();
+            $('#cancle').hide();
 
             $('#comicview').listview('refresh');
             //console.log("Request Complete : Comic Vine Volume");
@@ -89,11 +92,14 @@ $(document).ready(function () {
             $( "#message-info" ).fadeIn( "slow", function() {
             // Animation complete
             });
+
+
         },
         error: function (e) {
             console.log(e.message);
             $('#overlay').fadeOut();
             alert("Server could not be reached");
+            $('#cancle').hide();
         }
     });
 

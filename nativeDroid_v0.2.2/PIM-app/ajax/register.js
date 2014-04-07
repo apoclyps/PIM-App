@@ -138,7 +138,7 @@ function registerUser() {
             alert("Login Attempt : " + data.success);
             console.log(data.username);
             if (data.success) {
-                //window.location.href = "index.html";
+                window.location.href = "index.html";
             } else {
                 alert(data.message);
             }

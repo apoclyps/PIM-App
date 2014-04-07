@@ -1,1 +1,1 @@
-jsonstr = [ {"server":"localServer"} ];
+jsonstr = [ {"server":"externalServer"} ];

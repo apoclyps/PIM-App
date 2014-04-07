@@ -23,6 +23,22 @@ $("#usernameDuplicate").change(function () {
 
 });
 
+function encryptPassword(register){
+    // Get details to generate Salt
+    console.log("Password inside :"+register.password.toString());
+    var username = register.username;
+    var secret_key = "Ivnwnhu$2015";
+    var salt = username + secret_key;
+    var password = register.password;
+
+    //Encryt password over 100 generations
+   var key512Bits100Iterations = CryptoJS.PBKDF2(password, salt, { keySize: 512/32 });
+   console.log("100 Iteration Key " + key512Bits100Iterations.toString());
+   register.password = key512Bits100Iterations.toString();
+   register.encrypted = true;
+   return register;
+};
+
 // Validates inputs for the form and displays alert messages if not valid.
 function validateForm() {
     var username = document.getElementById("username").value;
@@ -59,13 +75,13 @@ function validateForm() {
         return false;
     }
     return true;
-}
+};
 
 //Validates email addresses
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
-}
+};
 
 function getServer() {
     var x = 0;
@@ -74,7 +90,7 @@ function getServer() {
     console.log(server);
     // alert(server);
     return server;
-}
+};
 
 // Registers a user on the server
 function registerUser() {
@@ -85,6 +101,12 @@ function registerUser() {
     register.password = $('#password').val();
     register.email = $('#email').val();
 
+    console.log("Password "+register.password.toString());
+
+    var encrypted = {};
+    encrypted = encryptPassword(register);
+    console.log("Encryption : " +encrypted.password.toString());
+    
     // For testing local / Remote server
     var externalServer = "http://137.117.146.199:8080/PIM-Server/register";
     var localServer = "http://127.0.0.1:8080/PIM-Server/register";
@@ -98,7 +120,7 @@ function registerUser() {
     alert(server);
 
     // Building the JSON data to be sent
-    var sendData = "data=" + JSON.stringify(register);
+    var sendData = "data=" + JSON.stringify(encrypted);
 
     // Enabling cross domain requests.
     jQuery.support.cors = true;
@@ -116,7 +138,7 @@ function registerUser() {
             alert("Login Attempt : " + data.success);
             console.log(data.username);
             if (data.success) {
-                window.location.href = "index.html";
+                //window.location.href = "index.html";
             } else {
                 alert(data.message);
             }
@@ -127,4 +149,4 @@ function registerUser() {
             alert("Register Unsuccessful");
         }
     });
-}
+};

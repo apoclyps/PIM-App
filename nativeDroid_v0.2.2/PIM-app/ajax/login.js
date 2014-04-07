@@ -12,6 +12,22 @@ function getServer() {
     return server;
 }
 
+function encryptPassword(login){
+    // Get details to generate Salt
+    console.log("Password inside :"+login.password.toString());
+    var username = login.username;
+    var secret_key = "Ivnwnhu$2015";
+    var salt = username + secret_key;
+    var password = login.password;
+
+    //Encryt password over 100 generations
+   var key512Bits100Iterations = CryptoJS.PBKDF2(password, salt, { keySize: 512/32 });
+   console.log("100 Iteration Key " + key512Bits100Iterations.toString());
+   login.password = key512Bits100Iterations.toString();
+   login.encrypted = true;
+   return login;
+};
+
 function sendAjax() {
 
     // get inputs
@@ -19,11 +35,17 @@ function sendAjax() {
     login.username = $('#username').val();
     login.password = $('#password').val();
 
+    console.log("Password "+login.password.toString());
+
+    var encrypted = {};
+    encrypted = encryptPassword(login);
+    console.log("Encryption : " +encrypted.password.toString());
+
     var externalServer = "http://137.117.146.199:8080/PIM-Server/login";
     var localServer = "http://127.0.0.1:8080/PIM-Server/login";
 
     // Building the JSON data to be sent
-    var sendData = "data=" + JSON.stringify(login);
+    var sendData = "data=" + JSON.stringify(encrypted);
 
 
     var server = null;

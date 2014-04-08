@@ -10,7 +10,7 @@ $(document).ready(function () {
         } else {
             return results[1] || 0;
         }
-    }
+    };
 
     var id = decodeURIComponent($.urlParam('id'));
     //console.log(id);

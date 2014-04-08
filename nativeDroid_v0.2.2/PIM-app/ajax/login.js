@@ -17,8 +17,7 @@ function encryptPassword(login){
     console.log("Password inside :"+login.password.toString());
     var username = login.username;
     var secret_key = "Ivnwnhu$2015";
-    var salt = username + secret_key;
-    var password = login.password;
+    var salt = username + secret_key;    var password = login.password;
 
     //Encryt password over 100 generations
    var key512Bits100Iterations = CryptoJS.PBKDF2(password, salt, { keySize: 512/32 });

@@ -42,13 +42,37 @@ $(document)
             case "Games":
                 type = "game";
                 break;
+            case "All":
+                type="all";
+                break;
             }
             return type;
         }
 
         function loadLocalStorate() {
-            List();
+            if(type=="all"){
+                ListAll();
+            }else{
+                List();
+            }
+            
             //console.log("loading complete");
+        }
+
+        function ListAll() {
+            console.log("List All");
+            for (var i in tbProducts) {
+                var searchProduct = JSON.parse(tbProducts[i]);
+                var appendString = '<li id="' + searchProduct.ID + '"><a href="item.html?id=' + searchProduct.ID + '" data-ajax="false">' +
+                    '<img src="' + '' + '">' +
+                    '<h2>' + searchProduct.Name + '</h2>' +
+                    '<p style="padding-top:-20px">' + searchProduct.Barcode + '</p>' +
+                    '<p class="ui-li-aside"><strong>' + searchProduct.Quantity + '</strong> Items</p>' +
+                    '</a></li>';
+                $("#listview")
+                    .append(appendString);
+            }
+            updateDisplay(tbProducts.length);
         }
 
         function List() {

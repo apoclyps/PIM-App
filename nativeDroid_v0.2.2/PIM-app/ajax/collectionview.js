@@ -55,12 +55,10 @@ $(document)
             }else{
                 List();
             }
-            
-            //console.log("loading complete");
         }
 
         function ListAll() {
-            console.log("List All");
+            //console.log("List All");
             for (var i in tbProducts) {
                 var searchProduct = JSON.parse(tbProducts[i]);
                 var appendString = '<li id="' + searchProduct.ID + '"><a href="item.html?id=' + searchProduct.ID + '" data-ajax="false">' +
@@ -76,6 +74,7 @@ $(document)
         }
 
         function List() {
+            var flag = false;
             for (var i in tbProducts) {
                 var searchProduct = JSON.parse(tbProducts[i]);
                 //console.log("Found "+searchProduct.Name);
@@ -90,8 +89,14 @@ $(document)
                         '</a></li>';
                     $("#listview")
                         .append(appendString);
+                        flag=true;
                 }
             }
+            if(flag==false){
+                $("#listview")
+                        .append("<p>No Results</p>");
+            }
+
             updateDisplay(tbProducts.length);
         }
 

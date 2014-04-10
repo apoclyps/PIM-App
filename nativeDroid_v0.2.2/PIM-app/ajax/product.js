@@ -22,6 +22,48 @@ function validateForm() {
     return true;
 }
 
+
+    var selected_index = -1; //Index of the selected list item
+
+    var tbProducts = localStorage.getItem("tbProducts");//Retrieve the stored data
+
+    tbProducts = JSON.parse(tbProducts); //Converts string to object
+
+    if(tbProducts == null) //If there is no data, initialize an empty array
+        tbProducts = [];
+
+    function getProduct(){
+        var product = JSON.stringify({
+            ID    : '1',
+            Name  : $('#productName').val(),
+            Barcode : $('#productBarcode').val(),
+            Quantity : $('#productQuantity').val(),
+            Type : $('input[name=radio-choice-a]:checked', '#addManualProduct').val(),
+            AssociateID : '1'
+        });
+        return product;
+    }
+
+    function Search(product){
+        
+        for(var i in tbProducts){
+            var searchProduct = JSON.parse(tbProducts[i]);
+            if(searchProduct.Name==product.name){
+                console.log("Found "+product.name);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function Add(product){
+        tbProducts.push(product);
+        localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+        alert("The Product was saved.");
+        return true;
+    }
+
+
 function sendProduct() {
 
     // get inputs
@@ -47,12 +89,20 @@ function sendProduct() {
         mimeType: 'application/json',
 
         success: function (data) {
-            alert(data.success);
+          //  alert(data.success);
 
-            console.log(data.success);
-            if (data.success) {
-                window.location.href = "result.html?name=" + product.name + "&barcode=" + product.barcode + "&quantity=" + product.quantity + "&mediatype=" + product.mediatype;
+           // console.log(product.toString());
+           // console.log("Search returned " + Search(product));
+            if(Search(product)==false){
+                Add(getProduct());
+                if (data.success) {
+                    window.location.href = "result.html?name=" + product.name + "&barcode=" + product.barcode + "&quantity=" + product.quantity + "&mediatype=" + product.mediatype;
+                }
+            }else{
+                alert("Product already exists");
             }
+
+
         },
         error: function (data, status, er) {
             console.log("error: " + data + " status: " + status + " er:" + er);

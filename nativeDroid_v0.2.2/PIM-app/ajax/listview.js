@@ -78,8 +78,8 @@ $(document)
         //---------------------------------------------------------------------------------------------------------------
         function callServer(setup) {
             // Making AJAX request to Server
-            //var url = 'http://137.117.146.199:8080/PIM-Server/' + servlet.toString() + '?callback=?&query=' + queryTitle;
-            var url = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
+            var url = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
+            //var url = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
             //console.log(url);
             $.ajax({
                 type: 'GET',

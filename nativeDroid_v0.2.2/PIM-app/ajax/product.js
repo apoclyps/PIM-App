@@ -1,3 +1,13 @@
+    var selected_index = -1; //Index of the selected list item
+
+    var tbProducts = localStorage.getItem("tbProducts");//Retrieve the stored data
+
+    tbProducts = JSON.parse(tbProducts); //Converts string to object
+
+    if(tbProducts == null) //If there is no data, initialize an empty array
+        tbProducts = [];
+
+
 $('#addManualProduct').submit(function () {
     if (validateForm()) {
         sendProduct();
@@ -22,19 +32,12 @@ function validateForm() {
     return true;
 }
 
-
-    var selected_index = -1; //Index of the selected list item
-
-    var tbProducts = localStorage.getItem("tbProducts");//Retrieve the stored data
-
-    tbProducts = JSON.parse(tbProducts); //Converts string to object
-
-    if(tbProducts == null) //If there is no data, initialize an empty array
-        tbProducts = [];
-
     function getProduct(){
+        var id = getID();
+        id++;
+
         var product = JSON.stringify({
-            ID    : '1',
+            ID    : id,
             Name  : $('#productName').val(),
             Barcode : $('#productBarcode').val(),
             Quantity : $('#productQuantity').val(),
@@ -42,6 +45,13 @@ function validateForm() {
             AssociateID : '1'
         });
         return product;
+    }
+
+    // returns last id in table
+    function getID(){
+        var productID = JSON.parse(tbProducts[tbProducts.length-1]);
+        console.log(productID.ID);
+        return productID.ID;
     }
 
     function Search(product){

@@ -155,7 +155,7 @@ $(document)
                     window.localStorage.setItem(data[key].externalIds[0].id, dataToStore);
                 }
             } // End of For loop
-            updateDisplay();
+            updateDisplay(data.length);
 
             var key = data[0].externalIds[0].id;
             var localData = JSON.parse(localStorage.getItem(key));
@@ -173,6 +173,8 @@ $(document)
         //         Comicvine view Update 
         //---------------------------------------------------------------------------------------------------------------
         function Comicvine(data) {
+            var currentSearchIssues = [];
+            window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
             for (var i in data.COMICVINE) {
                 var last_issue = null;
 
@@ -195,8 +197,11 @@ $(document)
                 var dataToStore = JSON.stringify(data.COMICVINE[i]);
                 // Storing data in localstorage 
                 window.localStorage.setItem(data.COMICVINE[i].id, dataToStore);
+                currentSearchIssues.push(data.COMICVINE[i].id);
             }
-            updateDisplay();
+
+            window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
+            updateDisplay(data.COMICVINE.length);
 
             //Creating a datastore for ComicvineData
             var dataToStore = JSON.stringify(data.COMICVINE[0]);
@@ -246,13 +251,13 @@ $(document)
                 // Storing data in localstorage 
                 //window.localStorage.setItem(data.IMDB[i].imdbID, dataToStore);
             }
-            updateDisplay();
+            updateDisplay(data.IMDB.length);
         }; // End of Comicvine Function
 
         //---------------------------------------------------------------------------------------------------------------
         //          Updates View
         //---------------------------------------------------------------------------------------------------------------
-        function updateDisplay() {
+        function updateDisplay(length) {
             $('#listview')
                 .listview('refresh');
             $('#overlay')
@@ -260,7 +265,7 @@ $(document)
 
             // Animations and dynamically changing screen elements
             $('#numberOfResults')
-                .html(data.IMDB.length + " Results");
+                .html(length + " Results");
             $('#cancle')
                 .hide();
             $('#comicview')

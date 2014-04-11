@@ -16,6 +16,30 @@ $(document).ready(function () {
     //console.log(id);
     var localData = JSON.parse(localStorage.getItem(id));
 
+    var issuesA = window.localStorage.getItem("currentSearchIssues");
+
+    var currentSearchIssues = issuesA.split(',').map(function(item) {
+        return parseInt(item, 10);
+    });
+
+
+    console.log("Current Search Side "+currentSearchIssues.length);
+    console.log("Current Search Side "+currentSearchIssues);
+
+    function findIndex(value){
+     for(i=0;i<currentSearchIssues.length;i++){
+        console.log(currentSearchIssues[i]);
+            if(currentSearchIssues[i]==value){
+                return i;
+            }
+        }
+    }
+
+
+    var index = findIndex(id);
+    console.log("index "+index);
+
+
     // Displaying Data if it exists
     if (localData == null) {
         alert("Value is null");
@@ -46,4 +70,47 @@ $(document).ready(function () {
 
     $("#comicview").append(dynamicView);
     $("#comicview").load(dynamicView);
+
+    $("#previous").click(previousItem);
+    $("#next").click(nextItem);
+
+    function checkIndexExists(){
+
+        if(index-1 < 0){
+            index = currentSearchIssues.length-1;
+        }
+        return index;
+    }
+
+    function previousItem() {
+        var index = findIndex(id);
+        console.log(index);
+
+        if((i-1) <= 0){
+            index = currentSearchIssues.length-1;
+        }else if (i>= (currentSearchIssues.length-1)){
+            index = 0;
+        }else{
+            index = i-1;
+        }
+
+        window.location.href = "item.html?id="+currentSearchIssues[index];
+    }
+
+    function nextItem() {
+        var index = findIndex(id);
+        console.log(index);
+
+        if((i-1) <= 0){
+            index = currentSearchIssues.length-1;
+        }else if (i>= (currentSearchIssues.length-1)){
+            index = 0;
+        }else{
+            index = i+1;
+        }
+
+        window.location.href = "item.html?id="+currentSearchIssues[index];
+    }
+
+    console.log("loading complete");
 });

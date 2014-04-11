@@ -1,19 +1,6 @@
 $(document)
     .ready(function () {
 
-        callServer(setup());
-
-        //---------------------------------------------------------------------------------------------------------------
-        //         Selection of Model to Update
-        //---------------------------------------------------------------------------------------------------------------
-        function setup() {
-            $('#message-info')
-                .hide();
-            $("#overlay")
-                .fadeIn("slow", function () {
-                    // Animation complete
-                });
-
             $.urlParam = function (name) {
                 var results = new RegExp('[\\?&]' + name + '=([^&#]*)')
                     .exec(window.location.href);
@@ -23,6 +10,33 @@ $(document)
                     return results[1] || 0;
                 }
             }
+        var total =0;
+        var querySelected = decodeURIComponent($.urlParam('select'));
+        if(querySelected=="All"){
+           // console.log("Selected All");
+            callServer(setup("Comics"));
+            callServer(setup("Movies"));
+            callServer(setup("Music"));
+            $('#resultType').html("All<div style='float:right;' id='FoundResults'></div>");
+            $('#FoundResults').html("<strong>Results </strong>: "+total);
+        }else{
+            callServer(setup(querySelected));
+        }
+
+        //---------------------------------------------------------------------------------------------------------------
+        //         Selection of Model to Update
+        //---------------------------------------------------------------------------------------------------------------
+        function setup(querySelected) {
+            $('#message-info')
+                .hide();
+            $("#overlay")
+                .fadeIn("slow", function () {
+                    // Animation complete
+                });
+             $('#cancle')
+                .fadeIn("fast", function () {
+                    // Animation complete
+                })
 
             // Getting Query Parameters
             var queryTitle = decodeURIComponent($.urlParam('query'));
@@ -35,7 +49,7 @@ $(document)
             }
 
             queryTitle = encodeURIComponent(queryTitle);
-            var querySelected = decodeURIComponent($.urlParam('select'));
+            //var querySelected = decodeURIComponent($.urlParam('select'));
             // Selecting the type of request to make
             var setup = {};
 
@@ -57,7 +71,7 @@ $(document)
                 setup.servlet = "spotify";
                 setup.callback = "spotify";
                 $('#resultType')
-                    .html("Movies<div style='float:right;' id='FoundResults'></div>");
+                    .html("Music<div style='float:right;' id='FoundResults'></div>");
                 break;
             case "Movies":
                 //console.log("Movies");
@@ -85,7 +99,7 @@ $(document)
                 type: 'GET',
                 url: url,
                 async: false,
-                jsonpCallback: "callback",
+                jsonpCallback: setup.callback,
                 contentType: "application/json",
                 dataType: 'jsonp',
                 success: function (data) {
@@ -264,8 +278,9 @@ $(document)
 
             // Animations and dynamically changing screen elements
             //$('#numberOfResults').html(length);
-            $('#FoundResults').html("<strong>Results </strong>: "+length);
-            
+            total = total +length;
+            $('#FoundResults').html("<strong>Results </strong>: "+total);
+
             $('#cancle')
                 .hide();
             $('#comicview')

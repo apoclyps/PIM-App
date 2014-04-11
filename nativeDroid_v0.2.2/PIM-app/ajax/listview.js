@@ -45,7 +45,7 @@ $(document)
             case "Comics":
                 //console.log("Comics");
                 setup.servlet = "comicvine";
-                setup.scallback = "comicvine";
+                setup.callback = "comicvine";
                 $('#resultType')
                     .html("Comics");
                 break;
@@ -55,14 +55,14 @@ $(document)
             case "Music":
                 //console.log("Music");
                 setup.servlet = "spotify";
-                setup.scallback = "spotify";
+                setup.callback = "spotify";
                 $('#resultType')
-                    .html("Music");
+                    .html("Movies<div style='float:right;' id='FoundResults'></div>");
                 break;
             case "Movies":
                 //console.log("Movies");
                 setup.servlet = "imdb";
-                setup.scallback = "imdb";
+                setup.callback = "imdb";
                 $('#resultType')
                     .html("Movies");
                 break;
@@ -260,12 +260,12 @@ $(document)
         function updateDisplay(length) {
             $('#listview')
                 .listview('refresh');
-            $('#overlay')
-                .fadeOut();
+            $('#overlay').fadeOut();
 
             // Animations and dynamically changing screen elements
-            $('#numberOfResults')
-                .html(length + " Results");
+            //$('#numberOfResults').html(length);
+            $('#FoundResults').html("<strong>Results </strong>: "+length);
+            
             $('#cancle')
                 .hide();
             $('#comicview')

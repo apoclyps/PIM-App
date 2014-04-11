@@ -35,7 +35,6 @@ $(document).ready(function () {
         }
     }
 
-
     var index = findIndex(id);
     console.log("index "+index);
 
@@ -86,10 +85,8 @@ $(document).ready(function () {
         var index = findIndex(id);
         console.log(index);
 
-        if((i-1) <= 0){
+        if((i-1) < 0){
             index = currentSearchIssues.length-1;
-        }else if (i>= (currentSearchIssues.length-1)){
-            index = 0;
         }else{
             index = i-1;
         }
@@ -101,9 +98,7 @@ $(document).ready(function () {
         var index = findIndex(id);
         console.log(index);
 
-        if((i-1) <= 0){
-            index = currentSearchIssues.length-1;
-        }else if (i>= (currentSearchIssues.length-1)){
+        if (i+1> (currentSearchIssues.length-1)){
             index = 0;
         }else{
             index = i+1;

@@ -1,23 +1,23 @@
 $(document).ready(function () {
-
-$("#page").on("swipeleft",function(){
-  nextItem();
-});
-
-$("#page").on("swiperight",function(){
-  previousItem();
-});
-
-$("#content").on("swipeleft",function(){
-  nextItem();
-});
-
-$("#content").on("swiperight",function(){
-  previousItem();
-});
-
-    console.log("Document ready : item.js");
-
+    // Swipe Event Listeners
+    //-----------------------------------------------------------
+    $("#page").on("swipeleft", function () {
+        nextItem();
+    });
+    $("#page").on("swiperight", function () {
+        previousItem();
+    });
+    $("#content").on("swipeleft", function () {
+        nextItem();
+    });
+    $("#content").on("swiperight", function () {
+        previousItem();
+    });
+    //-----------------------------------------------------------
+    //Button event listners
+    $("#previous").click(previousItem);
+    $("#next").click(nextItem);
+    //------------------------------------------------------------
     $.urlParam = function (name) {
         var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results == null) {
@@ -30,22 +30,21 @@ $("#content").on("swiperight",function(){
     var id = decodeURIComponent($.urlParam('id'));
     var issuesA = window.localStorage.getItem("currentSearchIssues");
     var currentSearchIssues = issuesA.split(',').map(function (item) {
-            return parseInt(item, 10);
-        });
+        return parseInt(item, 10);
+    });
     var index = findIndex(id);
 
     updateDataView();
+    buttonUpdate();
     console.log("Loading complete");
+    //------------------------------------------------------------
 
-    $("#previous").click(previousItem);
-    $("#next").click(nextItem);
-
-    function updateDataView(){
+    function updateDataView() {
         console.log("Updating view");
-        document.getElementById('comicview').innerHTML= "";
+        document.getElementById('comicview').innerHTML = "";
 
         var localData = JSON.parse(localStorage.getItem(id));
-        console.log("ID = "+id);
+        console.log("ID = " + id);
         //var index = findIndex(id);
         // Displaying Data if it exists
         if (localData == null) {
@@ -77,19 +76,22 @@ $("#content").on("swiperight",function(){
 
         $("#comicview").append(dynamicView);
         //$("#comicview").load(dynamicView);
-
+        document.getElementById('itemviewlink').href="itemview.html?id="+id;
         console.log("Updating Complete \n\n");
     }
-
-    function runLeftEffect(){
-        $("#comicview" ).effect( "slide", { direction: "left" }, "fast" );
-    }
-
-    function runRightEffect(){
-        $("#comicview" ).effect( "slide", { direction: "right" }, "fast" );
-    }
-
     //-------------------------------------------------------------------------
+
+    function runLeftEffect() {
+        $("#comicview").effect("slide", {
+            direction: "left"
+        }, "fast");
+    }
+
+    function runRightEffect() {
+        $("#comicview").effect("slide", {
+            direction: "right"
+        }, "fast");
+    }
 
     function findIndex(value) {
         for (i = 0; i < currentSearchIssues.length; i++) {
@@ -102,16 +104,16 @@ $("#content").on("swiperight",function(){
 
     function buttonUpdate() {
         var index = findIndex(id);
-        console.log("Button Update "+index);
+        console.log("Button Update " + index);
         if (index >= (currentSearchIssues.length - 1)) {
             $("#next").hide();
-        }else{
+        } else {
             $("#next").show();
         }
 
         if (index <= 0) {
             $("#previous").hide();
-        }else{
+        } else {
             $("#previous").show();
         }
     }
@@ -132,7 +134,7 @@ $("#content").on("swiperight",function(){
             index = i - 1;
             //$("#previous").show();
             //window.location.href = "item.html?id=" + currentSearchIssues[index];
-            console.log("Previous Index "+currentSearchIssues[index]);
+            console.log("Previous Index " + currentSearchIssues[index]);
             id = currentSearchIssues[index];
             updateDataView();
             runLeftEffect();
@@ -142,7 +144,7 @@ $("#content").on("swiperight",function(){
 
     function nextItem() {
         var index = findIndex(id);
-        console.log("current "+index);
+        console.log("current " + index);
         if (index >= (currentSearchIssues.length - 1)) {
             //index = 0;
             //$("#next").hide();
@@ -150,7 +152,8 @@ $("#content").on("swiperight",function(){
             index = i + 1;
             //$("#next").show();
             //window.location.href = "item.html?id=" + currentSearchIssues[index];
-            console.log("Next Index" +currentSearchIssues[index]);
+            //$(document).getElementById('itemviewlink').href="itemview.html?id="+currentSearchIssues[index];
+            console.log("Next Index" + currentSearchIssues[index]);
             id = currentSearchIssues[index];
             updateDataView();
             runRightEffect();

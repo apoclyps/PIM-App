@@ -27,6 +27,7 @@ $(document).ready(function () {
     function updateDataView(){
         console.log("Updating view");
         document.getElementById('comicview').innerHTML= "";
+
         var localData = JSON.parse(localStorage.getItem(id));
         console.log("ID = "+id);
         //var index = findIndex(id);
@@ -59,10 +60,17 @@ $(document).ready(function () {
             '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
 
         $("#comicview").append(dynamicView);
-        $("#comicview").load(dynamicView);
+        //$("#comicview").load(dynamicView);
 
-        buttonUpdate();
         console.log("Updating Complete \n\n");
+    }
+
+    function runLeftEffect(){
+        $("#comicview" ).effect( "slide", { direction: "left" }, "fast" );
+    }
+
+    function runRightEffect(){
+        $("#comicview" ).effect( "slide", { direction: "right" }, "fast" );
     }
 
     //-------------------------------------------------------------------------
@@ -111,6 +119,8 @@ $(document).ready(function () {
             console.log("Previous Index "+currentSearchIssues[index]);
             id = currentSearchIssues[index];
             updateDataView();
+            runLeftEffect();
+            buttonUpdate();
         }
     }
 
@@ -127,6 +137,8 @@ $(document).ready(function () {
             console.log("Next Index" +currentSearchIssues[index]);
             id = currentSearchIssues[index];
             updateDataView();
+            runRightEffect();
+            buttonUpdate();
         }
     }
 

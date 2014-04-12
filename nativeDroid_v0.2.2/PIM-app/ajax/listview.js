@@ -1,25 +1,25 @@
 $(document)
     .ready(function () {
 
-            $.urlParam = function (name) {
-                var results = new RegExp('[\\?&]' + name + '=([^&#]*)')
-                    .exec(window.location.href);
-                if (results == null) {
-                    return null;
-                } else {
-                    return results[1] || 0;
-                }
+        $.urlParam = function (name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)')
+                .exec(window.location.href);
+            if (results == null) {
+                return null;
+            } else {
+                return results[1] || 0;
             }
-        var total =0;
+        }
+        var total = 0;
         var querySelected = decodeURIComponent($.urlParam('select'));
-        if(querySelected=="All"){
-           // console.log("Selected All");
+        if (querySelected == "All") {
+            // console.log("Selected All");
             callServer(setup("Comics"));
             callServer(setup("Movies"));
             callServer(setup("Music"));
             $('#resultType').html("All<div style='float:right;' id='FoundResults'></div>");
-            $('#FoundResults').html("<strong>Results </strong>: "+total);
-        }else{
+            $('#FoundResults').html("<strong>Results </strong>: " + total);
+        } else {
             callServer(setup(querySelected));
         }
 
@@ -33,7 +33,7 @@ $(document)
                 .fadeIn("slow", function () {
                     // Animation complete
                 });
-             $('#cancle')
+            $('#cancle')
                 .fadeIn("fast", function () {
                     // Animation complete
                 })
@@ -253,7 +253,7 @@ $(document)
 
                 //console.log(data.IMDB[i].poster);
                 var appendString = '<li id="' + data.IMDB[i].imdbID + '"><a href="item.html?id=' + data.IMDB[i].imdbID + '" data-ajax="false">' +
-                    '<img src="' + poster+ '">' +
+                    '<img src="' + poster + '">' +
                     '<h2>' + data.IMDB[i].title + '</h2>' +
                     '<p style="padding-top:-20px">' + director + '</p>' +
                     '<p class="ui-li-aside"><strong>' + data.IMDB[i].runtime + '</strong></p>' +
@@ -278,8 +278,8 @@ $(document)
 
             // Animations and dynamically changing screen elements
             //$('#numberOfResults').html(length);
-            total = total +length;
-            $('#FoundResults').html("<strong>Results </strong>: "+total);
+            total = total + length;
+            $('#FoundResults').html("<strong>Results </strong>: " + total);
 
             $('#cancle')
                 .hide();
@@ -291,4 +291,4 @@ $(document)
                 });
         };
         //---------------------------------------------------------------------------------------------------------------
-});
+    });

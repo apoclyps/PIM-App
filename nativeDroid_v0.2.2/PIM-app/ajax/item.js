@@ -1,5 +1,21 @@
-//var url = 'http://192.168.0.17:8080/PIM-Server/comicvine?callback=?';
 $(document).ready(function () {
+
+$("#page").on("swipeleft",function(){
+  nextItem();
+});
+
+$("#page").on("swiperight",function(){
+  previousItem();
+});
+
+$("#content").on("swipeleft",function(){
+  nextItem();
+});
+
+$("#content").on("swiperight",function(){
+  previousItem();
+});
+
     console.log("Document ready : item.js");
 
     $.urlParam = function (name) {

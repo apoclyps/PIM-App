@@ -40,8 +40,9 @@ $(document)
 
             var volumeID = decodeURIComponent($.urlParam('volume'));
             var localData = JSON.parse(localStorage.getItem(volumeID));
-            $('#searchQuery')
+           /* $('#searchQuery')
                 .html("Results for : " + localData.name);
+                */
 
             if (volumeID == null) {
                 volumeID = "X-men%20AND%20Legacy";
@@ -191,7 +192,7 @@ $(document)
             window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
             for (var i in data.COMICVINE) {
                 var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + '" data-ajax="false">' +
-                    '<img src="' + "images/unknown.png" + '">' +
+                    '<img src="' + data.COMICVINE[i].image_url + '">' +
                     '<h2>' + data.COMICVINE[i].name + '</h2>' +
                     '<p style="padding-top:-20px">' + data.COMICVINE[i].issue_number + '</p>' +
                     '<p class="ui-li-aside"><strong>' + data.COMICVINE[i].name + '</strong> Issues</p>' +

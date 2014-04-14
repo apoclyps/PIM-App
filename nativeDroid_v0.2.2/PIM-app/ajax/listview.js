@@ -87,17 +87,38 @@ $(document)
             return setup;
         };
 
+        function getServer() {
+            var x = 0;
+            var activity = jsonstr;
+            var server = activity[0].server;
+            console.log(server);
+            // alert(server);
+            return server;
+        }
+
         //---------------------------------------------------------------------------------------------------------------
         //         Request to retrieve Model
         //---------------------------------------------------------------------------------------------------------------
         function callServer(setup) {
             // Making AJAX request to Server
-            var url = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
+            //var url = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
             //var url = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
             //console.log(url);
+
+            var externalServer = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
+            var localServer = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
+
+            var server = null;
+            if (getServer() == "localServer") {
+                server = localServer;
+            } else {
+                server = externalServer;
+            }
+
+
             $.ajax({
                 type: 'GET',
-                url: url,
+                url: server,
                 async: false,
                 jsonpCallback: setup.callback,
                 contentType: "application/json",

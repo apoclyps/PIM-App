@@ -73,6 +73,15 @@ function validateForm() {
         return true;
     }
 
+function getServer() {
+    var x = 0;
+    var activity = jsonstr;
+    var server = activity[0].server;
+    console.log(server);
+    // alert(server);
+    return server;
+}
+
 
 function sendProduct() {
 
@@ -83,14 +92,22 @@ function sendProduct() {
     product.quantity = $('#productQuantity').val();
     product.mediatype = $('input[name=radio-choice-a]:checked', '#addManualProduct').val();
 
+    var sendData = "data=" + JSON.stringify(product);
+
     var externalServer = "http://137.117.146.199:8080/PIM-Server/product/add/comic";
     var localServer = "http://127.0.0.1:8080/PIM-Server/product/add/comic";
 
-    var sendData = "data=" + JSON.stringify(product);
+    var server = null;
+    if (getServer() == "localServer") {
+        server = localServer;
+    } else {
+        server = externalServer;
+    }
+
 
     jQuery.support.cors = true;
     $.ajax({
-        url: externalServer,
+        url: server,
         type: 'POST',
         dataType: 'jsonp',
         data: sendData,

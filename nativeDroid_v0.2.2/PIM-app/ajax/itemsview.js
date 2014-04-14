@@ -87,17 +87,36 @@ $(document)
             return setup;
         };
 
+
+function getServer() {
+    var x = 0;
+    var activity = jsonstr;
+    var server = activity[0].server;
+    console.log(server);
+    // alert(server);
+    return server;
+}
+
         //---------------------------------------------------------------------------------------------------------------
         //         Request to retrieve Model
         //---------------------------------------------------------------------------------------------------------------
         function callServer(setup) {
             // Making AJAX request to Server
             //var url = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&volume=' + setup.volumeID;
-            var url = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&volume=' + setup.volumeID;
-            console.log(url);
+            //var url = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&volume=' + setup.volumeID;
+            var externalServer = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&volume=' + setup.volumeID;
+            var localServer = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&volume=' + setup.volumeID;
+
+            var server = null;
+            if (getServer() == "localServer") {
+                server = localServer;
+            } else {
+                server = externalServer;
+            }
+
             $.ajax({
                 type: 'GET',
-                url: url,
+                url: server,
                 async: false,
                 jsonpCallback: setup.callback,
                 contentType: "application/json",
@@ -191,11 +210,23 @@ $(document)
             var currentSearchIssues = [];
             window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
             for (var i in data.COMICVINE) {
-                var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + '" data-ajax="false">' +
+
+                var type = decodeURIComponent($.urlParam('type'));
+                var displayType;
+                if(type=="issue"){
+                   displayType = "&type=issue";
+                }else{
+                    displayType ="%type=volume";
+                }
+
+                //console.log(data.COMICVINE[i].toString);
+
+                var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + displayType+'" data-ajax="false">' +
                     '<img src="' + data.COMICVINE[i].image_url + '">' +
                     '<h2>' + data.COMICVINE[i].name + '</h2>' +
-                    '<p style="padding-top:-20px">' + data.COMICVINE[i].issue_number + '</p>' +
-                    '<p class="ui-li-aside"><strong>' + data.COMICVINE[i].name + '</strong> Issues</p>' +
+                    '<p style="padding-top:-20px">' + //data.COMICVINE[i].description + 
+                    '</p>' +
+                    '<p class="ui-li-aside"><strong>Issue ' + data.COMICVINE[i].issue_number + '</strong></p>' +
                     '</a></li>';
                 $("#listview")
                     .append(appendString);

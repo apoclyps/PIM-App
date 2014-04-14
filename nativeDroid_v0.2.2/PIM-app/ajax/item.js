@@ -58,7 +58,7 @@ $(document).ready(function () {
         var deck = localData.deck;
         var description = localData.description;
 
-        if (description != null) {
+        if (description != null ) {
             var description = description.substring(0, 1000);
         } else {
             description = "No description available";
@@ -70,13 +70,23 @@ $(document).ready(function () {
             deck = "No Synopsis available";
         }
 
-        var dynamicView = '<img style="float:right" src="' + localData.image.thumb_url + '"></img>' +
-            '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
-            '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
-
+        var type = decodeURIComponent($.urlParam('type'));
+        if(type=="issue"){
+            var dynamicView = '<img style="float:right" src="' + localData.image_url + '"></img>' +
+                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2>' + localData.id + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+                '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+                document.getElementById('itemviewlink').value  = "Add to Collection";
+               // alert("ADDED");
+                //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+        }else{
+            var dynamicView = '<img style="float:right" src="' + localData.image.thumb_url + '"></img>' +
+                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+                '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
+                document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+        }
         $("#comicview").append(dynamicView);
         //$("#comicview").load(dynamicView);
-        document.getElementById('itemviewlink').href="itemview.html?id="+id;
+        
         console.log("Updating Complete \n\n");
     }
     //-------------------------------------------------------------------------
@@ -105,6 +115,13 @@ $(document).ready(function () {
     function buttonUpdate() {
         var index = findIndex(id);
         console.log("Button Update " + index);
+
+        var issue = decodeURIComponent($.urlParam('type'));
+
+        if(issue=="issue"){
+            $("#itemviewlink").hide();
+        }
+
         if (index >= (currentSearchIssues.length - 1)) {
             $("#next").hide();
         } else {

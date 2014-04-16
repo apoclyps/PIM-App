@@ -33,6 +33,9 @@
          .ui-li-has-arrow .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow {
          padding-right: 40px;
          }
+         .ui-header .ui-btn-icon-left .ui-btn-inner, .ui-footer .ui-btn-icon-left .ui-btn-inner, .ui-mini.ui-btn-icon-left .ui-btn-inner, .ui-mini .ui-btn-icon-left .ui-btn-inner {
+             padding-left: 0px;
+         }
 
       </style>
    </head>
@@ -54,11 +57,10 @@
          </div>
          <!-- Start of enu -->
          <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
             <h1>
                <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
             </h1>
-            <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
-
          </div>
          <div data-role="content">
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">

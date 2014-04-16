@@ -1,3 +1,7 @@
+/**
+ * ListView.js
+ *
+ */
 $(document)
     .ready(function () {
 
@@ -12,15 +16,24 @@ $(document)
         }
         var total = 0;
         var querySelected = decodeURIComponent($.urlParam('select'));
+        var server;
         if (querySelected == "All") {
             // console.log("Selected All");
-            callServer(setup("Comics"));
-            callServer(setup("Movies"));
-            callServer(setup("Music"));
+            var setup = setup("Comics");
+            server = getConnection(setup);
+            callServer(setup);
+            setup = setup("Movies");
+            server = getConnection(setup("Movies"));
+            callServer(setup);
+            setup = setup("Music");
+            server = getConnection(setup("Music"));
+            callServer(setup);
             $('#resultType').html("All<div style='float:right;' id='FoundResults'></div>");
             $('#FoundResults').html("<strong>Results </strong>: " + total);
         } else {
-            callServer(setup(querySelected));
+            var setup = setup(querySelected);
+            server = getConnection(setup);
+            callServer(setup);
         }
 
         //---------------------------------------------------------------------------------------------------------------
@@ -92,20 +105,23 @@ $(document)
             var activity = jsonstr;
             var server = activity[0].server;
             console.log(server);
-            // alert(server);
+
             return server;
         }
 
-        //---------------------------------------------------------------------------------------------------------------
-        //         Request to retrieve Model
-        //---------------------------------------------------------------------------------------------------------------
-        function callServer(setup) {
-            // Making AJAX request to Server
-            //var url = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
-            //var url = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
-            //console.log(url);
+        function getIP() {
+            var x = 0;
+            var activity = jsonstr;
+            var ip = activity[0].ip;
+            console.log(ip);
+            // alert(server);
+            return ip;
+        }
 
-            var externalServer = 'http://137.117.146.199:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
+        function getConnection(setup) {
+            var ip = getIP();
+
+            var externalServer = 'http://' + ip + ':8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
             var localServer = 'http://127.0.0.1:8080/PIM-Server/' + setup.servlet.toString() + '?callback=?&query=' + setup.queryTitle;
 
             var server = null;
@@ -114,8 +130,14 @@ $(document)
             } else {
                 server = externalServer;
             }
+            return server;
+        }
 
-
+        //---------------------------------------------------------------------------------------------------------------
+        //         Request to retrieve Model
+        //---------------------------------------------------------------------------------------------------------------
+        function callServer(setup) {
+            // Making AJAX request to Server
             $.ajax({
                 type: 'GET',
                 url: server,
@@ -158,22 +180,12 @@ $(document)
         //---------------------------------------------------------------------------------------------------------------
         function Spotify(data) {
             for (var key in data) {
-                //console.log(i.toString);
-                //var obj = JSON.parse(key);
-                //console.log(obj.toString());
-                //console.log(obj[i].toString());
                 if (data.hasOwnProperty(key)) {
-                    //console.log(data[key].name);
-                    //console.log(data[key].href);
-                    //console.log(data[key].artists[0].name);
-                    //console.log(data[key].releaseYear);
                     var imageURL = 'https://embed.spotify.com/oembed/?url=' + data[key].href;
                     var releaseYear = "";
                     if (data[key].releaseYear != null) {
                         releaseYear = data[key].releaseYear;
                     }
-                    //console.log("ID "+data[key].externalIds[0].id);
-                    //console.log("URL "+data[key].thumbnail_url);
                     var appendString = '<li id="' + data[key].externalIds[0].id + '"><a href="item.html?id=' + data[key].externalIds[0].id + '" data-ajax="false">' +
                         '<img src="' + data[key].thumbnail_url + '" style="padding-top:10px">' +
                         '<h2>' + data[key].name + '</h2>' +
@@ -182,10 +194,8 @@ $(document)
                         '</a></li>';
                     $("#listview")
                         .append(appendString);
-                    //console.log("Size : " + data.length);
                     //Creating a datastore for ComicvineData
                     var dataToStore = JSON.stringify(data[key]);
-                    //console.log(dataToStore.toString());
                     // Storing data in localstorage 
                     window.localStorage.setItem(data[key].externalIds[0].id, dataToStore);
                 }

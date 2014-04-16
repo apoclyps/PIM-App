@@ -1,3 +1,7 @@
+/**
+ * CollectionView.js
+ * 
+ */
 $(document).ready(function () {
     // Swipe Event Listeners
     //-----------------------------------------------------------
@@ -119,7 +123,8 @@ $(document).ready(function () {
         var issue = decodeURIComponent($.urlParam('type'));
 
         if(issue=="issue"){
-            $("#itemviewlink").hide();
+            $("#itemviewlink").show();
+            $("#viewText").html("Add Issue");
         }
 
         if (index >= (currentSearchIssues.length - 1)) {

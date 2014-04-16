@@ -1,4 +1,8 @@
-$(document).ready(function () {
+  /**
+   * Result.js
+   *
+   */
+  $(document).ready(function () {
     console.log("ready!");
 
     $.urlParam = function (name) {

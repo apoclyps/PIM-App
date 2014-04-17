@@ -29,16 +29,23 @@
             <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
             <h1>Search Result</h1>
          </div>
+
+         <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+               <li><a href="" onclick="goBack()" data-ajax='false' id="back"><i class='icon-chevron-left'></i> Back</a></li>
+               <li style="float:right"><a href="#" data-ajax='false' id="nextView">View Issues <i class='icon-chevron-right'></i></a></li>
+            </ul>
          <div data-role="content" id="content">
             <div class='inset' id="comicview">
             </div>
          </div>
+
+
          <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
             <div data-role="navbar">
                <ul>
-                  <li><a href="#" id="previous" data-transition="slidefade" data-icon="arrow-left">Previous</a></li>
+                  <li><a href="#" id="previous" data-transition="slidefade" data-icon="arrow-left"><div id="prevoius">Previous Volume</div></a></li>
                   <li><a href="itemview.html" id="itemviewlink" data-transition="slidefade" data-icon="save" data-ajax="false"><div id="viewText">View Issues</div></a></li>
-                  <li><a href="#" id="next" data-transition="slidefade" data-icon="arrow-right">Next</a></li>
+                  <li><a href="#" id="next" data-transition="slidefade" data-icon="arrow-right"><div id="nextText">Next Volume</div></a></li>
                </ul>
             </div>
          </div>

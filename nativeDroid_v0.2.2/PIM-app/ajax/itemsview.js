@@ -2,6 +2,11 @@
  * ItemsViews.js
  *
  */
+function goBack() {
+    history.back();
+    return false;
+}
+ 
 $(document)
     .ready(function () {
 
@@ -276,6 +281,7 @@ $(document)
         //          IMDB Dynamic View
         //---------------------------------------------------------------------------------------------------------------
         function IMDB(data) {
+            
             for (var i in data.IMDB) {
                 var director;
                 var poster;

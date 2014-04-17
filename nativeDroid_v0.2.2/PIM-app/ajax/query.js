@@ -1,8 +1,3 @@
-  /**
-   * Query.js
-   *
-   */
-  $(document).ready(function () {
 
       //Selects input from pop-up dialogue and returns as object.
       function getParameters() {
@@ -13,7 +8,7 @@
           console.log("Query : " + parameters.query);
           parameters.true = true;
           return parameters;
-      };
+      }
 
       //Converts an object and encodes variables to URL Parameter String.
       function objectToURLParameters(obj) {
@@ -25,7 +20,7 @@
               str += key + "=" + encodeURIComponent(obj[key]);
           }
           return str;
-      };
+      }
 
       //Builds a query to append to URL parameters.
       function query() {
@@ -40,12 +35,11 @@
           } else {
               console.log("Returned false");
           }
-      };
+      }
 
       $(document).keypress(function (e) {
           if (e.which == 13) {
               query();
           }
-      });
+      })
 
-  });

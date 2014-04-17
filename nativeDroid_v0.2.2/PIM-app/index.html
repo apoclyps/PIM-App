@@ -19,6 +19,7 @@
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
       <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
       <link rel="stylesheet" href="css/center.css"/>
+      <script src="ajax/query.js"></script>
       <style>
          .ui-popup .ui-field-contain label.ui-submit, .ui-popup .ui-field-contain .ui-controlgroup-label, .ui-popup .ui-field-contain label.ui-select, .ui-popup .ui-field-contain label.ui-input-text {
          width:100%
@@ -118,7 +119,7 @@
                   </ul>
                   <input id="search" name="search" size="35" class="textInput required" type="text" placeholder="Search Keywords..." data-clear-btn="true" style="margin: 0.5em 0px;"></input>
                   <div class='showastabs center nobg'>
-                     <button id="search" data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true' onclick="query();" >Okay</button>
+                     <button id="search" data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true' onclick="query()" >Okay</button>
                      <a href='index.html' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
                   </div>
                </div>
@@ -127,7 +128,8 @@
          <!-- End of content -->
       </div>
       <!-- End of page -->
-      <script src="ajax/query.js"></script><!-- Query.js allows for searching by type + query string -->
+
+      <!-- Query.js allows for searching by type + query string -->
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">

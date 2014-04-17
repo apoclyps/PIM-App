@@ -50,6 +50,8 @@ $(document)
                 .fadeIn("fast", function () {
                     // Animation complete
                 })
+            $('#viewMore')
+                .hide();
 
             // Getting Query Parameters
             var queryTitle = decodeURIComponent($.urlParam('query'));
@@ -218,8 +220,8 @@ $(document)
         //         Comicvine view Update 
         //---------------------------------------------------------------------------------------------------------------
         function Comicvine(data) {
-            var currentSearchIssues = [];
-            window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
+            var currentSearchVolumes = [];
+            window.localStorage.setItem("currentSearchVolumes", currentSearchVolumes);
             for (var i in data.COMICVINE) {
                 var last_issue = null;
 
@@ -229,7 +231,7 @@ $(document)
                     last_issue = data.COMICVINE[i].last_issue.name;
                 }
 
-                var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + '" data-ajax="false">' +
+                var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + '&type=volume" data-ajax="false">' +
                     '<img src="' + data.COMICVINE[i].image.thumb_url + '">' +
                     '<h2>' + data.COMICVINE[i].name + '</h2>' +
                     '<p style="padding-top:-20px">' + last_issue + '</p>' +
@@ -238,14 +240,17 @@ $(document)
                 $("#listview")
                     .append(appendString);
 
+                // Selects the first volume and sets it as the View > link
+                document.getElementById('viewMore').href="item.html?id="+data.COMICVINE[0].id;
+        
                 //Creating a datastore for ComicvineData
                 var dataToStore = JSON.stringify(data.COMICVINE[i]);
                 // Storing data in localstorage 
                 window.localStorage.setItem(data.COMICVINE[i].id, dataToStore);
-                currentSearchIssues.push(data.COMICVINE[i].id);
+                currentSearchVolumes.push(data.COMICVINE[i].id);
             }
 
-            window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
+            window.localStorage.setItem("currentSearchVolumes", currentSearchVolumes);
             updateDisplay(data.COMICVINE.length);
 
             //Creating a datastore for ComicvineData
@@ -314,6 +319,8 @@ $(document)
 
             $('#cancle')
                 .hide();
+            $('#viewMore')
+                .show();
             $('#comicview')
                 .listview('refresh');
             $("#message-info")

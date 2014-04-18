@@ -23,11 +23,27 @@
    <body>
       <div data-role="page" data-theme='b'>
          <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
             <h1>
-               <div class="center-wrapper">Inventory Management</div>
+               <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
             </h1>
-            <a href="index.html" data-transition="slide" data-ajax='false' target='_blank'><i class='icon-ellipsis-vertical'></i></a>
          </div>
+         <!-- Hidden Settings Panel -->
+         <div data-role='panel' id='settings' data-theme='b'>
+                 <ul data-role="listview">
+                     <li data-role="list-divider"><a href="index.html">Menu</a></li>
+                     <li data-icon="barcode"><a href="#">Scan</a></li>
+                     <li data-icon="search"><a href="#">Search</a></li>
+                     <li data-icon="folder-close"><a href="#">Collections</a></li>
+                     <li data-icon="folder-open"><a href="#">Recently Viewed</a></li>
+                     <li data-icon="star"><a href="#">Recommendations</a></li>
+                     
+                     <li data-role="list-divider" style="padding-top:10px">Settings</li>
+                     <li data-icon="user"><a href="#">Account</a></li>
+                     <li data-icon="group"><a href="#">Log Out</a></li>
+            </ul>
+         </div>
+         <!-- end of hidden pannel -->
          <div data-role="content">
             <div class='inset'>
                <h2><code><strong>Personal Inventory Management</strong> - Version 0.1</code></h2>

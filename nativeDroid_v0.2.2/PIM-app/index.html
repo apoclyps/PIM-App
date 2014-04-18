@@ -38,57 +38,57 @@
          .ui-header .ui-btn-icon-left .ui-btn-inner, .ui-footer .ui-btn-icon-left .ui-btn-inner, .ui-mini.ui-btn-icon-left .ui-btn-inner, .ui-mini .ui-btn-icon-left .ui-btn-inner {
              padding-left: 0px;
          }
-
       </style>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
-
-         <!-- Hidden Settings Panel -->
-         <div data-role='panel' id='settings' data-theme='b'>
-                 <ul data-role="listview">
-                     <li data-role="list-divider">Menu</li>
-                     <li data-icon="coffee"><a href="#">Search</a></li>
-                     <li data-icon="beer"><a href="#">Scan</a></li>
-                     <li data-icon="music"><a href="#">Collections</a></li>
-                     <li data-icon="fire"><a href="#">Recently Viewed</a></li>
-                     <li data-role="list-divider">Settings</li>
-                     <li data-icon="trophy"><a href="#">Account</a></li>
-                     <li data-icon="group"><a href="#">Log Out</a></li>
-            </ul>
-         </div>
-         <!-- Start of enu -->
          <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
             <h1>
                <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
             </h1>
          </div>
+         <!-- Hidden Settings Panel -->
+         <div data-role='panel' id='settings' data-theme='b'>
+                 <ul data-role="listview">
+                     <li data-role="list-divider"><a href="index.html">Menu</a></li>
+                     <li data-icon="barcode"><a href="#">Scan</a></li>
+                     <li data-icon="search"><a href="#">Search</a></li>
+                     <li data-icon="folder-close"><a href="#">Collections</a></li>
+                     <li data-icon="folder-open"><a href="#">Recently Viewed</a></li>
+                     <li data-icon="star"><a href="#">Recommendations</a></li>
+                     
+                     <li data-role="list-divider" style="padding-top:10px">Settings</li>
+                     <li data-icon="user"><a href="#">Account</a></li>
+                     <li data-icon="group"><a href="#">Log Out</a></li>
+            </ul>
+         </div>
+         <!-- end of hidden pannel -->
          <div data-role="content">
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
                <li data-role="list-divider">Search</li>
                <li>
-                  <a href='#popupScan' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupScanner"><i class='icon-external-link'></i> Scan</a>
+                  <a href='#popupScan' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupScanner"><i class='icon-barcode'></i> Scan</a>
                </li>
                <li>
-                  <a href='#popupSearch' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearcher"><i class='icon-external-link'></i> Search Online</a>
+                  <a href='#popupSearch' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearcher"><i class='icon-search'></i> Search Online</a>
                </li>
                <li data-role="list-divider">Collections</li>
                <li>
-                  <a href="collections.html" data-transition="none" data-ajax="false"><i class='icon-chevron-right'></i> Collections</a>
+                  <a href="collections.html" data-transition="none" data-ajax="false"><i class='icon-folder-close'></i> Collections</a>
                </li>
                <li>
-                  <a href="recentlyviewed.html" data-transition="none" data-ajax="false"><i class='icon-chevron-right'></i> Recently Viewed</a>
+                  <a href="recentlyviewed.html" data-transition="none" data-ajax="false"><i class='icon-folder-open'></i> Recently Viewed</a>
                </li>
                <li data-role="list-divider">Recommendations</li>
                <li>
-                  <a href="recommendations.html" data-transition="none" data-ajax="false"><i class='icon-list'></i> Recommendations</a>
+                  <a href="recommendations.html" data-transition="none" data-ajax="false"><i class='icon-star'></i> Recommendations</a>
                </li>
                <li>
-                  <a href="localstorage-crud.html" data-transition="slide" data-ajax="false"><i class='icon-file'></i> Local Storage </a>
+                  <a href="localstorage-crud.html" data-transition="slide" data-ajax="false"><i class='icon-cog'></i> Local Storage </a>
                </li>
                <li>
-                  <a href="developer.html" data-transition="slide" data-ajax="false"><i class='icon-file' ></i> Developer </a>
+                  <a href="developer.html" data-transition="slide" data-ajax="false"><i class='icon-cog' ></i> Developer </a>
                </li>
             </ul>
             <!-- Pop up dialog box for Search -->
@@ -133,22 +133,22 @@
                      <li data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
                            <legend style="width:100%">Media Type : </legend>
-                           <input type="radio" name="radio-choice-2" id="radio-choice-1b" value="Comic" checked="checked">
+                           <input type="radio" name="radio-choice-2" id="radio-choice-1b" value="Comic" checked="checked"></input>
                            <label for="radio-choice-1b">Comics</label>
                            <!--<input type="radio" name="radio-choice-1" id="radio-choice-2b" value="Books" >
                            <label for="radio-choice-2b">Books</label>-->
-                           <input type="radio" name="radio-choice-2" id="radio-choice-3b" value="CD">
+                           <input type="radio" name="radio-choice-2" id="radio-choice-3b" value="CD"></input>
                            <label for="radio-choice-3b">CD</label>
-                           <input type="radio" name="radio-choice-2" id="radio-choice-4b" value="DVD">
+                           <input type="radio" name="radio-choice-2" id="radio-choice-4b" value="DVD"></input>
                            <label for="radio-choice-4b">DVD</label>
                            <!--<input type="radio" name="radio-choice-1" id="radio-choice-5b" value="Games">
                            <label for="radio-choice-5b">Games</label>-->
                         </fieldset>
                         <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
                             <legend>Scan Type</legend>
-                            <input type="radio" name="radio-choice-3" id="radio-choice-1b" value="Auto" checked="checked">
+                            <input type="radio" name="radio-choice-3" id="radio-choice-1b" value="Auto" checked="checked"></input>
                             <label for="radio-choice-1b">Automatic Scan</label>
-                            <input type="radio" name="radio-choice-3" id="radio-choice-2b" value="Manual">
+                            <input type="radio" name="radio-choice-3" id="radio-choice-2b" value="Manual"></input>
                             <label for="radio-choice-2b">Manual Entry</label>
                         </fieldset>
                      </li>

@@ -39,14 +39,33 @@
    <body>
       <div data-role="page" data-theme='b'>
          <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
-            <div class="center-wrapper"><h1> PIM </h1></div>
-            <a href="index.html" data-ajax='false' target='_blank'><i class='icon-ellipsis-vertical'></i></a>
+            <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
+            <h1>
+               <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
+            </h1>
          </div>
+
+         <!-- Hidden Settings Panel -->
+         <div data-role='panel' id='settings' data-theme='b'>
+                 <ul data-role="listview">
+                     <li data-role="list-divider"><a href="index.html">Menu</a></li>
+                     <li data-icon="barcode"><a href="#">Scan</a></li>
+                     <li data-icon="search"><a href="#">Search</a></li>
+                     <li data-icon="folder-close"><a href="#">Collections</a></li>
+                     <li data-icon="folder-open"><a href="#">Recently Viewed</a></li>
+                     <li data-icon="star"><a href="#">Recommendations</a></li>
+                     
+                     <li data-role="list-divider" style="padding-top:10px">Settings</li>
+                     <li data-icon="user"><a href="#">Account</a></li>
+                     <li data-icon="group"><a href="#">Log Out</a></li>
+            </ul>
+         </div>
+         <!-- end of hidden pannel -->
+         <div data-role="content">
                <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
                   <li><a href="" onclick="goBack()" data-ajax='false' id="back"><i class='icon-chevron-left'></i> Back</a></li>
                   <li style="float:right"><a href="#" data-ajax='false' id="nextView" onclick="scan()">Scan Product <i class='icon-chevron-right'></i></a></li>
             </ul>
-         <div data-role="content">
             <div class="center-wrapper" style="padding-top:30px">
                <h1>Add a Product</h1>
             </div>
@@ -56,16 +75,16 @@
                   <ul>
                      <!-- Padding needed -->
                      <li data-role="fieldcontain" style="padding-top:10px">
-                        <input type="text" name="productName" id="productName" value="" data-clear-btn="true" placeholder="Product Name" >
+                        <input type="text" name="productName" id="productName" value="" data-clear-btn="true" placeholder="Product Name" ></input>
                      </li>
                      <li data-role="fieldcontain" style="padding-top:10px">
-                        <input type="text" name="productBarcode" id="productBarcode" value="" data-clear-btn="true" placeholder="Product Barcode" >
+                        <input type="text" name="productBarcode" id="productBarcode" value="" data-clear-btn="true" placeholder="Product Barcode" ></input>
                      </li>
                      <li data-role="fieldcontain" style="padding-top:10px">
-                        <input type="text" name="productType" id="productType" value="" data-clear-btn="true" placeholder="Product Type" >
+                        <input type="text" name="productType" id="productType" value="" data-clear-btn="true" placeholder="Product Type" ></input>
                      </li>
                      <li data-role="fieldcontain" style="padding-top:10px">
-                        <input type="text" name="productQuantity" id="productQuantity" value="" data-clear-btn="true" placeholder="Quantity" >
+                        <input type="text" name="productQuantity" id="productQuantity" value="" data-clear-btn="true" placeholder="Quantity" ></input>
                      </li>
 
                      <li data-role="fieldcontain" style="padding-top:30px">

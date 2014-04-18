@@ -3,7 +3,7 @@ $(function(){
 
 	var selected_index = -1; //Index of the selected list item
 
-	var tbProducts = localStorage.getItem("tbProducts");//Retrieve the stored data
+	var tbProducts = window.localStorage.getItem("tbProducts");//Retrieve the stored data
 
 	tbProducts = JSON.parse(tbProducts); //Converts string to object
 
@@ -11,7 +11,7 @@ $(function(){
 		tbProducts = [];
 
 	List();
-
+	//Purge();
 	function getProduct(){
 		var product = JSON.stringify({
 			ID    : $("#txtID").val(),
@@ -26,7 +26,7 @@ $(function(){
 
 	function Add(product){
 		tbProducts.push(product);
-		localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+		window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
 		alert("The Product was saved.");
 		return true;
 	}
@@ -44,7 +44,7 @@ $(function(){
 	function Edit(){
 		tbProducts[selected_index] = getProduct();
 		//Alter the selected item on the table
-		localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+		window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
 		alert("The Product was edited.")
 		operation = "A"; //Return to default value
 		return true;
@@ -52,12 +52,12 @@ $(function(){
 
 	function Delete(){
 		tbProducts.splice(selected_index, 1);
-		localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+		window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
 		alert("Product deleted.");
 	}
 
 	function Purge(){
-		localStorage.clear();
+		window.localStorage.clear();
 	}
 
 	function List(){		
@@ -77,10 +77,11 @@ $(function(){
 			"<tbody>"+
 			"</tbody>"
 			);
+		console.log(tbProducts.toString());
 		for(var i in tbProducts){
 			var product = JSON.parse(tbProducts[i]);
 		  	$("#tblList tbody").append("<tr>"+
-			 	 "	<td><img src='images/edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
+			 	 "	<td><img src='edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
 				 "	<td>"+product.ID+"</td>" + 
 				 "	<td>"+product.Name+"</td>" + 
 				 "	<td>"+product.Barcode+"</td>" + 

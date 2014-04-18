@@ -1,125 +1,11 @@
 /**
  * CollectionView.js
- * 
+ *
  */
 function goBack() {
     history.back();
     return false;
 }
-
-    var tbProducts = localStorage.getItem("tbProducts");//Retrieve the stored data
-
-    tbProducts = JSON.parse(tbProducts); //Converts string to object
-
-    if(tbProducts == null) {//If there is no data, initialize an empty array
-        tbProducts = [];
-    localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-    }
-
-
-    var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
-    tbProducts = JSON.parse(tbProducts); //Converts string to object
-
-    function getProduct() {
-
-        $.urlParam = function (name) {
-            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            if (results == null) {
-                return null;
-            } else {
-                return results[1] || 0;
-            }
-        };
-
-        var id = decodeURIComponent($.urlParam('id'));
-        var localData = JSON.parse(localStorage.getItem(id));
-
-        var product = JSON.stringify({
-            ID: id,
-            Name: localData.name,
-            Barcode: 'unknown',
-            Quantity: 1,
-            Type: 'comic',
-            Image: localData.image_url,
-            AssociateID: '1'
-        });
-        console.log("ID LOCK "+product.toString());
-        return product;
-    }
-
-    // returns last id in table
-    function getID() {
-        var productID = JSON.parse(tbProducts[tbProducts.length - 1]);
-        console.log(productID.ID);
-        return productID.ID;
-    }
-
-    function Add(product) {
-        tbProducts.push(product);
-        localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-        alert("The Product was saved.");
-        return true;
-    }
-
-    function Search(product2) {
-        var product = JSON.parse(product2);
-        console.log("PROD "+product.id);
-        for (var i in tbProducts) {
-            var searchProduct = JSON.parse(tbProducts[i]);
-            console.log("search product id "+searchProduct.ID);
-            console.log(" product id "+product.ID);
-            if (searchProduct.ID == product.ID) {
-                console.log("Found " + searchProduct.ID);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function Delete(product) {
-        product = JSON.parse(product);
-        console.log("PROD "+product.id);
-        for (var i in tbProducts) {
-            var searchProduct = JSON.parse(tbProducts[i]);
-            console.log("search product id "+searchProduct.ID);
-            console.log(" product id "+product.ID);
-            if (searchProduct.ID == product.ID) {
-                console.log("Found " + searchProduct.ID);
-                //return true;
-                tbProducts[i]="";
-            }
-        }
-        localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-    }
-
-    function checkIfIssue(){
-        var issue = decodeURIComponent($.urlParam('type'));
-
-        if(issue=="issue"){
-            document.getElementById('itemviewlink').href="";
-
-            if(Search(getProduct())){
-                alert("Delete Issue");
-                $("#viewText").html("Remove Issue");
-                var product = getProduct();
-                //console.log("#id " + product.id);
-                Delete(getProduct());
-                
-            }else{
-               alert("Add Issue");
-               // var product = JSON.parse(getProduct());
-                Add(getProduct());
-                $("#viewText").html("Remove Issue");
-                
-            }
-
-        }else{
-            console.log(issue.toString());
-            // document.getElementById('itemviewlink').href="itemview.html";
-        }
-    }
-
-
 
 $(document).ready(function () {
     // Swipe Event Listeners
@@ -136,6 +22,9 @@ $(document).ready(function () {
     $("#content").on("swiperight", function () {
         previousItem();
     });
+    $("#itemviewlink").click(function() {
+        checkIfIssue();
+      });
 
     //-----------------------------------------------------------
     //Button event listners
@@ -155,11 +44,11 @@ $(document).ready(function () {
 
     var type = decodeURIComponent($.urlParam('type'));
     var activeSearchIDs;
-    if(type=="volume"){
+    if (type == "volume") {
         activeSearchIDs = window.localStorage.getItem("currentSearchVolumes");
         console.log("Volume selected " + activeSearchIDs.toString());
         //console.log(findIndex(id));
-    }else if(type=="issue"){
+    } else if (type == "issue") {
         activeSearchIDs = window.localStorage.getItem("currentSearchIssues");
         console.log("Issue selected");
     }
@@ -168,17 +57,136 @@ $(document).ready(function () {
         return parseInt(item, 10);
     });
 
-    console.log(currentSearchIDs.toString());
+    //console.log(currentSearchIDs.toString());
 
     var index = findIndex(id);
-    console.log(activeSearchIDs.length + " : "+activeSearchIDs.toString());
-    console.log(currentSearchIDs.toString());
-    console.log("current index"+index);
+    //console.log(activeSearchIDs.length + " : "+activeSearchIDs.toString());
+    //console.log(currentSearchIDs.toString());
+    //console.log("current index"+index);
 
     updateDataView();
     buttonUpdate();
     //console.log("Loading complete");
     //------------------------------------------------------------
+
+var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
+
+tbProducts = JSON.parse(tbProducts); //Converts string to object
+
+if (tbProducts == null) { //If there is no data, initialize an empty array
+    tbProducts = [];
+    //localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+}
+
+var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
+tbProducts = JSON.parse(tbProducts); //Converts string to object
+
+function getProduct() {
+
+    var id = currentSearchIDs[index];
+    var localData = JSON.parse(localStorage.getItem(id));
+   // alert(id);
+    var product = JSON.stringify({
+        ID: id,
+        Name: localData.name,
+        Barcode: 'unknown',
+        Quantity: 1,
+        Type: 'comic',
+        Image: localData.image_url,
+        AssociateID: '1'
+    });
+    //console.log("ID LOCK "+product.toString());
+    return product;
+}
+
+// returns last id in table
+function getID() {
+    var productID = JSON.parse(tbProducts[tbProducts.length - 1]);
+    console.log(productID.ID);
+    return productID.ID;
+}
+
+function Add(product) {
+    tbProducts.push(product);
+    localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+    alert("Item added to Collection.");
+    return true;
+}
+
+function Search(product) {
+    var product = JSON.parse(product);
+    //console.log("PROD "+product.id);
+    //console.log("Prod TBL " + tbProducts.length + " data "+ tbProducts.toString());
+    for (var i in tbProducts) {
+        var searchProduct = JSON.parse(tbProducts[i]);
+        //console.log("search product id "+searchProduct.ID);
+        //console.log(" product id "+product.ID);
+        if (searchProduct.ID == product.ID) {
+            //console.log("Found " + searchProduct.ID);
+            return true;
+        }
+    }
+    return false;
+}
+
+function getTBIndex(product) {
+    //console.log("PROD "+product.id);
+    console.log("Prod TBL " + tbProducts.length + " data " + tbProducts.toString());
+    var count = 0;
+    for (var i in tbProducts) {
+        var searchProduct = JSON.parse(tbProducts[i]);
+        count++;
+        if (searchProduct.ID == product.ID) {
+            //console.log("Index to remove " + searchProduct.ID);
+            return count;
+        }
+    }
+    return 0;
+}
+
+function Delete(product) {
+    product = JSON.parse(product);
+    console.log("PROD " + product.id);
+    for (var i in tbProducts) {
+        var searchProduct = JSON.parse(tbProducts[i]);
+        //console.log("search product id "+searchProduct.ID);
+        //console.log(" product id "+product.ID);
+        if (searchProduct.ID == product.ID) {
+            //console.log("Found " + searchProduct.ID);
+            //console.log("INDEX : " +getTBIndex(product));
+            tbProducts.splice(getTBIndex(product) - 1, 1);
+            window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+            $("#viewText").html("Add Issue");
+            alert("Item removed to Collection.");
+        }
+    }
+
+}
+
+
+function checkIfIssue() {
+    var issue = decodeURIComponent($.urlParam('type'));
+
+    if (issue == "issue") {
+        document.getElementById('itemviewlink').href = "";
+        console.log("Existing " + Search(getProduct()));
+        if (Search(getProduct()) == true) {
+            $("#viewText").html("Remove Issue");
+            var product = getProduct();
+            //console.log("#id " + product.id);
+            Delete(getProduct());
+        } else if (Search(getProduct()) == false) {
+            // var product = JSON.parse(getProduct());
+            Add(getProduct());
+            $("#viewText").html("Remove Issue");
+
+        }
+    } else {
+        console.log(issue.toString());
+        // document.getElementById('itemviewlink').href="itemview.html";
+    }
+}
+
 
     function updateDataView() {
         console.log("Updating view");
@@ -186,7 +194,6 @@ $(document).ready(function () {
 
         var localData = JSON.parse(localStorage.getItem(id));
         console.log("ID = " + id);
-        //var index = findIndex(id);
         // Displaying Data if it exists
         if (localData == null) {
             alert("Value is null");
@@ -199,7 +206,7 @@ $(document).ready(function () {
         var deck = localData.deck;
         var description = localData.description;
 
-        if (description != null ) {
+        if (description != null) {
             var description = description.substring(0, 1000);
         } else {
             description = "No description available";
@@ -212,25 +219,25 @@ $(document).ready(function () {
         }
 
         var type = decodeURIComponent($.urlParam('type'));
-        if(type=="issue"){
+        if (type == "issue") {
             var dynamicView = '<img style="float:right" src="' + localData.image_url + '"></img>' +
                 '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2>' + localData.id + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
                 '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';
-                //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
-                document.getElementById('itemviewlink').value  = "Add to Collection";
-               // alert("ADDED");
-                //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
-        }else{
+            //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+            document.getElementById('itemviewlink').value = "Add to Collection";
+            // alert("ADDED");
+            //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+        } else {
             var dynamicView = '<img style="float:right" src="' + localData.image.thumb_url + '"></img>' +
                 '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
                 '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
-                document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
-                document.getElementById('nextView').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+            document.getElementById('itemviewlink').href = "itemview.html?volume=" + id + "&select=Comics&type=issue";
+            document.getElementById('nextView').href = "itemview.html?volume=" + id + "&select=Comics&type=issue";
         }
         $("#comicview").append(dynamicView);
         //$("#comicview").load(dynamicView);
 
-        
+
         console.log("Updating Complete \n\n");
     }
     //-------------------------------------------------------------------------
@@ -257,25 +264,26 @@ $(document).ready(function () {
     }
 
     function buttonUpdate() {
-        var index = findIndex(id);
+        index = findIndex(id);
         console.log("Button Update " + index);
 
         var issue = decodeURIComponent($.urlParam('type'));
-
-        if(issue=="issue"){
+        //console.log("Type " + issue);
+        if (issue == "issue") {
             $("#itemviewlink").show();
 
-            if( Search(getProduct()) ){
+            //alert("Value "+ Search(getProduct()));
+            if (Search(getProduct())==true) {
                 $("#viewText").html("Remove Issue");
-             }else{
+            } else if(Search(getProduct())==false)  {
                 $("#viewText").html("Add Issue");
-             }
+            }
 
-            $("#previousText").html("Previous Volume");
-            $("#nextText").html("Next Volume");
-            document.getElementById('viewText').href="";
-            // Add event listener here
+            $("#previousText").html("Previous Issue");
+            $("#nextText").html("Next Issue");
             $("#nextView").hide();
+            document.getElementById('viewText').href = "";
+            // Add event listener here
         }
 
         if (index >= (currentSearchIDs.length - 1)) {
@@ -284,7 +292,7 @@ $(document).ready(function () {
             $("#next").show();
         }
 
-        console.log("Index : "+index);
+        console.log("Index : " + index);
         if (index <= 0) {
             $("#previous").hide();
         } else {
@@ -300,7 +308,7 @@ $(document).ready(function () {
     }
 
     function previousItem() {
-        var index = findIndex(id);
+        index = findIndex(id);
         if (index <= 0) {
             //index = currentSearchIDs.length-1;
             //$("#previous").hide();
@@ -317,7 +325,7 @@ $(document).ready(function () {
     }
 
     function nextItem() {
-        var index = findIndex(id);
+        index = findIndex(id);
         console.log("current " + index);
         if (index >= (currentSearchIDs.length - 1)) {
             //index = 0;

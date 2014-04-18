@@ -7,6 +7,120 @@ function goBack() {
     return false;
 }
 
+    var tbProducts = localStorage.getItem("tbProducts");//Retrieve the stored data
+
+    tbProducts = JSON.parse(tbProducts); //Converts string to object
+
+    if(tbProducts == null) {//If there is no data, initialize an empty array
+        tbProducts = [];
+    localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+    }
+
+
+    var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
+    tbProducts = JSON.parse(tbProducts); //Converts string to object
+
+    function getProduct() {
+
+        $.urlParam = function (name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            } else {
+                return results[1] || 0;
+            }
+        };
+
+        var id = decodeURIComponent($.urlParam('id'));
+        var localData = JSON.parse(localStorage.getItem(id));
+
+        var product = JSON.stringify({
+            ID: id,
+            Name: localData.name,
+            Barcode: 'unknown',
+            Quantity: 1,
+            Type: 'comic',
+            Image: localData.image_url,
+            AssociateID: '1'
+        });
+        console.log("ID LOCK "+product.toString());
+        return product;
+    }
+
+    // returns last id in table
+    function getID() {
+        var productID = JSON.parse(tbProducts[tbProducts.length - 1]);
+        console.log(productID.ID);
+        return productID.ID;
+    }
+
+    function Add(product) {
+        tbProducts.push(product);
+        localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+        alert("The Product was saved.");
+        return true;
+    }
+
+    function Search(product2) {
+        var product = JSON.parse(product2);
+        console.log("PROD "+product.id);
+        for (var i in tbProducts) {
+            var searchProduct = JSON.parse(tbProducts[i]);
+            console.log("search product id "+searchProduct.ID);
+            console.log(" product id "+product.ID);
+            if (searchProduct.ID == product.ID) {
+                console.log("Found " + searchProduct.ID);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function Delete(product) {
+        product = JSON.parse(product);
+        console.log("PROD "+product.id);
+        for (var i in tbProducts) {
+            var searchProduct = JSON.parse(tbProducts[i]);
+            console.log("search product id "+searchProduct.ID);
+            console.log(" product id "+product.ID);
+            if (searchProduct.ID == product.ID) {
+                console.log("Found " + searchProduct.ID);
+                //return true;
+                tbProducts[i]="";
+            }
+        }
+        localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+    }
+
+    function checkIfIssue(){
+        var issue = decodeURIComponent($.urlParam('type'));
+
+        if(issue=="issue"){
+            document.getElementById('itemviewlink').href="";
+
+            if(Search(getProduct())){
+                alert("Delete Issue");
+                $("#viewText").html("Remove Issue");
+                var product = getProduct();
+                //console.log("#id " + product.id);
+                Delete(getProduct());
+                
+            }else{
+               alert("Add Issue");
+               // var product = JSON.parse(getProduct());
+                Add(getProduct());
+                $("#viewText").html("Remove Issue");
+                
+            }
+
+        }else{
+            console.log(issue.toString());
+            // document.getElementById('itemviewlink').href="itemview.html";
+        }
+    }
+
+
+
 $(document).ready(function () {
     // Swipe Event Listeners
     //-----------------------------------------------------------
@@ -63,7 +177,7 @@ $(document).ready(function () {
 
     updateDataView();
     buttonUpdate();
-    console.log("Loading complete");
+    //console.log("Loading complete");
     //------------------------------------------------------------
 
     function updateDataView() {
@@ -101,7 +215,8 @@ $(document).ready(function () {
         if(type=="issue"){
             var dynamicView = '<img style="float:right" src="' + localData.image_url + '"></img>' +
                 '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2>' + localData.id + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
-                '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+                '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';
+                //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
                 document.getElementById('itemviewlink').value  = "Add to Collection";
                // alert("ADDED");
                 //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
@@ -149,7 +264,13 @@ $(document).ready(function () {
 
         if(issue=="issue"){
             $("#itemviewlink").show();
-            $("#viewText").html("Add Issue");
+
+            if( Search(getProduct()) ){
+                $("#viewText").html("Remove Issue");
+             }else{
+                $("#viewText").html("Add Issue");
+             }
+
             $("#previousText").html("Previous Volume");
             $("#nextText").html("Next Volume");
             document.getElementById('viewText').href="";

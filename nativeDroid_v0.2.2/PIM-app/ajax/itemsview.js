@@ -6,7 +6,7 @@ function goBack() {
     history.back();
     return false;
 }
- 
+
 $(document)
     .ready(function () {
 
@@ -335,6 +335,15 @@ $(document)
                 .fadeIn("slow", function () {
                     //console.log("Request Complete : Comic Vine Volume");
                 });
+
+            var volumeID = decodeURIComponent($.urlParam('volume'));
+            var localData = JSON.parse(localStorage.getItem(volumeID));
+            console.log(localData.name);
+            $('#searchQuery').html("<strong>"+localData.name+" </strong> : " + length + " Results");
+            //$('#searchResults').html("<strong>Volume </strong>: " + length);
+
+
+
         }
         //---------------------------------------------------------------------------------------------------------------
     });

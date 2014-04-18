@@ -25,7 +25,12 @@
             <h1><div class="center-wrapper"> Inventory Management</div></h1>
             <a href="index.html" data-ajax='false' target='_blank'><i class='icon-ellipsis-vertical'></i></a>
          </div>
+
          <div data-role="content">
+               <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+               <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left' ></i> Back</a></li>
+               <li style="float:right"><a href="search.html" data-ajax='false' id="search ">Search All<i class='icon-chevron-right'></i></a></li>
+            </ul>
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
                <li data-role="list-divider">Recently Viewed</li>
                <div data-role="content">
@@ -54,6 +59,7 @@
       </div>
       <!-- end of page -->
       </div>
+      <script src="ajax/navigation.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">

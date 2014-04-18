@@ -1,10 +1,10 @@
       //Selects input from pop-up dialogue and returns as object.
-      function getQueryParameters() {
+      function getParameters() {
           var parameters = {};
-          parameters.select = $('input[name=radio-choice-1]:checked').val();
+          parameters.select = $('input[name=radio-choice-2]:checked').val();
           console.log("Selected : " + parameters.select);
-          parameters.query = $('input[name=search]').val();
-          console.log("Query : " + parameters.query);
+          parameters.scan = $('input[name=radio-choice-3]:checked').val();
+          console.log("Scan Type : " + parameters.scan);
           parameters.true = true;
           return parameters;
       }
@@ -22,15 +22,22 @@
       }
 
       //Builds a query to append to URL parameters.
-      function query() {
-          var parameters = getQueryParameters();
+      function scan() {
+          var parameters = getParameters();
           var urlParameters = objectToURLParameters(parameters);
           console.log(urlParameters);
 
           if (parameters.true == true) {
-              console.log("Redirect to page here");
-              console.log("Parameters Encoded : " + urlParameters);
-              window.location.href = "listviews.html?" + urlParameters;
+              if(parameters.scan=="Auto"){
+                  console.log("Redirect to page here");
+                  console.log("Parameters Encoded : " + urlParameters);
+                  console.log("Barcode Scan");
+                  //window.location.href = "listviews.html?" + urlParameters;
+              }else if(parameters.scan=="Manual"){
+                console.log("Manual Scan");
+                window.location.href = "product.html?" + urlParameters;
+              }
+
           } else {
               console.log("Returned false");
           }

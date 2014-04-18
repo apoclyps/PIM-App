@@ -20,6 +20,7 @@
       <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
       <link rel="stylesheet" href="css/center.css"/>
       <script src="ajax/query.js"></script>
+      <script src="ajax/scan.js"></script>
       <style>
          .ui-popup .ui-field-contain label.ui-submit, .ui-popup .ui-field-contain .ui-controlgroup-label, .ui-popup .ui-field-contain label.ui-select, .ui-popup .ui-field-contain label.ui-input-text {
          width:100%
@@ -67,13 +68,10 @@
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
                <li data-role="list-divider">Search</li>
                <li>
-                  <a  href="search.html" data-transition="none" data-ajax="false" ><i class='icon-external-link' ></i> Search</a>
+                  <a href='#popupScan' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupScanner"><i class='icon-external-link'></i> Scan</a>
                </li>
                <li>
-                  <a href='#popupDialog' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearch"><i class='icon-external-link'></i> Search Online</a>
-               </li>
-               <li>
-                  <a href="scan.html" data-transition="none" data-ajax="false"><i class='icon-external-link'></i> Scan</a>
+                  <a href='#popupSearch' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearcher"><i class='icon-external-link'></i> Search Online</a>
                </li>
                <li data-role="list-divider">Collections</li>
                <li>
@@ -93,7 +91,8 @@
                   <a href="developer.html" data-transition="slide" data-ajax="false"><i class='icon-file' ></i> Developer </a>
                </li>
             </ul>
-            <div data-role='popup' id='popupDialog' data-theme='b'>
+            <!-- Pop up dialog box for Search -->
+            <div data-role='popup' id='popupSearch' data-theme='b'>
                <div data-role='header' data-theme='b'>
                   <h1>PIM Search</h1>
                </div>
@@ -124,6 +123,43 @@
                   </div>
                </div>
             </div>
+            <!-- Pop up dialog box for Search -->
+            <div data-role='popup' id='popupScan' data-theme='b'>
+               <div data-role='header' data-theme='b'>
+                  <h1>PIM Scan</h1>
+               </div>
+               <div data-role='content' data-theme='b'>
+                  <ul data-role="listview" data-inset="true">
+                     <li data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                           <legend style="width:100%">Media Type : </legend>
+                           <input type="radio" name="radio-choice-2" id="radio-choice-1b" value="Comic" checked="checked">
+                           <label for="radio-choice-1b">Comics</label>
+                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-2b" value="Books" >
+                           <label for="radio-choice-2b">Books</label>-->
+                           <input type="radio" name="radio-choice-2" id="radio-choice-3b" value="CD">
+                           <label for="radio-choice-3b">CD</label>
+                           <input type="radio" name="radio-choice-2" id="radio-choice-4b" value="DVD">
+                           <label for="radio-choice-4b">DVD</label>
+                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-5b" value="Games">
+                           <label for="radio-choice-5b">Games</label>-->
+                        </fieldset>
+                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+                            <legend>Scan Type</legend>
+                            <input type="radio" name="radio-choice-3" id="radio-choice-1b" value="Auto" checked="checked">
+                            <label for="radio-choice-1b">Automatic Scan</label>
+                            <input type="radio" name="radio-choice-3" id="radio-choice-2b" value="Manual">
+                            <label for="radio-choice-2b">Manual Entry</label>
+                        </fieldset>
+                     </li>
+                  </ul>
+                  <div class='showastabs center nobg'>
+                     <button id="search" data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true' onclick="scan()" >Okay</button>
+                     <a href='index.html' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
+                  </div>
+               </div>
+            </div>
+            <!-- -->
          </div>
          <!-- End of content -->
       </div>

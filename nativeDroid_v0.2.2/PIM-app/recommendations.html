@@ -30,7 +30,7 @@
          <div data-role="content">
             <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
                <li data-role="list-divider">Recommendations : Batman</li>
-               <li><a href="#"><i class='icon-chevron-left'></i> Back</a></li>
+               <li><a href="#" onclick="goBack()"><i class='icon-chevron-left'></i> Back</a></li>
                <li><a href="#"><i class='icon-remove'></i> Cancel</a></li>
                <li style="float:right"><a href="#"><i class='icon-ok'></i> Accept</a></li>
             </ul>
@@ -47,6 +47,7 @@
       </div>
       <!-- Listview AJAX -->
       <script src="ajax/listview.js"></script>
+      <script src="ajax/navigation.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">

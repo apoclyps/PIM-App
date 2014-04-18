@@ -80,7 +80,7 @@ $(function(){
 		for(var i in tbProducts){
 			var product = JSON.parse(tbProducts[i]);
 		  	$("#tblList tbody").append("<tr>"+
-			 	 "	<td><img src='edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
+			 	 "	<td><img src='images/edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
 				 "	<td>"+product.ID+"</td>" + 
 				 "	<td>"+product.Name+"</td>" + 
 				 "	<td>"+product.Barcode+"</td>" + 

@@ -42,46 +42,33 @@
             <div class="center-wrapper"><h1> PIM </h1></div>
             <a href="index.html" data-ajax='false' target='_blank'><i class='icon-ellipsis-vertical'></i></a>
          </div>
+               <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+                  <li><a href="" onclick="goBack()" data-ajax='false' id="back"><i class='icon-chevron-left'></i> Back</a></li>
+                  <li style="float:right"><a href="#" data-ajax='false' id="nextView" onclick="scan()">Scan Product <i class='icon-chevron-right'></i></a></li>
+            </ul>
          <div data-role="content">
-            <br/><br/><br/>
-            <div class="center-wrapper">
-               <h1>Add a Product!</h1>
+            <div class="center-wrapper" style="padding-top:30px">
+               <h1>Add a Product</h1>
             </div>
             <br/>
             <div class="center-wrapper">
                <form id="addManualProduct" style="padding-bottom:5%">
                   <ul>
-                     <li data-role="fieldcontain">
-                        <p>Select Media Type</p>
-                     </li>
-                     <li data-role="fieldcontain">
-                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
-                           <input type="radio" name="radio-choice-a" id="comic" value="Comic" checked="checked">
-                           <label for="comic">Comic</label>
-                           <input type="radio" name="radio-choice-a" id="cd" value="Music">
-                           <label for="cd">CD</label>
-                           <input type="radio" name="radio-choice-a" id="dvd" value="Movie">
-                           <label for="dvd">DVD</label>
-                           <input type="radio" name="radio-choice-a" id="game" value="Game">
-                           <label for="game">Game</label>
-                           <input type="radio" name="radio-choice-a" id="other" value="Other">
-                           <label for="other">Other</label>
-                        </fieldset>
-                     </li>
                      <!-- Padding needed -->
-                     <li data-role="fieldcontain">
-                        <p>Enter Product Details</p>
-                     </li>
-                     <li data-role="fieldcontain">
+                     <li data-role="fieldcontain" style="padding-top:10px">
                         <input type="text" name="productName" id="productName" value="" data-clear-btn="true" placeholder="Product Name" >
                      </li>
-                     <li data-role="fieldcontain">
+                     <li data-role="fieldcontain" style="padding-top:10px">
                         <input type="text" name="productBarcode" id="productBarcode" value="" data-clear-btn="true" placeholder="Product Barcode" >
                      </li>
-                     <li data-role="fieldcontain">
+                     <li data-role="fieldcontain" style="padding-top:10px">
+                        <input type="text" name="productType" id="productType" value="" data-clear-btn="true" placeholder="Product Type" >
+                     </li>
+                     <li data-role="fieldcontain" style="padding-top:10px">
                         <input type="text" name="productQuantity" id="productQuantity" value="" data-clear-btn="true" placeholder="Quantity" >
                      </li>
-                     <li data-role="fieldcontain">
+
+                     <li data-role="fieldcontain" style="padding-top:30px">
                         <button id="submit" type="submit" data-theme="b" value="Add Product"></button>
                      </li>
                   </ul>
@@ -95,6 +82,8 @@
          <!-- Javascript Ajax and Cross Domain -->
          <script src="javascript/cross-domain.js"></script>
          <script src="ajax/product.js"></script>
+         <script src="ajax/scan.js"></script>
+         <script src="ajax/navigation.js"></script>
          <!-- Fast Clib Libary -->
          <script type='application/javascript' src='javascript/fastclick.js'></script>
          <script type="application/javascript">

@@ -22,7 +22,6 @@
       <link rel="stylesheet" href="css/center.css"/>
       <!-- Loading in settings file -->
       <script type="text/javascript" language="javascript" src="settings.jsonp"></script>
-
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -34,6 +33,7 @@
          </div>
          <div data-role="content">
             <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+               <li data-role="list-divider"> <div id="searchQuery"></div><div style="float-right" id="searchResults"></div></li>
                <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left'></i> Back</a></li>
                <li id="cancle"><a href="#" data-ajax='false'><i class='icon-remove'></i> Cancel</a></li>
             </ul>

@@ -86,7 +86,7 @@ $(document).ready(function () {
             if (searchProduct.Type.toLowerCase() == type) {
                 //console.log("Found " + searchProduct.Name);
                 var appendString = '<li id="' + searchProduct.ID + '"><a href="item.html?id=' + searchProduct.ID + '" data-ajax="false">' +
-                    '<img src="' + '' + '">' +
+                    '<img src="' + searchProduct.Image + '">' +
                     '<h2>' + searchProduct.Name + '</h2>' +
                     '<p style="padding-top:-20px">' + searchProduct.Barcode + '</p>' +
                     '<p class="ui-li-aside"><strong>' + searchProduct.Quantity + '</strong> Items</p>' +

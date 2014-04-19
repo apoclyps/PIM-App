@@ -68,11 +68,13 @@ $(function(){
 			"	<tr>"+
 			"	<th></th>"+
 			"	<th>ID</th>"+
+			"	<th>Volume Name</th>"+
 			"	<th>Name</th>"+
 			"	<th>Barcode</th>"+
 			"	<th>Quantity</th>"+
 			"	<th>Type</th>"+
 			"	<th>AID</th>"+
+			"	<th>Issue no</th>"+
 			"	<th>JSON</th>"+
 			"	</tr>"+
 			"</thead>"+
@@ -86,13 +88,15 @@ $(function(){
 				product.JSONItem = "";
 			}
 		  	$("#tblList tbody").append("<tr>"+
-			 	 "	<td><img src='edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
+			 	 "	<td><img src='images/edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='images/delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
 				 "	<td>"+product.ID+"</td>" + 
+				 "	<td>"+product.Vname+"</td>" + 
 				 "	<td>"+product.Name+"</td>" + 
 				 "	<td>"+product.Barcode+"</td>" + 
 				 "	<td>"+product.Quantity+"</td>" + 
 				 "	<td>"+product.Type+"</td>" + 
 				 "	<td>"+product.AssociateID+"</td>" + 
+				 "	<td>"+product.IssueNo+"</td>" + 
 				 "	<td>"+product.JSONItem+"</td>" + 
 					 "</tr>");
 		}

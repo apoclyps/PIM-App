@@ -256,20 +256,14 @@ function checkIfIssue() {
         var type = decodeURIComponent($.urlParam('type'));
         if (type == "issue") {
                 var dynamicView = '<img style="float:right" src="' + localData.image_url + '"></img>' +
-                    '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2>' + localData.id + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+                    '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2> Issue #' + localData.IssueNo + ' </h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
                     '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';
                 //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
                 document.getElementById('itemviewlink').value = "Add to Collection";
                 // alert("ADDED");
                 //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
                 
-        } else {
-            var dynamicView = '<img style="float:right" src="' + localData.image.thumb_url + '"></img>' +
-                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
-                '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
-            document.getElementById('itemviewlink').href = "itemview.html?volume=" + id + "&select=Comics&type=issue";
-            document.getElementById('nextView').href = "itemview.html?volume=" + id + "&select=Comics&type=issue";
-        }
+        } 
         $("#comicview").append(dynamicView);
         //$("#comicview").load(dynamicView);
 

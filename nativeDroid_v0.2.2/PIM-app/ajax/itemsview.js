@@ -234,6 +234,7 @@ $(document)
             for (var i in data.COMICVINE) {
 
                 var type = decodeURIComponent($.urlParam('type'));
+                var vname = decodeURIComponent($.urlParam('vname'));
                 var displayType;
                 if (type == "issue") {
                     displayType = "&type=issue";
@@ -245,7 +246,7 @@ $(document)
                        data.COMICVINE[i].name =  localData.name;
                 }
 
-                var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + displayType + '" data-ajax="false">' +
+                var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + displayType + '&vname='+vname+'" data-ajax="false">' +
                     '<img src="' + data.COMICVINE[i].image_url + '">' +
                     '<h2>' + data.COMICVINE[i].name + '</h2>' +
                     '<p style="padding-top:-20px">' + //data.COMICVINE[i].description + 

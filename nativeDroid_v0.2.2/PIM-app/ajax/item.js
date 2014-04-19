@@ -85,6 +85,7 @@ $(document).ready(function () {
         var localData;
         var id = currentSearchIDs[index];
         localData = JSON.parse(localStorage.getItem(id));
+        var vname = decodeURIComponent($.urlParam('vname'));
 
         var product = JSON.stringify({
             ID: id,
@@ -94,7 +95,9 @@ $(document).ready(function () {
             Type: 'comic',
             Image: localData.image_url,
             AssociateID: '1',
-            JSONItem: localStorage.getItem(id)
+            JSONItem: localStorage.getItem(id),
+            Vname: vname,
+            IssueNo: localData.issue_number
         });
         return product;
     }
@@ -112,6 +115,7 @@ $(document).ready(function () {
         console.log("Item added to Collection.");
         $("#nextView").html("View Collection");
         $("#nextView").show();
+        document.getElementById('nextView').href = "collectionview.html?type=Comics";
         return true;
     }
 
@@ -238,18 +242,21 @@ $(document).ready(function () {
         }
 
         var type = decodeURIComponent($.urlParam('type'));
+        var vname = decodeURIComponent($.urlParam('vname'));
         if (type == "issue") {
             var dynamicView = '<img style="float:right" src="' + localData.image_url + '"></img>' +
-                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2>' + localData.id + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + vname + '</h2>' + '<h2> #' 
+                + localData.issue_number + ' Issue</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
                 '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';
             //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
             document.getElementById('itemviewlink').value = "Add to Collection";
-        } else {
+        } else if( type=="volume") {
             var dynamicView = '<img style="float:right" src="' + localData.image.thumb_url + '"></img>' +
-                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+                '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.last_issue.name + '</h2>' + '<h2>' 
+                + localData.count_of_issues + ' Issues</h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
                 '<h3><strong>Synopsis</strong></h3>' + '<p>' + description + '....<a href="#">Read More </a></p> ' + '</div>';
-            document.getElementById('itemviewlink').href = "itemview.html?volume=" + id + "&select=Comics&type=issue";
-            document.getElementById('nextView').href = "itemview.html?volume=" + id + "&select=Comics&type=issue";
+            document.getElementById('itemviewlink').href = "itemview.html?volume=" + id + "&select=Comics&type=issue&vname="+localData.name;
+            document.getElementById('nextView').href = "itemview.html?volume=" + id + "&select=Comics&type=issue&vname="+localData.name;
         }
         $("#comicview").append(dynamicView);
         //$("#comicview").load(dynamicView);
@@ -293,6 +300,7 @@ $(document).ready(function () {
                 $("#viewText").html("Remove Issue");
                 $("#nextView").html("View Collection");
                 $("#nextView").show();
+                document.getElementById('nextView').href = "collectionview.html?type=Comics";
             } else if (Search(getProduct()) == false) {
                 $("#viewText").html("Add Issue");
             }

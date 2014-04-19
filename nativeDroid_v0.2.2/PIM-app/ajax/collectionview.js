@@ -67,8 +67,8 @@ $(document).ready(function () {
             var searchProduct = JSON.parse(tbProducts[i]);
             var appendString = '<li id="' + searchProduct.ID + '"><a href="item.html?id=' + searchProduct.ID + '" data-ajax="false">' +
                 '<img src="' + '' + '">' +
-                '<h2>' + searchProduct.Name + '</h2>' +
-                '<p style="padding-top:-20px">' + searchProduct.Barcode + '</p>' +
+                '<h2>' + searchProduct.Vname + '</h2>' +
+                '<p style="padding-top:-20px">' + searchProduct.Name + '</p>' +
                 '<p class="ui-li-aside"><strong>' + searchProduct.Quantity + '</strong> Items</p>' +
                 '</a></li>';
             $("#listview")
@@ -85,12 +85,17 @@ $(document).ready(function () {
             //console.log("Type "+type);
             if (searchProduct.Type.toLowerCase() == type) {
                 //console.log("Found " + searchProduct.Name);
+
+                if(searchProduct.Barcode=="unknown"){
+                    searchProduct.Barcode ="";
+                }
+
                 var appendString = '<li id="' + searchProduct.ID + '"><a href="collectionitem.html?id=' + searchProduct.ID + '&type=issue&storage=local" data-ajax="false">' +
                     '<img src="' + searchProduct.Image + '">' +
-                    '<h2>' + searchProduct.Name + '</h2>' +
-                    '<p style="padding-top:-20px">' + searchProduct.Barcode + '</p>' +
-                    '<p class="ui-li-aside"><strong>' + searchProduct.Quantity + '</strong> Items</p>' +
-                    '</a></li>';
+                    '<h2>' + searchProduct.Vname + '</h2>' +
+                    '<p style="padding-top:-20px">' + searchProduct.Name + '</p>' +
+                    '<p class="ui-li-aside"><strong> #</strong>' + searchProduct.IssueNo + '</br> </p>' +
+                    '</a></li>'
                 $("#listview")
                     .append(appendString);
                 flag = true;

@@ -73,6 +73,7 @@ $(function(){
 			"	<th>Quantity</th>"+
 			"	<th>Type</th>"+
 			"	<th>AID</th>"+
+			"	<th>JSON</th>"+
 			"	</tr>"+
 			"</thead>"+
 			"<tbody>"+
@@ -81,6 +82,9 @@ $(function(){
 		console.log(tbProducts.toString());
 		for(var i in tbProducts){
 			var product = JSON.parse(tbProducts[i]);
+			if(product.JSONItem==null){
+				product.JSONItem = "";
+			}
 		  	$("#tblList tbody").append("<tr>"+
 			 	 "	<td><img src='edit.png' alt='Edit"+i+"' class='btnEdit'/><img src='delete.png' alt='Delete"+i+"' class='btnDelete'/></td>" + 
 				 "	<td>"+product.ID+"</td>" + 
@@ -89,6 +93,7 @@ $(function(){
 				 "	<td>"+product.Quantity+"</td>" + 
 				 "	<td>"+product.Type+"</td>" + 
 				 "	<td>"+product.AssociateID+"</td>" + 
+				 "	<td>"+product.JSONItem+"</td>" + 
 					 "</tr>");
 		}
 	}

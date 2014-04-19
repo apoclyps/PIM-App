@@ -3,9 +3,7 @@
              tbProducts = JSON.parse(tbProducts); //Converts string to object
              if (tbProducts == null) //If there is no data, initialize an empty array
                  tbProducts = [];
-             window.localStorage.clear();
-             alert("Purged");
-
+             //window.localStorage.clear();
              window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
          }
 

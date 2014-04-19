@@ -251,8 +251,7 @@ $(document)
             }
 
             window.localStorage.setItem("currentSearchVolumes", currentSearchVolumes);
-            updateDisplay(data.COMICVINE.length);
-
+        
             //Creating a datastore for ComicvineData
             var dataToStore = JSON.stringify(data.COMICVINE[0]);
             // Storing data in localstorage 
@@ -261,13 +260,7 @@ $(document)
             var key = data.COMICVINE[0].id;
             var localData = JSON.parse(localStorage.getItem(key));
 
-            // Displaying Data if it exists
-            if (localData == null) {
-                alert("Value is null");
-            } else {
-                //alert(localData.toString());
-                //alert("Accessed from LocalStorage : " + localData.id);
-            }
+            updateDisplay(data.COMICVINE.length);
         }; // End of Comicvine Function
         //---------------------------------------------------------------------------------------------------------------
         //          IMDB Dynamic View

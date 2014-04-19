@@ -1,3 +1,14 @@
+         function Purge() {
+             var tbProducts = window.localStorage.getItem("tbProducts"); //Retrieve the stored data
+             tbProducts = JSON.parse(tbProducts); //Converts string to object
+             if (tbProducts == null) //If there is no data, initialize an empty array
+                 tbProducts = [];
+             window.localStorage.clear();
+             alert("Purged");
+
+             window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+         }
+
       //Selects input from pop-up dialogue and returns as object.
       function getQueryParameters() {
           var parameters = {};
@@ -23,6 +34,7 @@
 
       //Builds a query to append to URL parameters.
       function query() {
+          Purge();
           var parameters = getQueryParameters();
           var urlParameters = objectToURLParameters(parameters);
           console.log(urlParameters);

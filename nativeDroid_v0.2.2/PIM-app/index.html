@@ -19,8 +19,6 @@
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
       <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
       <link rel="stylesheet" href="css/center.css"/>
-      <script src="ajax/query.js"></script>
-      <script src="ajax/scan.js"></script>
       <style>
          .ui-popup .ui-field-contain label.ui-submit, .ui-popup .ui-field-contain .ui-controlgroup-label, .ui-popup .ui-field-contain label.ui-select, .ui-popup .ui-field-contain label.ui-input-text {
          width:100%
@@ -51,16 +49,16 @@
          <!-- Hidden Settings Panel -->
          <div data-role='panel' id='settings' data-theme='b'>
                  <ul data-role="listview">
-                     <li data-role="list-divider"><a href="index.html">Menu</a></li>
-                     <li data-icon="barcode"><a href="#">Scan</a></li>
-                     <li data-icon="search"><a href="#">Search</a></li>
-                     <li data-icon="folder-close"><a href="#">Collections</a></li>
-                     <li data-icon="folder-open"><a href="#">Recently Viewed</a></li>
-                     <li data-icon="star"><a href="#">Recommendations</a></li>
+                     <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
+                     <li data-icon="barcode" ><a href="#" data-ajax="false">Scan</a></li>
+                     <li data-icon="search"><a href="#" data-ajax="false">Search</a></li>
+                     <li data-icon="folder-close"><a href="collections.html" data-ajax="false">Collections</a></li>
+                     <li data-icon="folder-open"><a href="recentlyviewed.html" data-ajax="false">Recently Viewed</a></li>
+                     <li data-icon="star"><a href="recommendations.html" data-ajax="false">Recommendations</a></li>
                      
                      <li data-role="list-divider" style="padding-top:10px">Settings</li>
-                     <li data-icon="user"><a href="#">Account</a></li>
-                     <li data-icon="group"><a href="#">Log Out</a></li>
+                     <li data-icon="user"><a href="account.html" data-ajax="false">Account</a></li>
+                     <li data-icon="group"><a href="login.html" data-ajax="false">Log Out</a></li>
             </ul>
          </div>
          <!-- end of hidden pannel -->
@@ -101,17 +99,17 @@
                      <li data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
                            <legend style="width:100%">Search Type : </legend>
-                           <input type="radio" name="radio-choice-1" id="radio-choice-1b" value="Comics" checked="checked">
+                           <input type="radio" name="radio-choice-1" id="radio-choice-1b" value="Comics" checked="checked"></input>
                            <label for="radio-choice-1b">Comics</label>
 						         <!--<input type="radio" name="radio-choice-1" id="radio-choice-2b" value="Books" >
                            <label for="radio-choice-2b">Books</label>-->
-                           <input type="radio" name="radio-choice-1" id="radio-choice-3b" value="Music">
+                           <input type="radio" name="radio-choice-1" id="radio-choice-3b" value="Music"></input>
                            <label for="radio-choice-3b">Music</label>
-                           <input type="radio" name="radio-choice-1" id="radio-choice-4b" value="Movies">
+                           <input type="radio" name="radio-choice-1" id="radio-choice-4b" value="Movies"></input>
                            <label for="radio-choice-4b">Movies / TV</label>
                            <!--<input type="radio" name="radio-choice-1" id="radio-choice-5b" value="Games">
                            <label for="radio-choice-5b">Games</label>-->
-                           <input type="radio" name="radio-choice-1" id="radio-choice-6b" value="All">
+                           <input type="radio" name="radio-choice-1" id="radio-choice-6b" value="All"></input>
                            <label for="radio-choice-6b">Search All</label>
                         </fieldset>
                      </li>
@@ -166,6 +164,8 @@
       <!-- End of page -->
 
       <!-- Query.js allows for searching by type + query string -->
+      <script src="ajax/query.js"></script>
+      <script src="ajax/scan.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">

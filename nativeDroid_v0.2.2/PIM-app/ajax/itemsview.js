@@ -228,6 +228,9 @@ $(document)
         function Comicvine(data) {
             var currentSearchIssues = [];
             window.localStorage.setItem("currentSearchIssues", currentSearchIssues);
+            var volumeID = decodeURIComponent($.urlParam('volume'));
+            var localData = JSON.parse(localStorage.getItem(volumeID));
+
             for (var i in data.COMICVINE) {
 
                 var type = decodeURIComponent($.urlParam('type'));
@@ -238,7 +241,9 @@ $(document)
                     displayType = "%type=volume";
                 }
 
-                //console.log(data.COMICVINE[i].toString);
+                if(data.COMICVINE[i].name==null || data.COMICVINE[i].name =="null"){
+                       data.COMICVINE[i].name =  localData.name;
+                }
 
                 var appendString = '<li id="' + data.COMICVINE[i].id + '"><a href="item.html?id=' + data.COMICVINE[i].id + displayType + '" data-ajax="false">' +
                     '<img src="' + data.COMICVINE[i].image_url + '">' +
@@ -253,7 +258,11 @@ $(document)
                 //Creating a datastore for ComicvineData
                 var dataToStore = JSON.stringify(data.COMICVINE[i]);
                 // Storing data in localstorage 
-                window.localStorage.setItem(data.COMICVINE[i].id, dataToStore);
+                try{
+                    localStorage.setItem(data.COMICVINE[i].id, dataToStore);
+                }catch(error){
+                    console.log(error);
+                }
                 currentSearchIssues.push(data.COMICVINE[i].id);
             }
 

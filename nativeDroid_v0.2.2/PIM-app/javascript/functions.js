@@ -58,6 +58,7 @@ $(function(){
 
 	function Purge(){
 		window.localStorage.clear();
+		alert("Purged");
 	}
 
 	function List(){		

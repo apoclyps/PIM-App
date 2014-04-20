@@ -85,8 +85,7 @@ $(document).ready(function () {
     updateDataView();
     //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
     buttonUpdate();
-    //console.log("Loading complete");
-    alert("LOADED ");
+    console.log("Loading complete");
     //------------------------------------------------------------
     
     function populateSearchIDS(){

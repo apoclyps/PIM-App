@@ -11,12 +11,14 @@
       <!-- nativeDroid core CSS -->
       <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
       <!-- nativeDroid: Light/Dark -->
-      <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
       <!-- nativeDroid: Color Schemes -->
       <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
       <!-- jQuery / jQueryMobile Scripts -->
       <script src="javascript/jquery-1.9.1.min.js"></script>
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
+      <link rel="stylesheet" href="css/center.css"/>
+      <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -26,6 +28,7 @@
                <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
             </h1>
          </div>
+
          <div data-role='panel' id='settings' data-theme='b'>
                  <ul data-role="listview">
                      <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
@@ -54,7 +57,9 @@
                   </li>
                </ul>
             </form>
-            <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-theme='b'>
+         
+         </div><!-- content -->
+         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-theme='b'>
                <div data-role="navbar">
                   <ul>
                      <li><a href="#popupUndo" data-rel='popup' data-position-to='window' data-role='button' data-transition='pop' data-inline='true' data-icon="undo">Undo Changes</a></li>
@@ -64,9 +69,7 @@
             </div>
             <div data-role='popup' id='popupSave' data-theme='b'>
                <div data-role='header' data-theme='b'>
-                    
                   <h1>Save Changes</h1>
-                   
                </div>
                <div data-role='content' data-theme='b'>
                   <p>Are you sure you want to save these changes?</p>
@@ -79,9 +82,7 @@
             </div>
             <div data-role='popup' id='popupUndo' data-theme='b'>
                <div data-role='header' data-theme='b'>
-                    
                   <h1>Undo Changes</h1>
-                   
                </div>
                <div data-role='content' data-theme='b'>
                   <p>Are you sure you want to undo these changes?</p>
@@ -92,7 +93,6 @@
                    
                </div>
             </div>
-         </div><!-- content -->
       </div> <!-- page -->
 
 	<!-- Fast Clib Libary -->

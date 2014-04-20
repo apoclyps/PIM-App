@@ -2,6 +2,10 @@
      document.addEventListener("deviceready", onDeviceReady, false);
  }
 
+  document.addEventListener("deviceready", function(){
+      console.log("Device is ready");
+ },true);
+
  $('#scan').submit(function () {
      scan();
      return false;

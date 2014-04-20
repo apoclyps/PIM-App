@@ -1,3 +1,4 @@
+$(document).ready(function () {
       //Selects input from pop-up dialogue and returns as object.
       function getParameters() {
           var parameters = {};
@@ -48,4 +49,5 @@
               query();
           }
       })
+)};
 

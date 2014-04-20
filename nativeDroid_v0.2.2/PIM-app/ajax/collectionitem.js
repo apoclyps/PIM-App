@@ -48,7 +48,7 @@ $(document).ready(function () {
     if (type == "volume") {
         activeSearchIDs = window.localStorage.getItem("currentSearchVolumes");
         console.log("Volume selected " + activeSearchIDs.toString());
-        //console.log(findIndex(id));
+        //console.log(findProduct(id));
     }else if (storage =="local"){
         activeSearchIDs = localStorage.getItem("tbProducts"); 
     } 
@@ -57,24 +57,42 @@ $(document).ready(function () {
         console.log("Issue selected");
     }
 
+
+    var tbProducts = getTBProducts();
+    var activeProduct = findProduct(id);
+
+    console.log(activeProduct);
+    console.log(activeProduct.Name);
+    console.log("id : " + findIndex(id));
+
     var currentSearchIDs = activeSearchIDs.split(',').map(function (item) {
         return parseInt(item, 10);
     });
 
+    var currentSearchIDs = [] ; 
 
+     currentSearchIDs =  populateSearchIDS();
 
-    var tbProducts = getTBProducts();
+    console.log("SEARCH IDS : "+ currentSearchIDs);
 
-    var activeProduct = findIndex(id);
-
-    console.log(activeProduct);
-    console.log(activeProduct.Name);
 
     updateDataView();
     //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
-    //buttonUpdate();
+    buttonUpdate();
     //console.log("Loading complete");
     //------------------------------------------------------------
+    function populateSearchIDS(){
+       
+        var SearchIDS = [];
+
+        for (i = 0; i < tbProducts.length; i++) {
+            //console.log(currentSearchIDs[i]);
+            activeproduct = JSON.parse(tbProducts[i]); //Converts string to object
+            SearchIDS.push(activeproduct.ID);
+        }
+        return SearchIDS;
+    }
+
     function getTBProducts(){
         var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
 
@@ -86,7 +104,7 @@ $(document).ready(function () {
         return tbProducts;
     }
 
-    function findIndex(ID) {
+    function findProduct(ID) {
         for (i = 0; i < tbProducts.length; i++) {
             //console.log(currentSearchIDs[i]);
             activeproduct = JSON.parse(tbProducts[i]); //Converts string to object
@@ -94,6 +112,17 @@ $(document).ready(function () {
                 return activeproduct;
             }
         }
+    }
+
+    function findIndex(ID) {
+        for (i = 0; i < tbProducts.length; i++) {
+            //console.log(currentSearchIDs[i]);
+            activeproduct = JSON.parse(tbProducts[i]); //Converts string to object
+            if (activeproduct.ID == ID) {
+                return i;
+            }
+        }
+        return 9999999;
     }
 
 function getProduct() {
@@ -337,8 +366,9 @@ function checkIfIssue() {
             index = i - 1;
             //$("#previous").show();
             //window.location.href = "item.html?id=" + currentSearchIDs[index];
-            console.log("Previous Index " + currentSearchIDs[index]);
+            console.log("Previous Index " + (currentSearchIDs[index]) + " index" +index);
             id = currentSearchIDs[index];
+            activeProduct = findProduct(id);
             updateDataView();
             runLeftEffect();
             buttonUpdate();
@@ -347,7 +377,6 @@ function checkIfIssue() {
 
     function nextItem() {
         index = findIndex(id);
-        console.log("current " + index);
         if (index >= (currentSearchIDs.length - 1)) {
             //index = 0;
             //$("#next").hide();
@@ -356,8 +385,9 @@ function checkIfIssue() {
             //$("#next").show();
             //window.location.href = "item.html?id=" + currentSearchIDs[index];
             //$(document).getElementById('itemviewlink').href="itemview.html?id="+currentSearchIDs[index];
-            console.log("Next Index" + currentSearchIDs[index]);
+            console.log("Next Index " + (currentSearchIDs[index]) + " index" +index);
             id = currentSearchIDs[index];
+            activeProduct = findProduct(id);
             updateDataView();
             runRightEffect();
             buttonUpdate();

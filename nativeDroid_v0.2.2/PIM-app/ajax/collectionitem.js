@@ -89,23 +89,6 @@ $(document).ready(function () {
     alert("LOADED ");
     //------------------------------------------------------------
     
-    function updateModel(){
-        tbProducts = getProduct();
-        currentSearchIDs = populateSearchIDS();
-        if(currentIndex<=0){
-            activeProduct = currentSearchIDs[index+1];
-        }
-        else{
-            activeProduct = currentSearchIDs[index-1];
-        }
-        localData = activeProduct;
-        id = activeproduct.ID;
-        previousItem();
-        updateDataView();
-        //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
-        buttonUpdate();
-    }
-
     function populateSearchIDS(){
        
         var SearchIDS = [];
@@ -152,9 +135,11 @@ $(document).ready(function () {
 
 function getProduct() {
 
+    var localData = findProduct(id);
+
     if(storage=="local"){
                 // Find item in tbProducts
-                id = decodeURIComponent($.urlParam('id'));
+                var id = currentSearchIDs[index];
                 console.log(id);
                 localData = SearchID(id);
                 console.log(localData);
@@ -260,30 +245,18 @@ function Delete(product) {
                 id = currentSearchIDs[tempIndex];
             }else if(tempIndex==0){
                 id = currentSearchIDs[0];
-                if(id==tempIndex){
-                    id = currentSearchIDs[0];
-                }
             }
             console.log("NEW ID" +id);
 
             $("#viewText").html("Add Issue");
             console.log("Item removed to Collection.");
-
-            /*
-            if(currentSearchIDs.lenght==0){
-                //window.location.replace ("collectionview.html?type=Comics");
-                window.location.replace("collectionview.html?type=Comics");
-                window.location.reload();
-            }else{
-               // window.location.replace ("collectionitem.html?id="+id
-                //    +"&type=issue&storage=local");
-                window.location.replace("collectionitem.html?id="+id
-                   +"&type=issue&storage=local");
-                window.location.reload();
-            }*/
             tbProducts = getTBProducts();
-            previousItem();          
-            //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
+             
+            if(index > 0){
+                previousItem();
+            }else if( index == 0){
+                replaceItem();
+            }
         }
     }
 
@@ -322,9 +295,7 @@ function checkIfIssue() {
         if (localData == null) {
             alert("Value is null");  
         } 
-        if(activeProduct == null){
-            previousItem();
-        }
+
 
         var storage = decodeURIComponent($.urlParam('storage'));
 
@@ -433,6 +404,25 @@ function checkIfIssue() {
             activeProduct = findProduct(id);
             updateDataView();
             runLeftEffect();
+            buttonUpdate();
+        }
+    }
+
+    function replaceItem() {
+        index = findIndex(id);
+        if (index >= (currentSearchIDs.length - 1)) {
+            //index = 0;
+            //$("#next").hide();
+        } else {
+            index = i;
+            //$("#next").show();
+            //window.location.href = "item.html?id=" + currentSearchIDs[index];
+            //$(document).getElementById('itemviewlink').href="itemview.html?id="+currentSearchIDs[index];
+            console.log("Next Index " + (currentSearchIDs[index]) + " index" +index);
+            id = currentSearchIDs[index];
+            activeProduct = findProduct(id);
+            updateDataView();
+            runRightEffect();
             buttonUpdate();
         }
     }

@@ -19,6 +19,13 @@
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
       <!-- Loading in settings file -->
       <script type="text/javascript" language="javascript" src="settings.jsonp"></script>
+      <link rel="stylesheet" href="css/center.css"/>
+      <script src="ajax/navigation.js"></script>
+      <style>
+         .ui-loader {
+            display:none;
+         }
+      </style>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -44,15 +51,18 @@
          </div>
          <!-- end of hidden pannel -->
          <div data-role="content">
+            <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+               <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left' ></i> Back</a></li>
+            </ul>
             <div class='inset'>
                <table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
                   <thead>
                      <tr>
                         <th data-priority="2">Rank</th>
                         <th>Title</th>
-                        <th data-priority="3">Count</th>
-                        <th data-priority="1"><abbr title="Rotten Tomato Rating">Last Issue</abbr></th>
-                        <th data-priority="5">Issue No</th>
+                        <th data-priority="3">Volume No#</th>
+                        <th data-priority="1"><abbr title="Rotten Tomato Rating">Type</abbr></th>
+                        <th data-priority="5">Issue No#</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -63,7 +73,7 @@
          </div>
       </div>
       <!-- AJAX Function -->
-      <script src="ajax/tables.js"></script>
+      <script src="ajax/recentlyviewed.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">

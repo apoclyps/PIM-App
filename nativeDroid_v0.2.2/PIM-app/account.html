@@ -19,6 +19,7 @@
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
       <link rel="stylesheet" href="css/center.css"/>
       <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
+      <script src="ajax/navigation.js"></script>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -44,6 +45,9 @@
          </div>
          <!-- end of hidden pannel -->
          <div data-role="content">
+            <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+               <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left' ></i> Back</a></li>
+            </ul>
             <form>
                <ul data-role="listview" data-inset="true">
                   <li data-role="list-divider">Account Details</li>

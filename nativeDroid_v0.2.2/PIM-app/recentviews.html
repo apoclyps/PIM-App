@@ -17,7 +17,15 @@
       <!-- jQuery / jQueryMobile Scripts -->
       <script src="javascript/jquery-1.9.1.min.js"></script>
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
+      <!-- Loading in settings file -->
+      <script type="text/javascript" language="javascript" src="settings.jsonp"></script>
       <link rel="stylesheet" href="css/center.css"/>
+      <script src="ajax/navigation.js"></script>
+      <style>
+         .ui-loader {
+            display:none;
+         }
+      </style>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -43,45 +51,33 @@
          </div>
          <!-- end of hidden pannel -->
          <div data-role="content">
-               <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+            <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
                <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left' ></i> Back</a></li>
-               <li style="float:right"><a href="search.html" data-ajax='false' id="search ">Search All<i class='icon-chevron-right'></i></a></li>
             </ul>
-            
-            <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
-               <li data-role="list-divider">Recently Viewed</li>
-               <div data-role="content">
-                  <!-- My Collection -->
-                  <div data-role="collapsible" data-collapsed="false">
-                     <h3>My Collection</h3>
-                     <ul data-role="listview">
-                        <li><a href="#">All</a></li>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="tables.html" data-ajax='false'>Comics</a></li>
-                        <li><a href="#">DVDs</a></li>
-                        <li><a href="#">Games</a></li>
-                        <li><a href="#">Music</a></li>
-                     </ul>
-                  </div>
-               </div>
-               <!-- End of menu list view -->
-            </ul>
-            <div class='message info'>
-               <i class='icon-info-sign'></i>
-               <p> <strong>Collected Products :</strong> 1657 </p>
-               <p>	<strong>Last updated :</strong> 10:33AM 10/03/2014</p>
+            <div class='inset'>
+               <table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
+                  <thead>
+                     <tr>
+                        <th data-priority="2">Title</th>
+                        <th data-priority="1">Volume Results</th>
+                        <th data-priority="3"><abbr title="Rotten Tomato Rating">Issue No#</abbr></th>
+                        <th data-priority="4"><abbr title="Rotten Tomato Rating">Type</abbr></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+               </table>
             </div>
+            <hr />
          </div>
-         <!-- end of content -->
       </div>
-      <!-- end of page -->
-      </div>
-      <script src="ajax/navigation.js"></script>
+      <!-- AJAX Function -->
+      <script src="ajax/recentlyviewed.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">
          window.addEventListener('load', function () {
-         	FastClick.attach(document.body);
+          FastClick.attach(document.body);
          }, false);
       </script> 
    </body>

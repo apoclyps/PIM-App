@@ -59,11 +59,6 @@ $(document).ready(function () {
 
 
     var tbProducts = getTBProducts();
-    var activeProduct = findProduct(id);
-
-    console.log(activeProduct);
-    console.log(activeProduct.Name);
-    console.log("id : " + findIndex(id));
 
     var currentSearchIDs = activeSearchIDs.split(',').map(function (item) {
         return parseInt(item, 10);
@@ -73,14 +68,44 @@ $(document).ready(function () {
 
      currentSearchIDs =  populateSearchIDS();
 
-    console.log("SEARCH IDS : "+ currentSearchIDs);
+    var activeProduct;
+    try{
+    activeProduct = findProduct(id);
 
+    console.log(activeProduct);
+    console.log(activeProduct.Name);
+    console.log("id : " + findIndex(id));
+    }catch(error){
+        id = currentSearchIDs[0];
+        activeProduct = findProduct(id);
+        alert("changed id "+activeproduct.ID);
+    }
+    var localData = JSON.parse(activeProduct.JSONItem);
 
     updateDataView();
     //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
     buttonUpdate();
     //console.log("Loading complete");
+    alert("LOADED ");
     //------------------------------------------------------------
+    
+    function updateModel(){
+        tbProducts = getProduct();
+        currentSearchIDs = populateSearchIDS();
+        if(currentIndex<=0){
+            activeProduct = currentSearchIDs[index+1];
+        }
+        else{
+            activeProduct = currentSearchIDs[index-1];
+        }
+        localData = activeProduct;
+        id = activeproduct.ID;
+        previousItem();
+        updateDataView();
+        //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
+        buttonUpdate();
+    }
+
     function populateSearchIDS(){
        
         var SearchIDS = [];
@@ -90,6 +115,7 @@ $(document).ready(function () {
             activeproduct = JSON.parse(tbProducts[i]); //Converts string to object
             SearchIDS.push(activeproduct.ID);
         }
+        console.log("SEARCH IDS : "+ SearchIDS);
         return SearchIDS;
     }
 
@@ -122,7 +148,6 @@ $(document).ready(function () {
                 return i;
             }
         }
-        return 9999999;
     }
 
 function getProduct() {
@@ -163,7 +188,7 @@ function getID() {
 function Add(product) {
     tbProducts.push(product);
     localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-    alert("Item added to Collection.");
+    console.log("Item added to Collection.");
     return true;
 }
 
@@ -220,12 +245,45 @@ function Delete(product) {
         //console.log("search product id "+searchProduct.ID);
         //console.log(" product id "+product.ID);
         if (searchProduct.ID == product.ID) {
-            //console.log("Found " + searchProduct.ID);
-            //console.log("INDEX : " +getTBIndex(product));
+
+            var tempIndex = findIndex(id);
+            //REMOVAL of element from table
             tbProducts.splice(getTBIndex(product) - 1, 1);
             window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+
+            tbProducts = getTBProducts();
+            currentSearchIDs = populateSearchIDS();
+            //var newIndex = findIndex(id);
+
+            console.log("TEMP INDEX" +tempIndex + " SEARCH IDS" + currentSearchIDs);
+            if(tempIndex>=1){
+                id = currentSearchIDs[tempIndex];
+            }else if(tempIndex==0){
+                id = currentSearchIDs[0];
+                if(id==tempIndex){
+                    id = currentSearchIDs[0];
+                }
+            }
+            console.log("NEW ID" +id);
+
             $("#viewText").html("Add Issue");
-            alert("Item removed to Collection.");
+            console.log("Item removed to Collection.");
+
+            /*
+            if(currentSearchIDs.lenght==0){
+                //window.location.replace ("collectionview.html?type=Comics");
+                window.location.replace("collectionview.html?type=Comics");
+                window.location.reload();
+            }else{
+               // window.location.replace ("collectionitem.html?id="+id
+                //    +"&type=issue&storage=local");
+                window.location.replace("collectionitem.html?id="+id
+                   +"&type=issue&storage=local");
+                window.location.reload();
+            }*/
+            tbProducts = getTBProducts();
+            previousItem();          
+            //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
         }
     }
 
@@ -259,12 +317,14 @@ function checkIfIssue() {
         //console.log("Updating view");
         document.getElementById('comicview').innerHTML = "";
 
-
-        var localData = JSON.parse(activeProduct.JSONItem);
+        localData = JSON.parse(activeProduct.JSONItem);
         // Displaying Data if it exists
         if (localData == null) {
             alert("Value is null");  
         } 
+        if(activeProduct == null){
+            previousItem();
+        }
 
         var storage = decodeURIComponent($.urlParam('storage'));
 
@@ -311,8 +371,6 @@ function checkIfIssue() {
         }, "fast");
     }
 
-
-
     function buttonUpdate() {
         index = findIndex(id);
         console.log("Button Update " + index);
@@ -323,10 +381,14 @@ function checkIfIssue() {
             $("#itemviewlink").show();
 
             //alert("Value "+ Search(getProduct()));
-            if (Search(getProduct())==true) {
-                $("#viewText").html("Remove Issue");
-            } else if(Search(getProduct())==false)  {
-                $("#viewText").html("Add Issue");
+            if(getProduct()!=null){
+                if (Search(getProduct())==true) {
+                    $("#viewText").html("Remove Issue");
+                } else if(Search(getProduct())==false)  {
+                    $("#viewText").html("Add Issue");
+                }
+            }else{
+                alert("Update Button");
             }
 
             $("#previousText").html("Previous Issue");

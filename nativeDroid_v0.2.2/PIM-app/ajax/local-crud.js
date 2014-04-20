@@ -18,7 +18,6 @@ $(document).ready(function () {
 	var buttonRef = document.getElementById("btnEmpty");
 	buttonRef.onclick = function()
             {
-               alert('Test');
                Empty();
             };
 
@@ -74,7 +73,7 @@ $(document).ready(function () {
 	function Delete(){
 		tbProducts.splice(selected_index, 1);
 		window.localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-		alert("Product deleted.");
+		//alert("Product deleted.");
 	}
 
 	function Purge(){

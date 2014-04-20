@@ -351,9 +351,6 @@ $(document)
             console.log(localData.name);
             $('#searchQuery').html("<strong>"+localData.name+" </strong> : " + length + " Results");
             //$('#searchResults').html("<strong>Volume </strong>: " + length);
-
-
-
         }
         //---------------------------------------------------------------------------------------------------------------
     });

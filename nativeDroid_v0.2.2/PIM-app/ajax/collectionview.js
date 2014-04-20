@@ -5,10 +5,7 @@
 $(document).ready(function () {
 
     var selected_index = -1; //Index of the selected list item
-    var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
-    tbProducts = JSON.parse(tbProducts); //Converts string to object
-    if (tbProducts == null) //If there is no data, initialize an empty array
-        tbProducts = [];
+    var tbProducts = getTBProducts();
 
     $.urlParam = function (name) {
         var results = new RegExp('[\\?&]' + name + '=([^&#]*)')
@@ -27,6 +24,17 @@ $(document).ready(function () {
 
     loadLocalStorate();
     //======================================================================
+
+    function getTBProducts(){
+        var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
+
+        tbProducts = JSON.parse(tbProducts); //Converts string to object
+        if (tbProducts == null) { //If there is no data, initialize an empty array
+            tbProducts = [];
+            //localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+        }
+        return tbProducts;
+    }
 
     function getType(display) {
         var type = null;
@@ -129,6 +137,8 @@ $(document).ready(function () {
             .fadeIn("slow", function () {
                 //console.log("Request Complete : Comic Vine Volume");
             });
+        $('#searchQuery').html("<strong>"+display+" </strong> : " + tbProducts + " Results");
+
     };
     //---------------------------------------------------------------------------------------------------------------
 });

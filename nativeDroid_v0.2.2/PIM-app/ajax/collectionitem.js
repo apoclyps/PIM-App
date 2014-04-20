@@ -61,32 +61,30 @@ $(document).ready(function () {
         return parseInt(item, 10);
     });
 
-    //console.log(currentSearchIDs.toString());
 
 
-
-    var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
-
-    tbProducts = JSON.parse(tbProducts); //Converts string to object
-    if (tbProducts == null) { //If there is no data, initialize an empty array
-        tbProducts = [];
-        //localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-    }
+    var tbProducts = getTBProducts();
 
     var activeProduct = findIndex(id);
-    //console.log(activeSearchIDs.length + " : "+activeSearchIDs.toString());
-    //console.log(currentSearchIDs.toString());
-    //console.log("current index"+index);
 
-    //console.log(getProduct());
     console.log(activeProduct);
     console.log(activeProduct.Name);
 
-    //localData = getProduct();
     updateDataView();
+    //REMOVED - NEEDS TO BE REIMPLEMENTED USING TB PRODUCTS
     //buttonUpdate();
     //console.log("Loading complete");
     //------------------------------------------------------------
+    function getTBProducts(){
+        var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
+
+        tbProducts = JSON.parse(tbProducts); //Converts string to object
+        if (tbProducts == null) { //If there is no data, initialize an empty array
+            tbProducts = [];
+            //localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+        }
+        return tbProducts;
+    }
 
     function findIndex(ID) {
         for (i = 0; i < tbProducts.length; i++) {
@@ -160,10 +158,10 @@ function SearchID(ID) {
     console.log("LENGTH " + tbProducts.length);
     for (var i in tbProducts) {
         var searchProduct = JSON.parse(tbProducts[i]);
-        console.log("search product id "+searchProduct.ID);
+        //console.log("search product id "+searchProduct.ID);
         //console.log(" product id "+product.ID);
         if (searchProduct.ID == ID) {
-            console.log("Found " + searchProduct.ID);
+            //console.log("Found " + searchProduct.ID);
             return searchProduct;
         }
     }
@@ -172,7 +170,7 @@ function SearchID(ID) {
 
 function getTBIndex(product) {
     //console.log("PROD "+product.id);
-    console.log("Prod TBL " + tbProducts.length + " data " + tbProducts.toString());
+    //console.log("Prod TBL " + tbProducts.length + " data " + tbProducts.toString());
     var count = 0;
     for (var i in tbProducts) {
         var searchProduct = JSON.parse(tbProducts[i]);
@@ -187,7 +185,7 @@ function getTBIndex(product) {
 
 function Delete(product) {
     product = JSON.parse(product);
-    console.log("PROD " + product.id);
+    //console.log("PROD " + product.id);
     for (var i in tbProducts) {
         var searchProduct = JSON.parse(tbProducts[i]);
         //console.log("search product id "+searchProduct.ID);
@@ -210,7 +208,7 @@ function checkIfIssue() {
 
     if (issue == "issue") {
         document.getElementById('itemviewlink').href = "";
-        console.log("Existing " + Search(getProduct()));
+        //console.log("Existing " + Search(getProduct()));
         if (Search(getProduct()) == true) {
             $("#viewText").html("Remove Issue");
             var product = getProduct();
@@ -223,13 +221,13 @@ function checkIfIssue() {
 
         }
     } else {
-        console.log(issue.toString());
+        //console.log(issue.toString());
         // document.getElementById('itemviewlink').href="itemview.html";
     }
 }
 
     function updateDataView() {
-        console.log("Updating view");
+        //console.log("Updating view");
         document.getElementById('comicview').innerHTML = "";
 
 
@@ -256,13 +254,13 @@ function checkIfIssue() {
         var type = decodeURIComponent($.urlParam('type'));
         if (type == "issue") {
                 var dynamicView = '<img style="float:right" src="' + localData.image_url + '"></img>' +
-                    '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + localData.name + '</h2>' + '<h2> Issue #' + localData.IssueNo + ' </h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
+                    '<h1 id="name">' + localData.name + '</h1> <br>' + '<h2>' + activeProduct.Vname + '</h2>' + '<h2> Issue #' + activeProduct.IssueNo + ' </h2><br>' + '<div style="text-align:justify" id="description">' + '<h3><strong>Description</strong></h3>' + '<p>' + deck + '</p><br>' +
                     '<h3><strong>Synopsis</strong></h3>' + '<p>' + localData.description + '</p> ' + '</div>';
                 //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
+
                 document.getElementById('itemviewlink').value = "Add to Collection";
                 // alert("ADDED");
                 //document.getElementById('itemviewlink').href="itemview.html?volume="+id+"&select=Comics&type=issue";
-                
         } 
         $("#comicview").append(dynamicView);
         //$("#comicview").load(dynamicView);

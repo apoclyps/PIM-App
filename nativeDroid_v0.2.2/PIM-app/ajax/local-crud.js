@@ -13,8 +13,9 @@ $(document).ready(function () {
 	if(tbProducts == null) //If there is no data, initialize an empty array
 		tbProducts = [];
 
-	var buttonRef = document.getElementById("btnEmpty");
+	List();
 
+	var buttonRef = document.getElementById("btnEmpty");
 	buttonRef.onclick = function()
             {
                alert('Test');
@@ -30,7 +31,7 @@ $(document).ready(function () {
 		}
 	}
 
-	List();
+
 	//Purge();
 	function getProduct(){
 		var product = JSON.stringify({

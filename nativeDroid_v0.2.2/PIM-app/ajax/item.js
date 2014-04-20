@@ -67,18 +67,23 @@ $(document).ready(function () {
     //console.log(currentSearchIDs.toString());
     //console.log("current index"+index);
 
-    var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
-
-    tbProducts = JSON.parse(tbProducts); //Converts string to object
-    if (tbProducts == null) { //If there is no data, initialize an empty array
-        tbProducts = [];
-        //localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
-    }
+    var tbProducts = getTBProducts();
 
     updateDataView();
     buttonUpdate();
     //console.log("Loading complete");
     //------------------------------------------------------------
+
+    function getTBProducts(){
+        var tbProducts = localStorage.getItem("tbProducts"); //Retrieve the stored data
+
+        tbProducts = JSON.parse(tbProducts); //Converts string to object
+        if (tbProducts == null) { //If there is no data, initialize an empty array
+            tbProducts = [];
+            //localStorage.setItem("tbProducts", JSON.stringify(tbProducts));
+        }
+        return tbProducts;
+    }
 
     function getProduct() {
 

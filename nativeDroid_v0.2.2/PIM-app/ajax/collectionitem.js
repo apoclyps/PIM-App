@@ -289,7 +289,12 @@ function checkIfIssue() {
         //console.log("Updating view");
         document.getElementById('comicview').innerHTML = "";
 
-        localData = JSON.parse(activeProduct.JSONItem);
+        try{
+            localData = JSON.parse(activeProduct.JSONItem);
+        }catch(error){
+            goBack();
+        }
+
         // Displaying Data if it exists
         if (localData == null) {
             alert("Value is null");  

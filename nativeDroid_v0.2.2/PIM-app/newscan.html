@@ -17,15 +17,23 @@
       <!-- jQuery / jQueryMobile Scripts -->
       <script src="javascript/jquery-1.9.1.min.js"></script>
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
-      <!-- Loading in settings file -->
-      <script type="text/javascript" language="javascript" src="settings.jsonp"></script>
+      <script src="javascript/cordova.js"></script>
       <link rel="stylesheet" href="css/center.css"/>
-      <script src="ajax/navigation.js"></script>
       <style>
-         .ui-loader {
-            display:none;
+         .ui-controlgroup-horizontal .ui-controlgroup-controls > .ui-btn, .ui-controlgroup-horizontal .ui-controlgroup-controls li > .ui-btn, .ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio, .ui-controlgroup-horizontal {
+         float: none;
+         clear: none;
+         margin: 0% 40% 0% 40%;
+         }
+         .ui-mini.ui-checkbox-off, .ui-body-b form .ui-mini.ui-radio-off {
+         background-color: #E2E3FF;
+         border-top: 1px solid rgba(255, 255, 255, 0.6);
+         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+         border-right: 1px solid rgba(255, 255, 255, 0.3);
+         font-weight: 400;
          }
       </style>
+      <script type="text/javascript" src="ajax/navigation.js"></script>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -54,30 +62,71 @@
             <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
                <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left' ></i> Back</a></li>
             </ul>
-            <div class='inset'>
-               <table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
-                  <thead>
-                     <tr>
-                        <th data-priority="2">Title</th>
-                        <th data-priority="4">Volume Results</th>
-                        <th data-priority="1"><abbr title="Rotten Tomato Rating">Issue No#</abbr></th>
-                        <th data-priority="3"><abbr title="Rotten Tomato Rating">Type</abbr></th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-               </table>
+            <br><br><br>
+            <div class="center-wrapper">
+               <h1>Universal Product Scanner</h1>
             </div>
-            <hr />
+            <br>
+
+            <div style="width:100%">
+
+               <div style="float:left;width:45%">
+                  <form id="scan">
+                     <ul class="center-wrapper" style="width:65%;float:right">
+                        <li data-role="fieldcontain">
+                           <img src="images/barcode.png" style="padding-left:30%;width:125px;height:140px"> </img>
+                        </li>
+                           <li data-role="fieldcontain" style="padding-left:15%" >
+                           <p> Automatically scan Products</p>
+                        </li>
+                        <li data-role="fieldcontain" style="padding-left:15%">
+                           <button id="submit" type="submit" data-theme="b" value="Scan Product Barcode" data-ajax='false'></button>
+                        </li>
+                     </ul>
+                  </form>
+               </div>
+
+               <div style="float:left;width:10%">
+                     <ul>
+                        <li data-role="fieldcontain" style="padding-top:50%">
+                           <h2>OR</h2>
+                        </li>
+                     </ul>
+               </div>
+
+               <div style="float:right;width:45%">
+                  <form id="scan">
+                     <ul class="center-wrapper" style="width:65%;float:left">
+                        <li data-role="fieldcontain">
+                           <img src="images/keyboard.png" style="padding-left:25%;width:125px;height:140px"> </img>
+                     </li>
+                        <li data-role="fieldcontain" style="padding-left:15%">
+                           <p> Manually enter Products </p>
+                        </li>
+                        <li data-role="fieldcontain" style="padding-left:15%" >
+                           <button id="addProduct" type="submit" data-theme="b" value="Add Product Manually" onclick="window.location.href='product.html'" data-ajax='false' ></button>
+                        </li>
+                     </ul>
+                  </form>
+               </div>
+            </div>
+
+            <div id="result" data-role="listview"></div>
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+               <div class="center-wrapper">
+                  <h1>
+                     Version 1.0
+                  </h1>
+               </div>
+            </div>
          </div>
       </div>
-      <!-- AJAX Function -->
-      <script src="ajax/recentlyviewed.js"></script>
+      <script type="text/javascript" src="javascript/barcode.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">
          window.addEventListener('load', function () {
-          FastClick.attach(document.body);
+            FastClick.attach(document.body);
          }, false);
       </script> 
    </body>

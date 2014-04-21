@@ -55,7 +55,6 @@
                      <li data-icon="folder-close"><a href="collections.html" data-ajax="false">Collections</a></li>
                      <li data-icon="folder-open"><a href="recentlyviewed.html" data-ajax="false">Recently Viewed</a></li>
                      <li data-icon="star"><a href="recommendations.html" data-ajax="false">Recommendations</a></li>
-                     
                      <li data-role="list-divider" style="padding-top:10px">Settings</li>
                      <li data-icon="user"><a href="account.html" data-ajax="false">Account</a></li>
                      <li data-icon="group"><a href="login.html" data-ajax="false">Log Out</a></li>
@@ -65,6 +64,9 @@
          <div data-role="content">
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
                <li data-role="list-divider">Search</li>
+               <li>
+                  <a href='newscan.html' class ="" data-transition="none" data-ajax="false"><i class='icon-barcode'></i>New Scan</a>
+               </li>
                <li>
                   <a href='#popupScan' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupScanner"><i class='icon-barcode'></i> Scan</a>
                </li>
@@ -82,6 +84,7 @@
                <li>
                   <a href="recommendations.html" data-transition="none" data-ajax="false"><i class='icon-star'></i> Recommendations</a>
                </li>
+               <li data-role="list-divider">Developer</li>
                <li>
                   <a href="localstorage-crud.html" data-transition="slide" data-ajax="false"><i class='icon-cog'></i> Local Storage </a>
                </li>

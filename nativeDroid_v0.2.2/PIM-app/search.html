@@ -17,6 +17,9 @@
       <!-- jQuery / jQueryMobile Scripts -->
       <script src="javascript/jquery-1.9.1.min.js"></script>
       <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
+      <link rel="stylesheet" href="css/center.css"/>
+      <!--<script src="file://C:/Users/apoclyps/git/PIM-App/nativeDroid_v0.2.2/PIM-app/settings.jsonp"></script>-->
+      <script type="text/javascript" language="javascript" src="settings.jsonp"></script>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -26,7 +29,6 @@
                <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
             </h1>
          </div>
-         <!-- Hidden Settings Panel -->
          <div data-role='panel' id='settings' data-theme='b'>
                  <ul data-role="listview">
                      <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
@@ -39,7 +41,6 @@
                      <li data-icon="user"><a href="account.html" data-ajax="false">Account</a></li>
                      <li data-icon="group"><a href="login.html" data-ajax="false">Log Out</a></li>
             </ul>
-         </div>
          </div>
          <!-- end of hidden pannel -->
          <div data-role="content">
@@ -56,7 +57,7 @@
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">
          window.addEventListener('load', function () {
-         	FastClick.attach(document.body);
+            FastClick.attach(document.body);
          }, false);
       </script> 
    </body>

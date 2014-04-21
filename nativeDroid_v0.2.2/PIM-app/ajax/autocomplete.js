@@ -66,7 +66,7 @@ $(document).ready(function () {
      function allStorage() {
         var archive = [],
         keys = Object.keys(localStorage);
-        console.log(keys.toString());
+        //console.log(keys.toString());
         i = 0;
 
         for (var i; i < keys.length; i++) {
@@ -98,15 +98,18 @@ $(document).ready(function () {
                 }
 
                 var outputString = "";
-                if(object.type=="issue"){
-                    outputString =  "<strong>"+object.name.substring(0,25) + "</strong> Issue  #"+object.issue_number;
-                }else if (object.type=="volume"){
-                    outputString = "<strong>"+object.name.substring(0,25) + "</strong> Volume #"+object.count_of_issues;
-                }
+                if(object.name!=null){
 
-                $("#listview").append("<li><a href='item.html?id=" + object.id + "&type=" + object.type 
-                    + "' class='ui-link' data-rel='external' data-ajax='false' title='" 
-                    + object.id + "'>" + outputString+ "</a></li>");
+                    if(object.type=="issue" ){
+                        outputString =  "<strong>"+object.name.substring(0,25) + "</strong> Issue  #"+object.issue_number;
+                    }else if (object.type=="volume"){
+                        outputString = "<strong>"+object.name.substring(0,25) + "</strong> Volume #"+object.count_of_issues;
+                    }
+
+                    $("#listview").append("<li><a href='item.html?id=" + object.id + "&type=" + object.type 
+                        + "' class='ui-link' data-rel='external' data-ajax='false' title='" 
+                        + object.id + "'>" + outputString+ "</a></li>");
+                }
             }
         }
         $('#listview').listview('refresh');

@@ -7,7 +7,7 @@ $(document).ready(function () {
     function allStorage() {
         var archive = [],
             keys = Object.keys(localStorage);
-        console.log(keys.toString());
+        //console.log(keys.toString());
         i = 0;
 
         for (var i; i < keys.length; i++) {

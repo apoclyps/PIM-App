@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="javascript/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="ajax/local-crud.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/crudstyle.css"/>
+</head>
+<body>
+	<form id="frmCadastre">
+		<ul>
+			<li>
+				<label for="txtID">ID:</label>
+				<input type="text" id="txtID"/>
+			</li>
+			<li>
+				<label for="txtName">Name:</label>
+				<input type="text" id="txtName"/>
+			</li>
+			<li>
+				<label for="txtBarcode">Barcode:</label>
+				<input type="text" id="txtBarcode"/>
+			</li>
+			<li>
+				<label for="txtQuantity">Quantity:</label>
+				<input type="text" id="txtQuantity"/>
+			</li>
+			<li>
+				<input type="submit" value="Save" id="btnSave"/>
+				
+			</li>
+		</ul>
+	</form>
+
+	<button value="Empty" id="btnEmpty" />Empty</button>
+
+	<table id="tblList">
+
+	</table>
+</body>
+</html>

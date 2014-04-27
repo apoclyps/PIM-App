@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+   <head>
+      <title>PIM - Personal Inventory Management</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+      <link rel="stylesheet" href="css/font-awesome.min.css" />
+      <!-- jQueryMobileCSS - original without styling -->
+      <link rel="stylesheet" href="css/jquerymobile.css" />
+      <!-- nativeDroid core CSS -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+      <!-- nativeDroid: Light/Dark -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+      <!-- nativeDroid: Color Schemes -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+      <!-- jQuery / jQueryMobile Scripts -->
+      <link rel="stylesheet" href="css/center.css"/>
+      <!-- jQuery / jQueryMobile Scripts -->
+      <script src="javascript/jquery-1.9.1.min.js"></script>
+      <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
+   </head>
+   <body>
+      <div data-role="page" data-theme='b'>
+         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
+            <h1>
+               <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
+            </h1>
+         </div>
+         <!-- Hidden Settings Panel -->
+         <div data-role='panel' id='settings' data-theme='b'>
+                 <ul data-role="listview">
+                     <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
+                     <li data-icon="barcode" ><a href="#" data-ajax="false">Scan</a></li>
+                     <li data-icon="search"><a href="#" data-ajax="false">Search</a></li>
+                     <li data-icon="folder-close"><a href="collections.html" data-ajax="false">Collections</a></li>
+                     <li data-icon="folder-open"><a href="recentlyviewed.html" data-ajax="false">Recently Viewed</a></li>
+                     <li data-icon="star"><a href="recommendations.html" data-ajax="false">Recommendations</a></li>
+                     <li data-role="list-divider" style="padding-top:10px">Settings</li>
+                     <li data-icon="user"><a href="account.html" data-ajax="false">Account</a></li>
+                     <li data-icon="group"><a href="login.html" data-ajax="false">Log Out</a></li>
+            </ul>
+         </div>
+         <!-- end of hidden pannel -->
+         <div data-role="content">
+            <div class='inset'>
+               <h2><code><strong>Personal Inventory Management</strong> - Version 0.1</code></h2>
+               <ul class='simpleList'>
+                  <li>The <a href='http://nativedroid.godesign.ch' data-ajax='false' target='_blank'>Personal Inventory Management App</a> is currently<strong>freely available </strong> and <strong>can be used for private and commercial projects</strong> as long as you provide a link back to this website (<a href='http://kyleharrison.co.uk' data-ajax='false' target='_blank'>http://www.kyleharrison.co.uk</a>)</li>
+                  <li><strong>You may not resell this theme</strong> or claim it as your own!</li>
+                  <li>If you have any questions or if you are not able to provide a backlink please <a href='mailto:wildhaber@godesign.ch' data-ajax='false' target='_blank'>Contact me</a>.</li>
+                  <li><em>Theme : <a href='http://nativedroid.godesign.ch' data-ajax='false' target='_blank'>nativeDroid-Theme by Raphael Wildhaber</a></em></li>
+                  <li id='TriggerPaypalDonation' style='cursor:pointer;'>
+                     <h3>No link back?</h3>
+                     If you don't want to or cannot set a link back in your project, I ask you for <a href='#'>a small donation</a> of <b>USD 15</b> to my <a href="#">Paypal</a> account.
+                  </li>
+               </ul>
+               <h2>Libraries</h2>
+               <ul class='simpleList'>
+                  <li><a href='http://fortawesome.github.io/Font-Awesome/' data-ajax='false' target='_blank'>FontAwesome</a> Created &amp; Maintained by Dave Gandy (Version 3.2.0)</li>
+                  <li><a href='http://www.google.com/fonts/#QuickUsePlace:quickUse/Family:Roboto' data-ajax='false' target='_blank'>Roboto Webfont</a> powered by the Google Fonts API</li>
+                  <li><a href='http://www.jquery.com' data-ajax='false' target='_blank'>jQuery</a> by The jQuery Foundation (Version 1.9.1)</li>
+                  <li><a href='http://www.jquerymobile.com' data-ajax='false' target='_blank'>jQuery Mobile</a> by The jQuery Foundation (Version 1.3.1)</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <!-- Fast Clib Libary -->
+      <script type='application/javascript' src='javascript/fastclick.js'></script>
+      <script type="application/javascript">
+         window.addEventListener('load', function () {
+         	FastClick.attach(document.body);
+         }, false);
+      </script> 
+   </body>
+</html>

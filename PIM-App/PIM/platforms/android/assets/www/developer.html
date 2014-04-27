@@ -1,0 +1,161 @@
+c<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html>
+   <head>
+      <title>PIM - Personal Inventory Management</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+      <link rel="stylesheet" href="css/font-awesome.min.css" />
+      <!-- jQueryMobileCSS - original without styling -->
+      <link rel="stylesheet" href="css/jquerymobile.css" />
+      <!-- nativeDroid core CSS -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+      <!-- nativeDroid: Light/Dark -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+      <!-- nativeDroid: Color Schemes -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+      <!-- jQuery / jQueryMobile Scripts -->
+      <script src="javascript/jquery-1.9.1.min.js"></script>
+      <script src="javascript/jquery.mobile-1.3.1.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="javascript/cordova.js"></script>
+      <link rel="stylesheet" href="css/center.css"/>
+      <style>
+         .ui-popup .ui-field-contain label.ui-submit, .ui-popup .ui-field-contain .ui-controlgroup-label, .ui-popup .ui-field-contain label.ui-select, .ui-popup .ui-field-contain label.ui-input-text {
+         width:100%
+         }
+         .ui-popup .ui-field-contain label.ui-submit, .ui-popup .ui-field-contain .ui-controlgroup-label, .ui-popup .ui-field-contain label.ui-select, .ui-popup .ui-field-contain label.ui-input-text {
+         margin: -10px -15px 0.3em;
+         }
+         .ui-btn-text {
+         font-size: 20px;
+         line-height: 25px;
+         }
+         .ui-li-has-arrow .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow {
+         padding-right: 40px;
+         }
+      </style>
+   </head>
+   <body>
+      <div data-role="page" data-theme='b'>
+         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href='#settings' data-role='button' data-iconpos='left' data-inline='true'><i class='icon-ellipsis-vertical'></i></a>
+            <h1>
+               <div class="center-wrapper">Inventory Management <a href="scan.html" data-ajax='true' target='_blank' data-iconpos='right' data-inline='true'><i class='icon-search' style="margin-right:25px;margin-left:10"></i></a></div>
+            </h1>
+         </div>
+         <div data-role='panel' id='settings' data-theme='b'>
+                 <ul data-role="listview">
+                     <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
+                     <li data-icon="barcode" ><a href="#" data-ajax="false">Scan</a></li>
+                     <li data-icon="search"><a href="#" data-ajax="false">Search</a></li>
+                     <li data-icon="folder-close"><a href="collections.html" data-ajax="false">Collections</a></li>
+                     <li data-icon="folder-open"><a href="recentlyviewed.html" data-ajax="false">Recently Viewed</a></li>
+                     <li data-icon="star"><a href="recommendations.html" data-ajax="false">Recommendations</a></li>
+                     <li data-role="list-divider" style="padding-top:10px">Settings</li>
+                     <li data-icon="user"><a href="account.html" data-ajax="false">Account</a></li>
+                     <li data-icon="group"><a href="login.html" data-ajax="false">Log Out</a></li>
+            </ul>
+         </div>
+         <!-- end of hidden pannel -->
+         <div data-role="content">
+            <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+               <li data-role="list-divider">Search</li>
+               <li>
+                  <a  href="search.html" data-transition="none" data-ajax="false" ><i class='icon-external-link' ></i> Search</a>
+               </li>
+               <li>
+                  <a href='#popupDialog' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearch"><i class='icon-external-link'></i> Search Online</a>
+               </li>
+               <li>
+                  <a href="scan.html" data-transition="none" data-ajax="false"><i class='icon-external-link'></i> Scan</a>
+               </li>
+               <li data-role="list-divider">Collections</li>
+               <li>
+                  <a href="collections.html" data-transition="none" data-ajax="false"><i class='icon-chevron-right'></i> Collections</a>
+               </li>
+               <li>
+                  <a href="recentlyviewed.html" data-transition="none" data-ajax="false"><i class='icon-chevron-right'></i> Recently Viewed</a>
+               </li>
+               <li data-role="list-divider">Recommendations</li>
+               <li>
+                  <a href="recommendations.html" data-transition="none" data-ajax="false"><i class='icon-list'></i> Recommendations</a>
+               </li>
+               <li data-role="list-divider">Prototype Views</li>
+               <li>
+                  <a href="listviews.html" data-transition="none" data-ajax="false"><i class='icon-list'></i> Listviews</a>
+               </li>
+               <li>
+                  <a href="tables.html" data-ajax="false"><i class='icon-list'></i> Table</a>
+               </li>
+               <li>
+                  <a href="autocomplete.html" data-ajax="false"><i class='icon-list'></i> Autocomplete Search</a>
+               </li>
+               <li >
+                  <a href="login.html" data-transition="flip" data-ajax="false"><i class='icon-file'></i> Login </a>
+               </li>
+               <li >
+                  <a href="register.html" data-transition="flow" data-ajax="false"><i class='icon-file'></i> Register </a>
+               </li>
+               <li >
+                  <a href="sqlite.html" data-transition="flow" data-ajax="false"><i class='icon-file'></i> Sqlite </a>
+               </li>
+               <li>
+                  <a href="zxcvbn.html" data-transition="slide" data-ajax="false"><i class='icon-file'></i> ZXCVBN </a>
+               </li>
+               <li>
+                  <a href="localstorage-crud.html" data-transition="slide" data-ajax="false"><i class='icon-file'></i> Localstorage CRUD </a>
+               </li>
+               <li>
+                  <a href="localStorage.html" data-transition="slide" data-ajax="false"><i class='icon-file'></i> Localstorage </a>
+               </li>
+               <li data-role="list-divider">Information</li>
+               <li >
+                  <a href="settings.html" data-transition="slidefade" data-ajax="false"><i class='icon-magic'></i> Settings </a>
+               </li>
+               <li >
+                  <a href="license.html" data-transition="slide" data-ajax="false"><i class='icon-file'></i> License </a>
+               </li>
+            </ul>
+            <div data-role='popup' id='popupDialog' data-theme='b'>
+               <div data-role='header' data-theme='b'>
+                  <h1>PIM Search</h1>
+               </div>
+               <div data-role='content' data-theme='b'>
+                  <ul data-role="listview" data-inset="true">
+                     <li data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                           <legend style="width:100%">Search Type : </legend>
+                           <input type="radio" name="radio-choice-1" id="radio-choice-1b" value="Comics" checked="checked">
+                           <label for="radio-choice-1b">Comics</label>
+						         <!--<input type="radio" name="radio-choice-1" id="radio-choice-2b" value="Books" >
+                           <label for="radio-choice-2b">Books</label>-->
+                           <input type="radio" name="radio-choice-1" id="radio-choice-3b" value="Music">
+                           <label for="radio-choice-3b">Music</label>
+                           <input type="radio" name="radio-choice-1" id="radio-choice-4b" value="Movies">
+                           <label for="radio-choice-4b">Movies / TV</label>
+                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-5b" value="Games">
+                           <label for="radio-choice-5b">Games</label>-->
+                        </fieldset>
+                     </li>
+                  </ul>
+                  <input id="search" name="search" size="35" class="textInput required" type="text" placeholder="Search Keywords..." data-clear-btn="true" style="margin: 0.5em 0px;"></input>
+                  <div class='showastabs center nobg'>
+                     <button id="search" data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true' onclick="query();" >Okay</button>
+                     <a href='index.html' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- End of content -->
+      </div>
+      <!-- End of page -->
+      <script src="ajax/query.js"></script><!-- Query.js allows for searching by type + query string -->
+      <!-- Fast Clib Libary -->
+      <script type='application/javascript' src='javascript/fastclick.js'></script>
+      <script type="application/javascript">
+         window.addEventListener('load', function () {
+            FastClick.attach(document.body);
+         }, false);
+      </script> 
+   </body>
+</html>

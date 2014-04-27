@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <title> ZXCVBN Test</title>
+      <script type='text/javascript' src='javascript/jquery-1.9.1.min.js'></script>
+      <!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+      <link rel="stylesheet" href="css/font-awesome.min.css" />
+      <!-- jQueryMobileCSS - original without styling -->
+      <link rel="stylesheet" href="css/jquerymobile.css" />
+      <!-- nativeDroid core CSS -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+      <!-- nativeDroid: Light/Dark -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+      <!-- nativeDroid: Color Schemes -->
+      <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+      <!-- ZXCVBN Imports -->
+      <script type='text/javascript' src="javascript/zxcvbn/zxcvbn.js"></script>
+      <script type='text/javascript' src ="ajax/passwordStrength.js"></script>
+   </head>
+   <body>
+      <input id="password" name="password" size="35" class="textInput required" type="password"/>
+      <div id="result"></div>
+      <div id="strength"></div>
+   </body>
+</html>

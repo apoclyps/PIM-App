@@ -22,7 +22,6 @@ $(document).ready(function () {
 
 
     for (var j = 0; j < archive.length-1; j++) {
-        
         var currentID;
         try{
             var object = JSON.parse(archive[j]);

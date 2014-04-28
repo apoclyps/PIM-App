@@ -50,7 +50,7 @@
          <div data-role='panel' id='settings' data-theme='b'>
                  <ul data-role="listview">
                      <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
-                     <li data-icon="barcode" ><a href="#" data-ajax="false">Scan</a></li>
+                     <li data-icon="barcode" ><a href="scan.html" data-ajax="false">Scan</a></li>
                      <li data-icon="search"><a href='#popupSearch' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearcher" onclick="hideMenu()">Search</a></li>
                      <li data-icon="folder-close"><a href="collections.html" data-ajax="false">Collections</a></li>
                      <li data-icon="folder-open"><a href="recentlyviewed.html" data-ajax="false">Recently Viewed</a></li>
@@ -65,11 +65,13 @@
             <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
                <li data-role="list-divider">Search</li>
                <li>
-                  <a href='newscan.html' class ="" data-transition="none" data-ajax="false"><i class='icon-barcode'></i>New Scan</a>
+                  <a href='scan.html' class ="" data-transition="none" data-ajax="false"><i class='icon-barcode'></i> Scan</a>
                </li>
+               <!--
                <li>
                   <a href='#popupScan' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupScanner"><i class='icon-barcode'></i> Scan</a>
                </li>
+            -->
                <li>
                   <a href='#popupSearch' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearcher"><i class='icon-search'></i> Search Online</a>
                </li>
@@ -124,42 +126,7 @@
                   </div>
                </div>
             </div>
-            <!-- Pop up dialog box for Search -->
-            <div data-role='popup' id='popupScan' data-theme='b'>
-               <div data-role='header' data-theme='b'>
-                  <h1>PIM Scan</h1>
-               </div>
-               <div data-role='content' data-theme='b'>
-                  <ul data-role="listview" data-inset="true">
-                     <li data-role="fieldcontain">
-                        <fieldset data-role="controlgroup">
-                           <legend style="width:100%">Media Type : </legend>
-                           <input type="radio" name="radio-choice-2" id="radio-choice-1b" value="Comic" checked="checked"></input>
-                           <label for="radio-choice-1b">Comics</label>
-                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-2b" value="Books" >
-                           <label for="radio-choice-2b">Books</label>-->
-                           <input type="radio" name="radio-choice-2" id="radio-choice-3b" value="CD"></input>
-                           <label for="radio-choice-3b">CD</label>
-                           <input type="radio" name="radio-choice-2" id="radio-choice-4b" value="DVD"></input>
-                           <label for="radio-choice-4b">DVD</label>
-                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-5b" value="Games">
-                           <label for="radio-choice-5b">Games</label>-->
-                        </fieldset>
-                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
-                            <legend>Scan Type</legend>
-                            <input type="radio" name="radio-choice-3" id="radio-choice-1b" value="Auto" checked="checked"></input>
-                            <label for="radio-choice-1b">Automatic Scan</label>
-                            <input type="radio" name="radio-choice-3" id="radio-choice-2b" value="Manual"></input>
-                            <label for="radio-choice-2b">Manual Entry</label>
-                        </fieldset>
-                     </li>
-                  </ul>
-                  <div class='showastabs center nobg'>
-                     <button id="search" data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true' onclick="scan()" >Okay</button>
-                     <a href='index.html' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
-                  </div>
-               </div>
-            </div>
+            
             <!-- -->
          </div>
          <!-- End of content -->

@@ -33,6 +33,7 @@
          font-weight: 400;
          }
       </style>
+      <script type="text/javascript" src="ajax/navigation.js"></script>
    </head>
    <body>
       <div data-role="page" data-theme='b'>
@@ -46,8 +47,8 @@
          <div data-role='panel' id='settings' data-theme='b'>
                  <ul data-role="listview">
                      <li data-role="list-divider"><a href="index.html" data-ajax="false">Menu</a></li>
-                     <li data-icon="barcode" ><a href="#" data-ajax="false">Scan</a></li>
-                     <li data-icon="search"><a href="#" data-ajax="false">Search</a></li>
+                     <li data-icon="barcode" ><a href="scan.html" data-ajax="false">Scan</a></li>
+                     <li data-icon="search"><a href='#popupSearch' class ="" data-rel='popup' data-position-to='window'  data-transition='pop' data-inline='true' style="display:hidden" id="popupSearcher" onclick="hideMenu()">Search</a></li>
                      <li data-icon="folder-close"><a href="collections.html" data-ajax="false">Collections</a></li>
                      <li data-icon="folder-open"><a href="recentlyviewed.html" data-ajax="false">Recently Viewed</a></li>
                      <li data-icon="star"><a href="recommendations.html" data-ajax="false">Recommendations</a></li>
@@ -58,50 +59,95 @@
          </div>
          <!-- end of hidden pannel -->
          <div data-role="content">
+            <ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+               <li><a href="#" data-ajax='false' onclick="goBack()"><i class='icon-chevron-left' ></i> Back</a></li>
+            </ul>
             <br><br><br>
             <div class="center-wrapper">
                <h1>Universal Product Scanner</h1>
             </div>
             <br>
-            <div class="center-wrapper">
-               <form id="scan">
-                  <ul>
+
+            <div style="width:100%">
+
+               <div style="float:left;width:45%">
+                  <form id="scan">
+                     <ul class="center-wrapper" style="width:65%;float:right">
+                        <li data-role="fieldcontain">
+                           <img src="images/barcode.png" style="padding-left:30%;width:125px;height:140px"> </img>
+                        </li>
+                           <li data-role="fieldcontain" style="padding-left:15%" >
+                           <p> Automatically scan Products</p>
+                        </li>
+                        <li data-role="fieldcontain" style="padding-left:15%">
+                           <button id="submit" type="submit" data-theme="b" value="Scan Product Barcode" data-ajax='false'></button>
+                        </li>
+                     </ul>
+                  </form>
+               </div>
+
+               <div style="float:left;width:10%">
+                     <ul>
+                        <li data-role="fieldcontain" style="padding-top:50%">
+                           <h2>OR</h2>
+                        </li>
+                     </ul>
+               </div>
+
+               <div style="float:right;width:45%">
+                  <form id="scan">
+                     <ul class="center-wrapper" style="width:65%;float:left">
+                        <li data-role="fieldcontain">
+                           <img src="images/keyboard.png" style="padding-left:25%;width:125px;height:140px"> </img>
+                     </li>
+                        <li data-role="fieldcontain" style="padding-left:15%">
+                           <p> Manually enter Products </p>
+                        </li>
+                        <li data-role="fieldcontain" style="padding-left:15%" >
+                           <button id="addProduct" type="submit" data-theme="b" value="Add Product Manually" onclick="window.location.href='product.html'" data-ajax='false' ></button>
+                        </li>
+                     </ul>
+                  </form>
+               </div>
+
+            </div>
+                        <!-- Pop up dialog box for Search -->
+            <div data-role='popup' id='popupSearch' data-theme='b'>
+               <div data-role='header' data-theme='b'>
+                  <h1>PIM Search</h1>
+               </div>
+               <div data-role='content' data-theme='b'>
+                  <ul data-role="listview" data-inset="true">
                      <li data-role="fieldcontain">
-                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
-                           <span>Select Media Type</span><br><br>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-ab" value="choice-a" checked="checked">
-                           <label for="radio-choice-ab">Comic</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-bb" value="choice-b">
-                           <label for="radio-choice-bb">CD</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-cb" value="choice-c">
-                           <label for="radio-choice-cb">DVD</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-db" value="choice-d">
-                           <label for="radio-choice-db">Game</label>
-                           <input type="radio" name="radio-choice-a" id="radio-choice-eb" value="choice-d">
-                           <label for="radio-choice-eb">Other</label>
+                        <fieldset data-role="controlgroup">
+                           <legend style="width:100%">Search Type : </legend>
+                           <input type="radio" name="radio-choice-1" id="radio-choice-1b" value="Comics" checked="checked"></input>
+                           <label for="radio-choice-1b">Comics</label>
+                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-2b" value="Books" >
+                           <label for="radio-choice-2b">Books</label>-->
+                           <input type="radio" name="radio-choice-1" id="radio-choice-3b" value="Music"></input>
+                           <label for="radio-choice-3b">Music</label>
+                           <input type="radio" name="radio-choice-1" id="radio-choice-4b" value="Movies"></input>
+                           <label for="radio-choice-4b">Movies / TV</label>
+                           <!--<input type="radio" name="radio-choice-1" id="radio-choice-5b" value="Games">
+                           <label for="radio-choice-5b">Games</label>-->
+                           <input type="radio" name="radio-choice-1" id="radio-choice-6b" value="All"></input>
+                           <label for="radio-choice-6b">Search All</label>
                         </fieldset>
                      </li>
-                     <br><br>
-                     <li data-role="fieldcontain">
-                        <button id="submit" type="submit" data-theme="b" value="Scan Product Barcode" data-ajax='false'></button>
-                     </li>
                   </ul>
-               </form>
+                  <input id="search" name="search" size="35" class="textInput required" type="text" placeholder="Search Keywords..." data-clear-btn="true" style="margin: 0.5em 0px;"></input>
+                  <div class='showastabs center nobg'>
+                     <button id="search" data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true' onclick="query()" >Okay</button>
+                     <a href='index.html' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
+                  </div>
+               </div>
             </div>
-            <div class="center-wrapper">
-               <form id="scan" style="padding-bottom:5%">
-                  <ul>
-                     <li data-role="fieldcontain">
-                        <br/>
-                        <h2>OR</h2>
-                        <br/> 
-                     </li>
-                     <li data-role="fieldcontain">
-                        <button id="addProduct" type="submit" data-theme="b" value="Add Product Manually" onclick="window.location.href='product.html'" data-ajax='false'></button>
-                     </li>
-                  </ul>
-               </form>
-            </div>
+            
+            <!-- -->
+
+            </div><!-- End of content -->
+
             <div id="result" data-role="listview"></div>
             <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
                <div class="center-wrapper">
@@ -110,9 +156,11 @@
                   </h1>
                </div>
             </div>
-         </div>
+         </div> 
+
       </div>
       <script type="text/javascript" src="javascript/barcode.js"></script>
+      <script type="text/javascript" src="ajax/query.js"></script>
       <!-- Fast Clib Libary -->
       <script type='application/javascript' src='javascript/fastclick.js'></script>
       <script type="application/javascript">
